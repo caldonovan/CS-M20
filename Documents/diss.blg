@@ -1,18 +1,46 @@
-This is BibTeX, Version 0.99dThe top-level auxiliary file: diss.aux
+This is BibTeX, Version 0.99d (TeX Live 2019/W32TeX)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: diss.aux
 The style file: ieeetr.bst
 Database file #1: references.bib
-Warning--I didn't find a database entry for "pvsnp"
-Warning--I didn't find a database entry for "scook"
-Warning--I didn't find a database entry for "levin"
-Warning--I didn't find a database entry for "complex"
-Warning--I didn't find a database entry for "karp"
-Warning--I didn't find a database entry for "pnp"
-Warning--I didn't find a database entry for "sat"
-Warning--I didn't find a database entry for "putnam"
-Warning--I didn't find a database entry for "dpll"
-Warning--I didn't find a database entry for "dpllgraph"
-Warning--I didn't find a database entry for "ppsz"
-Warning--I didn't find a database entry for "parallel"
-Warning--I didn't find a database entry for "div"
-Warning--I didn't find a database entry for "local"
-(There were 14 warnings)
+You've used 14 entries,
+            1876 wiz_defined-function locations,
+            561 strings with 5374 characters,
+and the built_in function-call counts, 4003 in all, are:
+= -- 407
+> -- 124
+< -- 0
++ -- 47
+- -- 33
+* -- 244
+:= -- 532
+add.period$ -- 14
+call.type$ -- 14
+change.case$ -- 14
+chr.to.int$ -- 0
+cite$ -- 14
+duplicate$ -- 233
+empty$ -- 379
+format.name$ -- 33
+if$ -- 1018
+int.to.chr$ -- 0
+int.to.str$ -- 14
+missing$ -- 12
+newline$ -- 45
+num.names$ -- 18
+pop$ -- 52
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 196
+stack$ -- 0
+substring$ -- 252
+swap$ -- 120
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 37
+width$ -- 16
+write$ -- 134
