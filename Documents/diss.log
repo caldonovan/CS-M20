@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2020.3.24)  24 AUG 2020 18:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2020.3.24)  24 AUG 2020 19:59
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -294,39 +294,39 @@ Package pdftex.def Info: ./images/swan.jpg  used on input line 50.
 \tf@toc=\write3
 \openout3 = `diss.toc'.
 
- [3] [4] [5]
-<./images/complexity.png, id=27, 200.75pt x 182.6825pt>
+ [3] [4] [5] [6]
+<./images/complexity.png, id=31, 200.75pt x 182.6825pt>
 File: ./images/complexity.png Graphic file (type png)
 <use ./images/complexity.png>
 Package pdftex.def Info: ./images/complexity.png  used on input line 142.
 (pdftex.def)             Requested size: 170.71652pt x 155.36168pt.
- [6 <./images/complexity.png>] [7] [8]
-<./images/Dpll11.png, id=42, 439.6425pt x 296.60812pt>
+ [7 <./images/complexity.png>] [8] [9]
+<./images/Dpll11.png, id=45, 439.6425pt x 296.60812pt>
 File: ./images/Dpll11.png Graphic file (type png)
 <use ./images/Dpll11.png>
 Package pdftex.def Info: ./images/Dpll11.png  used on input line 229.
 (pdftex.def)             Requested size: 170.71652pt x 115.17432pt.
- [9 <./images/Dpll11.png>] [10] [11] [12] (c:/texlive/2019/texmf-dist/tex/latex/listings/lstlang1.sty
+ [10 <./images/Dpll11.png>] [11] [12] [13] (c:/texlive/2019/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2019/09/10 1.8c listings language file
 ) (c:/texlive/2019/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2019/09/10 1.8c listings language file
 ) (c:/texlive/2019/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2019/09/10 1.8c (Carsten Heinz)
-) [13] [14] [15]
+) [14] [15] [16]
 Overfull \hbox (0.80627pt too wide) in paragraph at lines 439--445
 []\OT1/cmr/m/n/10 Using one sub-methodology as an ex-am-ple, ex-treme pro-gram-ming looks
  []
 
-<./images/gantt.jpg, id=66, 1516.91719pt x 1102.1175pt>
+<./images/gantt.jpg, id=69, 1516.91719pt x 1102.1175pt>
 File: ./images/gantt.jpg Graphic file (type jpg)
 <use ./images/gantt.jpg>
 Package pdftex.def Info: ./images/gantt.jpg  used on input line 452.
 (pdftex.def)             Requested size: 491.43787pt x 357.04039pt.
-[16] [17 <./images/gantt.jpg>] [18] [19]
+[17] [18 <./images/gantt.jpg>] [19] [20]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[20] [21] (c:/Users/CalDo/Desktop/CS-M20/Documents/diss.bbl) [22] (c:/Users/CalDo/Desktop/CS-M20/Documents/diss.aux) ) 
+[21] [22] [23] [24] [25] [26] [27] [28] (c:/Users/CalDo/Desktop/CS-M20/Documents/diss.bbl) [29] (c:/Users/CalDo/Desktop/CS-M20/Documents/diss.aux) ) 
 Here is how much of TeX's memory you used:
  6607 strings out of 480994
  94428 string characters out of 5916032
@@ -336,10 +336,10 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  41i,14n,62p,261b,1265s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2019/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}<c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on c:/Users/CalDo/Desktop/CS-M20/Documents/diss.pdf (23 pages, 1974727 bytes).
+Output written on c:/Users/CalDo/Desktop/CS-M20/Documents/diss.pdf (30 pages, 1979790 bytes).
 PDF statistics:
- 121 PDF objects out of 1000 (max. 8388607)
- 81 compressed objects within 1 object stream
+ 143 PDF objects out of 1000 (max. 8388607)
+ 96 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

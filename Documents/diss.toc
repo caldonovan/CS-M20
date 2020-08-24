@@ -1,37 +1,58 @@
 \babel@toc {english}{}
 \contentsline {section}{\numberline {1}Abstract}{1}%
-\contentsline {section}{\numberline {2}Introduction}{4}%
-\contentsline {subsection}{\numberline {2.1}Motivation}{5}%
-\contentsline {subsection}{\numberline {2.2}Aims}{5}%
-\contentsline {section}{\numberline {3}Background Research}{6}%
-\contentsline {subsection}{\numberline {3.1}Computational Complexity}{6}%
-\contentsline {subsection}{\numberline {3.2}P and NP}{6}%
-\contentsline {subsection}{\numberline {3.3}Cook-Levin Theorem}{7}%
-\contentsline {subsection}{\numberline {3.4}CNF SAT}{8}%
-\contentsline {subsection}{\numberline {3.5}How Do SAT Solvers Work?}{8}%
-\contentsline {subsubsection}{\numberline {3.5.1}Davis-Putnam-Logemann-Loveland (DPLL)}{9}%
-\contentsline {subsubsection}{\numberline {3.5.2}Other Algorithms}{9}%
-\contentsline {subsubsection}{\numberline {3.5.3}Parallel SAT Solving}{10}%
-\contentsline {subsection}{\numberline {3.6}Existing Solutions}{11}%
-\contentsline {subsubsection}{\numberline {3.6.1}MiniSat}{12}%
-\contentsline {section}{\numberline {4}Project Description}{14}%
-\contentsline {subsection}{\numberline {4.1}Functional Requirements}{14}%
-\contentsline {subsubsection}{\numberline {4.1.1}FREQ1}{14}%
-\contentsline {subsubsection}{\numberline {4.1.2}FREQ2}{14}%
-\contentsline {subsection}{\numberline {4.2}Non-Functional Requirements}{14}%
-\contentsline {subsubsection}{\numberline {4.2.1}NFREQ1}{15}%
-\contentsline {subsubsection}{\numberline {4.2.2}NFREQ1}{15}%
-\contentsline {section}{\numberline {5}Project Plan}{15}%
-\contentsline {subsection}{\numberline {5.1}Methodology}{15}%
-\contentsline {subsubsection}{\numberline {5.1.1}Chosen Methodology}{15}%
-\contentsline {subsubsection}{\numberline {5.1.2}Alternative Methodologies}{15}%
-\contentsline {subsection}{\numberline {5.2}Time Plan}{16}%
-\contentsline {subsubsection}{\numberline {5.2.1}Research + Discovery}{16}%
-\contentsline {subsubsection}{\numberline {5.2.2}Design Phase}{18}%
-\contentsline {subsubsection}{\numberline {5.2.3}Development Phase}{18}%
-\contentsline {subsubsection}{\numberline {5.2.4}Testing + Revision Phase}{19}%
-\contentsline {subsection}{\numberline {5.3}Tools}{19}%
-\contentsline {subsubsection}{\numberline {5.3.1}Code Editor}{19}%
-\contentsline {subsubsection}{\numberline {5.3.2}Compiler}{20}%
-\contentsline {subsection}{\numberline {5.4}Risk Analysis}{20}%
-\contentsline {section}{\numberline {6}Project Overview}{21}%
+\contentsline {section}{\numberline {2}Introduction}{5}%
+\contentsline {subsection}{\numberline {2.1}Motivation}{6}%
+\contentsline {subsection}{\numberline {2.2}Aims}{6}%
+\contentsline {section}{\numberline {3}Background Research}{7}%
+\contentsline {subsection}{\numberline {3.1}Computational Complexity}{7}%
+\contentsline {subsection}{\numberline {3.2}P and NP}{7}%
+\contentsline {subsection}{\numberline {3.3}Cook-Levin Theorem}{8}%
+\contentsline {subsection}{\numberline {3.4}CNF SAT}{9}%
+\contentsline {subsection}{\numberline {3.5}How Do SAT Solvers Work?}{9}%
+\contentsline {subsubsection}{\numberline {3.5.1}Davis-Putnam-Logemann-Loveland (DPLL)}{10}%
+\contentsline {subsubsection}{\numberline {3.5.2}Other Algorithms}{10}%
+\contentsline {subsubsection}{\numberline {3.5.3}Parallel SAT Solving}{11}%
+\contentsline {subsection}{\numberline {3.6}Existing Solutions}{12}%
+\contentsline {subsubsection}{\numberline {3.6.1}MiniSat}{13}%
+\contentsline {section}{\numberline {4}Project Description}{15}%
+\contentsline {subsection}{\numberline {4.1}Functional Requirements}{15}%
+\contentsline {subsubsection}{\numberline {4.1.1}FREQ1}{15}%
+\contentsline {subsubsection}{\numberline {4.1.2}FREQ2}{15}%
+\contentsline {subsection}{\numberline {4.2}Non-Functional Requirements}{15}%
+\contentsline {subsubsection}{\numberline {4.2.1}NFREQ1}{16}%
+\contentsline {subsubsection}{\numberline {4.2.2}NFREQ1}{16}%
+\contentsline {section}{\numberline {5}Project Plan}{16}%
+\contentsline {subsection}{\numberline {5.1}Methodology}{16}%
+\contentsline {subsubsection}{\numberline {5.1.1}Chosen Methodology}{16}%
+\contentsline {subsubsection}{\numberline {5.1.2}Alternative Methodologies}{16}%
+\contentsline {subsection}{\numberline {5.2}Time Plan}{17}%
+\contentsline {subsubsection}{\numberline {5.2.1}Research + Discovery}{17}%
+\contentsline {subsubsection}{\numberline {5.2.2}Design Phase}{19}%
+\contentsline {subsubsection}{\numberline {5.2.3}Development Phase}{19}%
+\contentsline {subsubsection}{\numberline {5.2.4}Testing + Revision Phase}{20}%
+\contentsline {subsection}{\numberline {5.3}Tools}{20}%
+\contentsline {subsubsection}{\numberline {5.3.1}Code Editor}{20}%
+\contentsline {subsubsection}{\numberline {5.3.2}Compiler}{21}%
+\contentsline {subsection}{\numberline {5.4}Risk Analysis}{21}%
+\contentsline {section}{\numberline {6}Project Overview}{22}%
+\contentsline {section}{\numberline {7}Research Phase}{23}%
+\contentsline {subsection}{\numberline {7.1}TAOP}{23}%
+\contentsline {subsection}{\numberline {7.2}Algorithms}{23}%
+\contentsline {subsection}{\numberline {7.3}Existing FOSS Solutions}{23}%
+\contentsline {subsection}{\numberline {7.4}Libraries and Software}{23}%
+\contentsline {section}{\numberline {8}Design Phase}{24}%
+\contentsline {subsection}{\numberline {8.1}Initial Psuedocode}{24}%
+\contentsline {subsection}{\numberline {8.2}Implementing Algorithm Psuedocode}{24}%
+\contentsline {subsection}{\numberline {8.3}Initial Design}{24}%
+\contentsline {subsection}{\numberline {8.4}Completed Design}{24}%
+\contentsline {section}{\numberline {9}Development Phase}{25}%
+\contentsline {subsection}{\numberline {9.1}Initial Prototype}{25}%
+\contentsline {subsection}{\numberline {9.2}Review}{25}%
+\contentsline {subsection}{\numberline {9.3}Further Development}{25}%
+\contentsline {subsection}{\numberline {9.4}Final Implementation}{25}%
+\contentsline {section}{\numberline {10}Testing Phase}{26}%
+\contentsline {subsection}{\numberline {10.1}Debugging \& Testing}{26}%
+\contentsline {subsection}{\numberline {10.2}Testing Criteria}{26}%
+\contentsline {subsection}{\numberline {10.3}Results}{26}%
+\contentsline {section}{\numberline {11}Revisions Phase}{27}%
+\contentsline {section}{\numberline {12}Conclusion}{28}%
