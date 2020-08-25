@@ -37,12 +37,24 @@
 \contentsline {section}{\numberline {6}Project Overview}{22}%
 \contentsline {section}{\numberline {7}Research Phase}{23}%
 \contentsline {subsection}{\numberline {7.1}TAOP}{23}%
+\contentsline {subsubsection}{\numberline {7.1.1}Satisfiability}{23}%
+\contentsline {subsubsection}{\numberline {7.1.2}Example Problems}{23}%
+\contentsline {subsubsection}{\numberline {7.1.3}Data Structures}{23}%
 \contentsline {subsection}{\numberline {7.2}Algorithms}{23}%
+\contentsline {subsubsection}{\numberline {7.2.1}Algorithm A}{23}%
+\contentsline {subsubsection}{\numberline {7.2.2}Algorithm B}{23}%
+\contentsline {subsubsection}{\numberline {7.2.3}Algorithm D}{23}%
 \contentsline {subsection}{\numberline {7.3}Existing FOSS Solutions}{23}%
+\contentsline {subsubsection}{\numberline {7.3.1}Minisat}{23}%
+\contentsline {subsubsection}{\numberline {7.3.2}LearnSAT}{23}%
 \contentsline {subsection}{\numberline {7.4}Libraries and Software}{23}%
 \contentsline {section}{\numberline {8}Design Phase}{24}%
 \contentsline {subsection}{\numberline {8.1}Initial Psuedocode}{24}%
-\contentsline {subsection}{\numberline {8.2}Implementing Algorithm Psuedocode}{24}%
+\contentsline {subsubsection}{\numberline {8.1.1}Algorithm D}{24}%
+\contentsline {subsection}{\numberline {8.2}Design Considerations}{24}%
+\contentsline {subsubsection}{\numberline {8.2.1}Data Structures}{24}%
+\contentsline {subsubsection}{\numberline {8.2.2}Compilers}{24}%
+\contentsline {subsubsection}{\numberline {8.2.3}C++17}{24}%
 \contentsline {subsection}{\numberline {8.3}Initial Design}{24}%
 \contentsline {subsection}{\numberline {8.4}Completed Design}{24}%
 \contentsline {section}{\numberline {9}Development Phase}{25}%
@@ -55,4 +67,5 @@
 \contentsline {subsection}{\numberline {10.2}Testing Criteria}{26}%
 \contentsline {subsection}{\numberline {10.3}Results}{26}%
 \contentsline {section}{\numberline {11}Revisions Phase}{27}%
-\contentsline {section}{\numberline {12}Conclusion}{28}%
+\contentsline {section}{\numberline {12}Suggested Improvements}{28}%
+\contentsline {section}{\numberline {13}Conclusion}{29}%
