@@ -613,7 +613,7 @@ Donald Knuth's epic, "The Art of Programming", contains an in-depth look into th
 science, it encompasses some of the hardest problems that plague researchers and engineers alike. To preface our project's design phase, it is important
 that we have a sound understanding of the basic ideas and methodologies within the field of satisfiability.
 
-This is aided by the analysis of TAOP, and using the ideas proposed by Donald Knuth, alongside the way in which he easily explains the concepts, allows 
+This is aided by the analysis of TAOP, and using the ideas proposed by Donald Knuth, alongside the way in which he easily explains the concepts, allows
 for good head start. Starting with the first chapters, Donald Knuth outlines the basic ideas of satisfiability.
 
 \subsubsection{Satisfiability}
@@ -626,13 +626,31 @@ In the words of Donald Knuth, satisfiability is "INSERT DK QUOTE".
 % TODO: Talk about the data structures required for all three algorithms; A, B, D.
 
 \subsection{Algorithms}
+Following on from the previous section, we can now begin analysis of the algorithms that are presented to us by Donald Knuth. Conveniently for us,
+Donald Knuth has included the performance metrics and expected efficiency of all the proposed algorithms. This makes choosing which one we wish to implement
+a little easier, but we must still remember not to stretch outside of the project scope. The following is a short description of three simple algorithms
+described in TAOP. % TODO: Include page number here for each algorithm.
+
 \subsubsection{Algorithm A}
+Algorithm A is the simplest of the three that we have chosen. This algoritm is a no-frills backtracking solver, using linked lists and no advanced data
+structures.
+
 \subsubsection{Algorithm B}
+Algorithm B is an improved implementation of algorithm A, using a slightly more advanced data structure as well as implementing efficiency improvements.
+This algorithm works in a similar method to algorithm A.
+
 \subsubsection{Algorithm D}
+% TODO: Add much more detail and the specific improvements. MAKE SURE TO REFERENCE
+Algorithm D is the most performant of the three we have chosen, and uses better data structures as well as more efficiency improvements. It is a typical
+DPLL style cyclic backtracking algorithm, and can tackle more complex problems.
 
 \subsection{Existing FOSS Solutions}
+There already exist a plethora of existing solutions, typically created to compete in SAT solver competitions.
 \subsubsection{Minisat}
+Minisat is a very popular implementation of a CDCL solver, written in as little lines as possible. It can tackle complex problems and remains a good piece
+of software for learning about advanced SAT solvers.
 \subsubsection{LearnSAT}
+LearnSAT is a special implementation of a CDCL solver, focused on describing and teaching how a SAT solver works.
 
 \subsection{Libraries and Software}
 % TODO: Not sure if this will be applicable.
@@ -640,12 +658,19 @@ In the words of Donald Knuth, satisfiability is "INSERT DK QUOTE".
 \newpage
 \section{Design Phase}
 \subsection{Initial Psuedocode}
+% TODO: Insert psuedocode from markdown file here.
 \subsubsection{Algorithm D}
-
+% TODO: Explain how this algorithm will be implemented
 \subsection{Design Considerations}
 \subsubsection{Data Structures}
+% TODO: Expand on data structures that are going to be used.
 \subsubsection{Compilers}
+There are multiple compilers available that all achieve the same result, albiet in slightly different ways. For C++, there are three main options used by
+developers: GCC / G++, MSVC, and Clang.
+
+% TODO: Expand on the performance benefits for each type of compiler, and the reasoning behind using GCC.
 \subsubsection{C++17}
+% TODO: Talk about why we have chosen C++17
 
 \subsection{Initial Design}
 \subsection{Completed Design}
