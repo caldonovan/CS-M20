@@ -9,8 +9,10 @@
 \usepackage{booktabs}
 \usepackage{textcomp}
 \usepackage{rotating}
+\usepackage{fontspec}
 \usepackage[english]{babel}
 
+\setmainfont{Times New Roman}
 \graphicspath{ {./images/} }
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
@@ -618,6 +620,7 @@ for good head start. Starting with the first chapters, Donald Knuth outlines the
 
 \subsubsection{Satisfiability}
 In the words of Donald Knuth, satisfiability is "INSERT DK QUOTE".
+% TODO: Explain a bit more about SAT here, some shit small definition is only needed.
 
 \subsubsection{Example Problems}
 % TODO: Put some examples that DK uses in his book here. MAKE SURE TO REFERENCE.
@@ -633,7 +636,8 @@ described in TAOP. % TODO: Include page number here for each algorithm.
 
 \subsubsection{Algorithm A}
 Algorithm A is the simplest of the three that we have chosen. This algoritm is a no-frills backtracking solver, using linked lists and no advanced data
-structures. Named by Donald Knuth as an enhanced backtracking algorithm with watched literals.
+structures. Named by Donald Knuth as an enhanced backtracking algorithm with watched literals. Detailed on pages 28 to 29, this algorithm
+uses 
 
 \subsubsection{Algorithm B}
 Algorithm B is an improved implementation of algorithm A, using a slightly more advanced data structure as well as implementing efficiency improvements.
@@ -665,14 +669,27 @@ LearnSAT is a special implementation of a CDCL solver, focused on describing and
 \subsubsection{Data Structures}
 % TODO: Expand on data structures that are going to be used.
 \subsubsection{Compilers}
-There are multiple compilers available that all achieve the same result, albiet in slightly different ways. For C++, there are three main options used by
-developers: GCC / G++, MSVC, and Clang.
+There are multiple compilers available that all achieve the same result, albiet in slightly different ways. For C++, there are three main 
+options used by developers: GCC / G++, MSVC, and Clang. For this project, we had to consider the ease of development on the hardware
+available. As we will be developing on a Windows machine, alongside the availability of Windows Subsystem for Linux, GCC seemed the obvious
+choice.
+
+GCC allows compilation on both Windows and Linux, agnostic to the type of editor that will be used. In some situations, it might be easier to
+boot up an instance of Vim from Linux in the terminal. But in others it may be useful to have the power of a full IDE, such as JetBrains
+Clion. By using GCC, moving from one machine to another is also a breeze. Thus reducing the development time for this project by
+streamlining the development toolchain.
 
 % TODO: Expand on the performance benefits for each type of compiler, and the reasoning behind using GCC.
 \subsubsection{C++17}
 % TODO: Talk about why we have chosen C++17
+The whole point of this project is to demonstrate the implementation of the SAT solver in C++, thus it is obvious that this is what we shall
+choose. As for which version of C++, there is not much debate as to the need for a specific version. So we shall settle on C++17 as it's new
+enough to have general improvements, but old enough to be well tested and reliable for our needs. 
 
 \subsection{Initial Design}
+The initial designs for the project are based off of the above sections. Using the data structures and psuedocode that we generated, a
+general idea of how the program may be implemented can be easily obtained. 
+
 \subsection{Completed Design}
 
 \newpage
