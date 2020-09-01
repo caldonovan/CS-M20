@@ -1,3 +1,5 @@
+% ! THIS MUST BE COMPILED USING XeLaTeX !
+
 \documentclass{article}
 \usepackage{listings}
 \usepackage[utf8]{inputenc}
@@ -59,14 +61,18 @@
     \end{center}
 \end{titlepage}
 
+% ? Assuming this can stay as it still makes sense?
 \section{Abstract}
 Modern SAT solvers are able to process large SAT data sets quicker than ever before. The research community have been able to assist in the
 development of these algorithms since the early 60's, and work is still being done today to improve the performance of these tools. This
 paper will be exploring the concepts of a SAT solving algorithm, and how we can translate them into working software tools using modern
 programming languages. The selected algorithm is taken from Donald Knuths epic "The Art of Programming", specifically his newest addition "Facsicle 6,
-satisfiability". Algorithm D is a simple implementation of a cyclic DPLL SAT solver that utilises specific data structures and backtracking to achieve
-modest performance in most use cases. We have implemented this in C++17, and tested it against a small suite of regular SAT problems presented in the DIMACS
-format.
+satisfiability". 
+
+% TODO: Change this to whatever algorithm "we" decide to "implement" in the end.
+Algorithm D is a simple implementation of a cyclic DPLL SAT solver that utilises specific data structures and backtracking to achieve
+modest performance in most use cases. We have implemented this in C++17, and tested it against a small suite of regular SAT problems
+presented in the DIMACS format.
 
 \newpage
 
@@ -75,6 +81,7 @@ format.
 
 \newpage
 
+% TODO: Make this more compatible with final DISS.
 \section{Introduction}
 In modern computer science, there exist a large set of computational problems that are deemed to be impossible to compute in a reasonable
 amount of time. This set of problems, named NP, forms the basis of what a large majority of computer science researchers have attempted to
@@ -625,9 +632,6 @@ In the words of Donald Knuth, satisfiability is "INSERT DK QUOTE".
 \subsubsection{Example Problems}
 % TODO: Put some examples that DK uses in his book here. MAKE SURE TO REFERENCE.
 
-\subsubsection{Data Structures}
-% TODO: Talk about the data structures required for all three algorithms; A, B, D.
-
 \subsection{Algorithms}
 Following on from the previous section, we can now begin analysis of the algorithms that are presented to us by Donald Knuth. Conveniently for us,
 Donald Knuth has included the performance metrics and expected efficiency of all the proposed algorithms. This makes choosing which one we wish to implement
@@ -641,7 +645,9 @@ uses
 
 \subsubsection{Algorithm B}
 Algorithm B is an improved implementation of algorithm A, using a slightly more advanced data structure as well as implementing efficiency improvements.
-This algorithm works in a similar method to algorithm A.
+This algorithm works in a similar method to algorithm A. But instead introduces the concept of watched literals. This concept provides
+healthy improvements to the existing code, without a large increase in complexity to the general codebase. 
+% TODO: Talk about how the watched literals system introduces multiple improvements.
 
 \subsubsection{Algorithm D}
 % TODO: Add much more detail and the specific improvements. MAKE SURE TO REFERENCE
@@ -658,6 +664,9 @@ LearnSAT is a special implementation of a CDCL solver, focused on describing and
 
 \subsection{Libraries and Software}
 % TODO: Not sure if this will be applicable.
+An important thing to consider when undertaking a project such as this, is whether there already exists any solutions. For instance, as TAOP
+was released in 2015, it is perfectly rational to assume another has already implemented these algorithms.
+% TODO: Talk about the already implemented code from "https://github.com/aaw/sat".
 
 \newpage
 \section{Design Phase}
@@ -665,9 +674,15 @@ LearnSAT is a special implementation of a CDCL solver, focused on describing and
 % TODO: Insert psuedocode from markdown file here.
 \subsubsection{Algorithm D}
 % TODO: Explain how this algorithm will be implemented
-\subsection{Design Considerations}
+
 \subsubsection{Data Structures}
-% TODO: Expand on data structures that are going to be used.
+In order to implement one of the algorithms presented by Donald Knuth, we must also implement the data structures that he presents alongside
+them. These data structures are fundamental to the performance of these algorithms, without them the manipulation of the data that is
+reqiured would not be as efficient, or in some cases possible. The following is a run-down of the structures that are to be implemented, as
+presented from the TAOP book.
+
+% TODO: Actually show the data structures here.
+
 \subsubsection{Compilers}
 There are multiple compilers available that all achieve the same result, albiet in slightly different ways. For C++, there are three main 
 options used by developers: GCC / G++, MSVC, and Clang. For this project, we had to consider the ease of development on the hardware
@@ -678,6 +693,18 @@ GCC allows compilation on both Windows and Linux, agnostic to the type of editor
 boot up an instance of Vim from Linux in the terminal. But in others it may be useful to have the power of a full IDE, such as JetBrains
 Clion. By using GCC, moving from one machine to another is also a breeze. Thus reducing the development time for this project by
 streamlining the development toolchain.
+
+Although we could use the Microsoft Build Tools and the included LLDB debugger, which does sport some performance improvements over GDB, the
+modern MinGW suite has improved significantly over the last few iterations. But to retain the consistency available across all platforms,
+we shall stick to using GCC / G++ and the bundled GDB debugger. Specifically for Windows, the compiler and debugger are provided by the
+MinGW toolchain. 
+The specific versions used for this project are listed below: 
+
+\begin{itemize}
+    \item MinGW \rightarrow\ 5.3
+    \item CMake \rightarrow\ 3.17.3
+    \item GDB \rightarrow\ 9.2
+\end{itemize}
 
 % TODO: Expand on the performance benefits for each type of compiler, and the reasoning behind using GCC.
 \subsubsection{C++17}
