@@ -57,7 +57,24 @@
 \end{titlepage}
 
 \section{Abstract}
-\lipsum[2-4]
+% TODO: Use the word "implement" a lot less!
+The Boolean Satisfiability Problem is a fundimental part of Computer Science. First proven to be an
+NP-Complete problem by both Stephen Cook in 1971, and Leonid Levin in 1973[!]. Since then, many more
+NP-Complete problems have been identified, along with their respective uses in the real world
+outside of pure computer science. Due to this, there has been a growing need for solvers that can
+effectively and efficiently process these problems. In the last two decades alone, huge progress has
+been made to coincide with the advancements in technology. And more SAT solvers have appeared that
+can be deployed in industries where they are most needed. 
+
+This paper explores the basic concept behind SAT solvers, and how they can be implemented in
+software using modern programming languages and tools. The algorithm that will be
+implemented is one proposed by Donald Knuth in his book "The Art of Computer Programming". Knuth proposes
+many algorithms, ranging from the most basic backtracking based algorithm, to an advanced
+implementation of WalkSAT[!]. We will explore the fundimentals of how to implement these algorithms,
+implement one of them, then test its performance against a suite of SAT problems.
+
+The result of this paper will be a SAT solver implemented in C++, using the data structures and
+steps provided by Donald Knuth in his book "The Art of Computer Programming".
 
 \newpage
 \tableofcontents
