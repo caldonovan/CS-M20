@@ -1,3 +1,0 @@
-[submodule "dpll_solver"]
-	path = dpll_solver
-	url = git@github.com:caldonovan/dpll_solver.git
