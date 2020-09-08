@@ -1,5 +1,3 @@
-% ! THIS MUST BE COMPILED USING XeLaTeX !
-
 \documentclass{article}
 \usepackage{listings}
 \usepackage[utf8]{inputenc}
@@ -64,7 +62,7 @@ NP-Complete problems have been identified, along with their respective uses in t
 outside of pure computer science. Due to this, there has been a growing need for solvers that can
 effectively and efficiently process these problems. In the last two decades alone, huge progress has
 been made to coincide with the advancements in technology. And more SAT solvers have appeared that
-can be deployed in industries where they are most needed. 
+can be deployed in industries where they are most needed.
 
 This paper explores the basic concept behind SAT solvers, and how they can be implemented in
 software using modern programming languages and tools. The algorithm that will be
@@ -81,16 +79,19 @@ steps provided by Donald Knuth in his book "The Art of Computer Programming".
 
 \newpage
 \section{Introduction}
-\lipsum[2-4]
+Satisfiability has presented itself a huge area of research throughout the history of computer science. Being the first proved to be NP-Complete in 1971[!], it has been the go-to for complex computation. And using reduction techniques pioneered in the mid-twentieth century, many other types of complex problems can be converted into SAT and solved using the plethora of solvers freely available. In more recent years, SAT competitions have added an incentive to the development of more advanced solvers, such as Minisat, zChaff, and CaDiCaL. On top of these, parallel solvers have gained popularity and one such solver, called Plingaling, ranked highly in the SAT Competition 2020.
+
+Donald Knuth has taken particular interest in this topic with his recent chapter of "The Art of Computer Programming". He discusses how important SAT solvers are to both industry and research, as well as providing algorithms and sample problems to test them against.
+
+This paper will be an exploration into the world of SAT solvers and how they can provide crucial services to both industry and research. As well as methods in which proposed SAT solver algorithms can be implemented into a robust piece of software.
 % TODO: Basically talk about the project and the motivation behind it
 
-\newpage
 \section{Background}
 % TODO: Talk about the background research we carried out from CSCM10
 Before we get into the implementation and software, it is always good to have a solid understanding
 of the topic at hand. SAT in particular is quite a deep topic, it is easy to spend a long time
 researching into all the intricacies[!]. For this paper, we will just be concentrating on the
-general concepts and ideas behind 3SAT problems. 
+general concepts and ideas behind 3SAT problems.
 
 \subsection{SAT Fundimentals}
 % TODO: Explain the fundimentals of SAT and the people who found it.
@@ -108,13 +109,13 @@ general concepts and ideas behind 3SAT problems.
 Moving on from the background of SAT, we can look into existing solutions that are freely available.
 As of 2020, there are plenty of FOSS programs that can be used to solve large sets of problems. This
 is in part due to the regularity of the SAT competitions that encourage people to build
-groundbreaking solvers. 
+groundbreaking solvers.
 
 A popular and early solver that has won many competitions[!] is Minisat. Written in C++ and boasting
 just a mere few hundred lines of code, Minisat has been proven to be an effective tool for medium
 sized problem sets. First written in 2003 by Niklas Een[!] and Niklas Sorensson[!], its primary goal
 was to help developers and researchers get into the field of SAT solving by providing a simple
-interface and minimal codebase. 
+interface and minimal codebase.
 
 \newpage
 \section{Design}
