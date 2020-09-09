@@ -10,13 +10,11 @@
 \usepackage{textcomp}
 \usepackage{rotating}
 \usepackage{fontspec}
-\usepackage{libertine}
 \usepackage{lipsum}
 \usepackage[T1]{fontenc}
 \usepackage[english]{babel}
 
 % Layout related commands.
-\setmainfont{Linux Libertine O}
 \graphicspath{ {./images/} }
 \lstdefinestyle{code}{basicstyle=\ttfamily\footnotesize, breakatwhitespace=false,
     breaklines=true, keywordstyle=\color{magenta}, commentstyle=\color{codegreen},
@@ -84,7 +82,9 @@ Satisfiability has presented itself a huge area of research throughout the histo
 Donald Knuth has taken particular interest in this topic with his recent chapter of "The Art of Computer Programming". He discusses how important SAT solvers are to both industry and research, as well as providing algorithms and sample problems to test them against.
 
 This paper will be an exploration into the world of SAT solvers and how they can provide crucial services to both industry and research. As well as methods in which proposed SAT solver algorithms can be implemented into a robust piece of software.
-% TODO: Basically talk about the project and the motivation behind it
+
+\subsection{Motivation}
+\subsection{Aims and Objectives}
 
 \section{Background}
 % TODO: Talk about the background research we carried out from CSCM10
@@ -95,15 +95,26 @@ general concepts and ideas behind 3SAT problems.
 
 \subsection{SAT Fundimentals}
 % TODO: Explain the fundimentals of SAT and the people who found it.
-\lipsum[2-4]
+\begin{itemize}
+    \item Define the SAT problem with reference.
+    \item Explain how SAT formulas are constructed.
+    \item Explan early attempts to solve SAT forumulas.
+\end{itemize}
 
 \subsection{3SAT}
-\lipsum[2-4]
+\begin{itemize}
+    \item Define 3SAT.
+    \item Show a problem that would be considered 3SAT.
+    \item Explain why 3SAT is of particular interest.
+\end{itemize}
 
 \subsection{Modern SAT}
-\lipsum[2-4]
+\begin{itemize}
+    \item Talk about how SAT has evolved since the original DPLL.
+    \item Modern SAT competitions.
+    \item Paralell SAT solvers.
+\end{itemize}
 
-\newpage
 \section{Related Work}
 % TODO: Add related work, such as alternative FOSS solutions.
 Moving on from the background of SAT, we can look into existing solutions that are freely available.
@@ -117,29 +128,61 @@ sized problem sets. First written in 2003 by Niklas Een[!] and Niklas Sorensson[
 was to help developers and researchers get into the field of SAT solving by providing a simple
 interface and minimal codebase.
 
-\newpage
+\begin{itemize}
+    \item Talk about Minisat.
+    \item Go into detail about offshoots from Minisat, such as CryptoMiniSat.
+    \item Newer CDCL algorithms.
+    \item Look into SAT 2020 to find some interesting new solvers.
+    \item Basically talk about applications then the research currently happening.
+\end{itemize}
+
 \section{Design}
-\lipsum[2-4]
+\begin{itemize}
+    \item Summary of what we would want from a design.
+    \item Include the algorithm from Donald Knuth.
+    \item Discuss the data structures that we will need to implement.
+\end{itemize}
 % TODO: Talk about how we've design the code based off of the algorithm and preceeding content in the book.
 
-\newpage
 \section{Implementation}
-\lipsum[2-4]
+\begin{itemize}
+    \item Discuss the general idea of the program, including inputs(DIMACS) and outputs(SAT / NON-SAT).
+    \item Discuss the process in which we are going to be solving these problems.
+    \item Talk about our toolchain and related crap.
+    \item Talk about the attempts at implementing it.
+    \item Show the final implementation.
+\end{itemize}
 % TODO: Talk about how we are going to implement this. Not so much about the actual implementation itself!
 
-\newpage
 \section{Testing}
-\lipsum[2-4]
+\begin{itemize}
+    \item Summarize what we want from the testing phase.
+    \item Discuss the problem sets that we are going to be throwing at this.
+    \item Discuss program testing first, even though this is not really what we mean by "testing".
+    \item Record some testing metrics, such as time to solve, memory, CPU cycles, etc.
+    \item Describe any regions that could potentially be improved.
+\end{itemize}
 % TODO: Talk about the testing of the implemented code and whether it meets the requirements that we have set previously
 
-\newpage
 \section{Evaluation}
-\lipsum[2-4]
+\begin{itemize}
+    \item Talk about the methodology we used.
+    \item Talk about the risks encountered, and the time frame in which we carried this out.
+    \item Discuss the things that could potentially be improved if we did the project again.
+    \item DISCUSS THE SHITTY PANDEMIC THAT RUINED EVERYONES DAMN LIVES!
+\end{itemize}
 % TODO: Talk about the challenges we faced and also what we could improve if doing the project again
 
-\newpage
 \section{Conclusion}
-\lipsum[2-4]
+\begin{itemize}
+    \item Just make a short summary of every single thing that was typed out above!
+    \item Don't forget to basically copy and paste this to the abstract.
+\end{itemize}
 % TODO: Conclude on our findings and all the preceeding work we have done.
+
+\section{References}
+\begin{itemize}
+    \item Don't forget to include all the references in a BibTex file.
+\end{itemize}
 
 \end{document}
