@@ -179,11 +179,30 @@ in active development, hosting their code on GitHub for collaborative
 
 \section{Implementation}
 \begin{itemize}
-    \item Discuss the general idea of the program, including inputs(DIMACS) and outputs(SAT / NON-SAT).
+    \item Discuss the general idea of the program, including inputs (DIMACS) and outputs (SAT / NON-SAT).
     \item Discuss the process in which we are going to be solving these problems.
     \item Talk about our toolchain and related crap.
     \item Talk about the attempts at implementing it.
     \item Show the final implementation.
+\end{itemize}
+
+\subsection{Psuedocode \& Code}
+\begin{itemize}
+    \item Investigate general psuedocode of generic DPLL algorithm
+    \item Create some pseudocode from algorithm.
+\end{itemize}
+
+\subsection{Interesting features in C++}
+\begin{itemize}
+    \item Talk about how C++ can help when creating a program.
+    \item Talk about how the standard template library can be used to reduce program complexity.
+    \item Talk about the use of vectors as a handy data type over C style types.
+\end{itemize}
+
+\subsection{Implementing Data Structures}
+\begin{itemize}
+    \item Discuss why we're going to have to implement specific data types.
+    \item Provide examples on the types of structures to be used.
 \end{itemize}
 % TODO: Talk about how we are going to implement this. Not so much about the actual implementation itself!
 
@@ -195,10 +214,34 @@ in active development, hosting their code on GitHub for collaborative
     \item Record some testing metrics, such as time to solve, memory, CPU cycles, etc.
     \item Describe any regions that could potentially be improved.
 \end{itemize}
+
+\subsection{Checking For Correct Solutions}
+\begin{itemize}
+    \item Add results from test folder
+    \item Use two other solvers and give them the same problem
+    \item Check at least 10 times to ensure consistent results
+\end{itemize}
+
+\subsection{Monitoring Initial Performance Metrics}
+\begin{itemize}
+    \item Measure the performance of this SAT solver (algorithm we picked?)
+    \item Measure the performance of other SAT solvers.
+    \item Compare the results and deduce why the performance differences exist.
+\end{itemize}
 % TODO: Talk about the testing of the implemented code and whether it meets the requirements that we have set previously
+
+\subsection{Improving Performance}
+\begin{itemize}
+    \item Explore performance implications of algorithm.
+    \item Talk about DK's performance predictions from TAOCP.
+    \item Talk about how we could potentially improve the performance of our solver.
+    \item Maybe talk about things like parallelism?
+\end{itemize}
 
 \section{Evaluation}
 \begin{itemize}
+    \item Discuss our findings statistically.
+    \item Discuss how implemented code could be improved (summarise).
     \item Talk about the methodology we used.
     \item Talk about the risks encountered, and the time frame in which we carried this out.
     \item Discuss the things that could potentially be improved if we did the project again.
