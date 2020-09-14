@@ -90,6 +90,7 @@ steps provided by Donald Knuth in his book "The Art of Computer Programming".
 \newpage
 \section{Introduction}
 % TODO: Refactor to sound better.
+% TODO: Add some examples to interest the reader.
 Satisfiability has presented itself a huge area of research throughout the history of computer
 science. Being the first proved to be NP-Complete in 1971\cite{scook}, it has been the go-to for complex
 computation. And using reduction techniques pioneered in the mid-twentieth century, many other types
@@ -126,12 +127,29 @@ To preface this project we must present the aims and objectives that we wish to 
     \item Algorithm W - WalkSAT.
 \end{itemize}
 
-\begin{itemize}
-    \item To make a SAT solver using instructions from "TAOCP"
-    \item Make sure the solver can solve generic problem sets in DIMACS.
-    \item Make sure the solver can do this in a decent amount of time.
-    \item Basically FREQ1 and FREQ2.
-\end{itemize}
+% Be careful of the spell checker attempting to "americanize" everything.
+We shall be analysing each of these algorithms and presenting the data structures needed and methods of implementation using C++. Once our implementation is complete, and testing has proved the solver to be working as intended, we will record the performance metrics in a scientific manner to ensure accuracy. These metrics will then be compared to other FOSS solvers that are well tested and commonly used. This will give us a benchmark as to how increasing complexity of the algorithm and program can achieve greater performance. 
+
+We can easily turn these actions into functional and non-functional requirements. Doing so will allow us to test against the requirements stated and compare the expected result to the actual result.
+
+\subsubsection{FREQ1}
+The resulting software should be able to process and input CNF formula in the semi-standard DIMACS format.
+
+\subsubsection{FREQ2}
+The resulting software should be able to evaluate the satisfiability of a simple formula from FREQ1, and return the result when found. Simple refers to a formula which most SAT solvers would be able to process in a short amount of time. Result refers to the decision returned from the solver that concludes as "SATISFIABLE" or "UNSATISFIABLE".
+
+\subsubsection{Non-Functional Requirements}
+These requirements differ from functional requirements as they are not crucial to the project's success. These are simply goals that, if time allows, can be implemented for further data.
+
+\subsubsection{NFREQ1}
+The resulting software should be able to process a complex formula within a reasonable amount of time. Reasonable refers to the length of time it takes to return a result when compared to other SAT solvers, i.e. 300 seconds to return "SATISFIABLE".
+
+%\begin{itemize}
+%    \item To make a SAT solver using instructions from "TAOCP"
+%    \item Make sure the solver can solve generic problem sets in DIMACS.
+%    \item Make sure the solver can do this in a decent amount of time.
+%    \item Basically FREQ1 and FREQ2.
+%\end{itemize}
 
 \section{Background}
 Before we get into the implementation and software, it is always good to have a solid understanding
@@ -193,7 +211,7 @@ interface and minimal codebase.
 As the name suggests, this solver builds upon the foundations laid by Minisat to create an all in
 one solution to multiple problems. CryptoMiniSat implements most of the useful features from Minisat
 2.0 core, along with PrecoSat and Glucose to try to make a one-stop solution. CryptoMiniSat is still
-in active development, hosting their code on GitHub for collaborative
+in active development, hosting their code on GitHub for open collaboration.
 
 \section{Design}
 \begin{itemize}
