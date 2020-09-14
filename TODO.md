@@ -1,0 +1,1 @@
+* Measure execution time of each algorithm (UNIX time command?).
