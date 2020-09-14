@@ -5,10 +5,10 @@
 \usepackage{xcolor}
 \usepackage{caption}
 \usepackage{graphicx}
-\usepackage{amsmath}
-\usepackage{booktabs}
-\usepackage{textcomp}
-\usepackage{rotating}
+%\usepackage{amsmath}
+%\usepackage{booktabs}
+%\usepackage{textcomp}
+%\usepackage{rotating}
 \usepackage{fontspec}
 \usepackage{lipsum}
 \usepackage[T1]{fontenc}
@@ -34,7 +34,7 @@
 
 \title{\bfseries Implementing SAT Algorithms in Software}
 \author{Callum Donovan}
-\date{September 2020}
+\date{ \today }
 
 \setlength{\parindent}{4em}
 \setlength{\parskip}{0.5em}
@@ -42,7 +42,6 @@
 \begin{document}
 
 % === Title Page ===
-
 \begin{titlepage}
     \begin{center}
         \Large{\bfseries Implementing SAT Algorithms in Software} \\
@@ -53,19 +52,21 @@
         \vspace*{\fill}
         \bfseries{\large Callum Donovan \\
             1915769 \\
-            September 1, 2020 \\
+            \today \\
             Swansea University \\}
     \end{center}
 \end{titlepage}
-
 % === End Title Page ===
 
 % === Main Content ===
 
-\section{Abstract}
+\thispagestyle{empty}
+\begin{center}
+\section*{Abstract}
+\end{center}
 % TODO: Use the word "implement" a lot less!
 The Boolean Satisfiability Problem is a fundamental part of Computer Science. First proven to be an
-NP-Complete problem by both Stephen Cook in 1971, and Leonid Levin in 1973\cite{dpll}. Since then, many more
+NP-Complete problem by both Stephen Cook in 1971\cite{scook}, and Leonid Levin in 1973\cite{levin}. Since then, many more
 NP-Complete problems have been identified, along with their respective uses in the real world
 outside of pure computer science. Due to this, there has been a growing need for solvers that can
 effectively and efficiently process these problems. In the last two decades alone, huge progress has
@@ -83,13 +84,14 @@ The result of this paper will be a SAT solver implemented in C++, using the data
 steps provided by Donald Knuth in his book "The Art of Computer Programming".
 
 \newpage
+\thispagestyle{empty}
 \tableofcontents
 
 \newpage
 \section{Introduction}
 % TODO: Refactor to sound better.
 Satisfiability has presented itself a huge area of research throughout the history of computer
-science. Being the first proved to be NP-Complete in 1971[!], it has been the go-to for complex
+science. Being the first proved to be NP-Complete in 1971\cite{scook}, it has been the go-to for complex
 computation. And using reduction techniques pioneered in the mid-twentieth century, many other types
 of complex problems can be converted into SAT and solved using the plethora of solvers freely
 available. In more recent years, SAT competitions have added an incentive to the development of more
@@ -99,7 +101,7 @@ gained popularity and one such solver, called Plingaling, ranked very highly in 
 
 Donald Knuth has taken particular interest in this topic with his recent chapter of "The Art of Computer Programming". He discusses how important SAT solvers are to both industry and research, as well as providing algorithms and sample problems to test them against.
 
-This paper will be an exploration into the world of SAT solvers and how they can provide crucial services to both industry and research. As well as methods in which proposed SAT solver algorithms can be implemented into a robust piece of software.
+This paper will be an exploration into the world of SAT solvers and how they can provide crucial services to both industry and research. As well as methods in which proposed SAT solver algorithms can be implemented into a robust piece of software. Due to the sheer size of literature and research in this field, it would be unrealistic to think it is possible to cover everything in a comprehensive way. Therefore, this paper focuses on the fundamentals of SAT and the significant research through the years since Cooks paper in 1971\cite{scook}. As well as the ideas presented by Donald Knuth for implementation in modern programming languages.
 
 \subsection{Motivation}
 \begin{itemize}
@@ -107,7 +109,23 @@ This paper will be an exploration into the world of SAT solvers and how they can
     \item Discuss how learning about SAT can help other people learn too.
 \end{itemize}
 
+The motivation behind this project stems from the ever growing need for more efficient and faster SAT solvers. But in order to begin researching in this field, one must know the basics and tried methods present today. This project will do just that, in both studying literature that has formed the basis of most of the field, and implementing a basic SAT solver. 
+
+One of the most common arguments for the research into SAT solving is its viability for both science and industry. This presents a convenient compatibility between the two. As industry requirements grow, so too does the need for research into better algorithms to satisfy those requirements. An example in which SAT solvers are a key part of industry include Electronic Design Automation (or EDA). We will explore these usages further as we progress and highlight the advantages of fast SAT solvers when applied to these industries.
+
+Another common viability for SAT solvers includes their usage for most complex problems that can be reduced to SAT. Most problems in the real world can be cast as optimisation problems. This allows us to create a mathematical description of these problems, which in turn can present themselves for solving. The use of a solver in this instance would produce results which would allow for cost-saving or general efficiency improvements.
+
 \subsection{Aims and Objectives}
+To preface this project we must present the aims and objectives that we wish to aim for. As explained above, we do not wish to push the boundaries of SAT solvers in this particular paper. But instead want to explore the basics and expand on current research. Aiding us in this goal will be the series by Donald Knuth, "The Art of Computer Programming". Knuth has recently taken interest in the concept of satisfiability for "Fascicle 6: Satisfiability" , and presents a large amount of content for us to analyse. In this book, Knuth outlines multiple algorithms that could be used to implement multiple common SAT solvers used today. These include: 
+
+\begin{itemize}
+    \item Algorithm B - Backtracking with watched literals.
+    \item Algorithm D - DPLL.
+    \item Algorithm C - CDCL.
+    \item Algorithm L - DPLL with lookahead.
+    \item Algorithm W - WalkSAT.
+\end{itemize}
+
 \begin{itemize}
     \item To make a SAT solver using instructions from "TAOCP"
     \item Make sure the solver can solve generic problem sets in DIMACS.
@@ -127,7 +145,7 @@ general concepts and ideas behind 3SAT problems.
 
 % TODO: Insert previous CSCM10 research here, cause we ain't doing it again!
 
-\subsection{SAT Fundimentals}
+\subsection{SAT Fundamentals}
 % TODO: Explain the fundamentals of SAT and the people who found it.
 \begin{itemize}
     \item Define the SAT problem with reference.
@@ -221,6 +239,13 @@ in active development, hosting their code on GitHub for collaborative
     \item Discuss program testing first, even though this is not really what we mean by "testing".
     \item Record some testing metrics, such as time to solve, memory, CPU cycles, etc.
     \item Describe any regions that could potentially be improved.
+\end{itemize}
+
+\subsection{Software Testing}
+\begin{itemize}
+    \item Discuss methods of software testing (Unit, manual, etc...)
+    \item Outline a testing table for manual testing.
+    \item Discuss testing against the functional requirements stated previously.
 \end{itemize}
 
 \subsection{Checking For Correct Solutions}
