@@ -3,8 +3,6 @@
 \#*\#
 .\#*
 
-# C++
-bin/*
 tbin/*
 
 # Python
