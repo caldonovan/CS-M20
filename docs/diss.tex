@@ -9,6 +9,7 @@
 %\usepackage{booktabs}
 %\usepackage{textcomp}
 %\usepackage{rotating}
+\usepackage{hyperref}
 \usepackage{fontspec}
 \usepackage{lipsum}
 \usepackage[T1]{fontenc}
@@ -117,7 +118,7 @@ One of the most common arguments for the research into SAT solving is its viabil
 Another common viability for SAT solvers includes their usage for most complex problems that can be reduced to SAT. Most problems in the real world can be cast as optimisation problems. This allows us to create a mathematical description of these problems, which in turn can present themselves for solving. The use of a solver in this instance would produce results which would allow for cost-saving or general efficiency improvements.
 
 \subsection{Aims and Objectives}
-To preface this project we must present the aims and objectives that we wish to aim for. As explained above, we do not wish to push the boundaries of SAT solvers in this particular paper. But instead want to explore the basics and expand on current research. Aiding us in this goal will be the series by Donald Knuth, "The Art of Computer Programming". Knuth has recently taken interest in the concept of satisfiability for "Fascicle 6: Satisfiability" , and presents a large amount of content for us to analyse. In this book, Knuth outlines multiple algorithms that could be used to implement multiple common SAT solvers used today. These include: 
+To preface this project we must present the aims and objectives that we wish to aim for. As explained above, we do not wish to push the boundaries of SAT solvers in this particular paper. But instead want to explore the basics and expand on current research. Aiding us in this goal will be the series by Donald Knuth, "The Art of Computer Programming". Knuth has recently taken interest in the concept of satisfiability for "Fascicle 6: Satisfiability" , and presents a large amount of content for us to analyse. In this book, Knuth outlines multiple algorithms that could be used to implement multiple common SAT solvers. These include: 
 
 \begin{itemize}
     \item Algorithm B - Backtracking with watched literals.
@@ -168,7 +169,8 @@ general concepts and ideas behind 3SAT problems.
 \begin{itemize}
     \item Define the SAT problem with reference.
     \item Explain how SAT formulas are constructed.
-    \item Explan early attempts to solve SAT formulas.
+    \item Explain early attempts to solve SAT formulas.
+    \item Discuss the DPLL algorithm, the first computer implementation of a solver.
 \end{itemize}
 
 \subsection{3SAT}
@@ -183,6 +185,7 @@ general concepts and ideas behind 3SAT problems.
     \item Talk about how SAT has evolved since the original DPLL.
     \item Modern SAT competitions.
     \item Parallel SAT solvers.
+    \item General future SAT solver stuff.
 \end{itemize}
 
 \section{Related Work}
@@ -213,11 +216,13 @@ one solution to multiple problems. CryptoMiniSat implements most of the useful f
 2.0 core, along with PrecoSat and Glucose to try to make a one-stop solution. CryptoMiniSat is still
 in active development, hosting their code on GitHub for open collaboration.
 
+% TODO: Add more current SAT solvers.
+
 \section{Design}
 \begin{itemize}
     \item Summary of what we would want from a design.
-    \item Include the algorithm from Donald Knuth.
-    \item Discuss the data structures that we will need to implement.
+    \item Include the algorithm from Donald Knuth (algorithm D).
+    \item Discuss the data structures that we will need to implement based off of DK's ideas.
 \end{itemize}
 
 \subsection{Algorithm}
@@ -248,18 +253,16 @@ in active development, hosting their code on GitHub for open collaboration.
 \begin{itemize}
     \item Discuss how the processing works.
     \item This is the real meat that basically explains the algorithm.
+    \item I feel it would be best to at least discuss the DPLL algorithm.
+    \item Use content from TAOCP and online.
 \end{itemize}
 
 \subsection{Output}
 \begin{itemize}
     \item The output will be "SATISFIABLE" or "NOT SATISFIABLE".
     \item Could also output the best solution.
-\end{itemize}
-
-\subsection{Psuedocode \& Code}
-\begin{itemize}
-    \item Investigate general psuedocode of generic DPLL algorithm
-    \item Create some pseudocode from algorithm.
+    \item Explain the output standard for SAT competitions.
+    \item \href{https://web.archive.org/web/20190913185210/http://www.satcompetition.org:80/2004/format-solvers2004.html}{SAT output rules 2002.}
 \end{itemize}
 
 % This is going to be pretty important, attempt to simplify for the reader.
@@ -267,6 +270,13 @@ in active development, hosting their code on GitHub for open collaboration.
 \begin{itemize}
     \item Discuss why we're going to have to implement specific data types.
     \item Provide examples on the types of structures to be used.
+\end{itemize}
+
+\subsection{Pseudocode \& Code}
+\begin{itemize}
+    \item Investigate general pseudocode of generic DPLL algorithm (Wiki).
+    \item Create some pseudocode from algorithm.
+    \item Create some actual code to show?
 \end{itemize}
 % TODO: Talk about how we are going to implement this. Not so much about the actual implementation itself!
 
