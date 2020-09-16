@@ -235,6 +235,7 @@ in active development, hosting their code on GitHub for open collaboration.
 \subsection{Algorithm}
 The key to all the most successful SAT solvers are the algorithms. The first SAT solver to be implemented for a computer used the DPLL algorithm. As we previously established, the DPLL algorithm is considered one of the firsts and produced good results for the time. As of 2020, there have been a plethora of improvements to the original DPLL algorithm that has allowed it to keep up with the increasing complexity of problems available. The general pseudocode for the original DPLL algorithm can be written as such:
 
+\begin{figure}
 % TODO: Put the DPLL algorithm pseudocode here
 % ! FIX THIS
 \begin{lstlisting}[language=C++]
@@ -253,8 +254,10 @@ The key to all the most successful SAT solvers are the algorithms. The first SAT
             C ← pure-literal-assign(L, C);
         L ← choose-literal(C);
         return DPLL(C ∧ {L}) or DPLL(C ∧ {not(L)});
+\end{lstlisting}    
+\end{figure}
 
-\end{lstlisting}
+For our project, the algorithm that we will be interested in is a general DPLL algorithm. As previously discussed, this is just one of a few algorithms given from Donald Knuth. Although it is relatively simple, it is a good way to explore the basic idea of software SAT solvers. Forming a foundation for further improvements, much like those explained in algorithm L. Donald Knuth describes the algorithm in a series of steps, also outlining the data structures that we need to implement it as he has described. 
 
 
 \begin{itemize}
@@ -304,6 +307,13 @@ The key to all the most successful SAT solvers are the algorithms. The first SAT
     \item Provide examples on the types of structures to be used.
 \end{itemize}
 
+\subsection{Tool-chain}
+\begin{itemize}
+    \item Discuss the compiler and standard libraries
+    \item Discuss the editor and debugger used.
+    \item Discuss the OS \& related things (such as shell).
+\end{itemize}
+
 \subsection{Pseudocode \& Code}
 \begin{itemize}
     \item Investigate general pseudocode of generic DPLL algorithm (Wiki).
@@ -340,6 +350,7 @@ The key to all the most successful SAT solvers are the algorithms. The first SAT
     \item Measure the performance of this SAT solver (algorithm we picked?)
     \item Measure the performance of other SAT solvers.
     \item Compare the results and deduce why the performance differences exist.
+    \item Explain the use of the \texttt{'time'} command with special format.
 \end{itemize}
 % TODO: Talk about the testing of the implemented code and whether it meets the requirements that we have set previously
 
