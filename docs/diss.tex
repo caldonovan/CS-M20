@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[12pt]{article}
 \usepackage{listings}
 \usepackage[utf8]{inputenc}
 \usepackage{fancyhdr}
@@ -9,7 +9,6 @@
 %\usepackage{booktabs}
 %\usepackage{textcomp}
 %\usepackage{rotating}
-\usepackage{hyperref}
 \usepackage{fontspec}
 \usepackage{lipsum}
 \usepackage[T1]{fontenc}
@@ -17,6 +16,13 @@
 
 % Best font EU don't @ me
 \setmainfont{Minion Pro}
+
+% === Colours ===
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+% === End Colours ===
 
 % === Layout ===
 \graphicspath{ {./images/} }
@@ -111,14 +117,15 @@ This paper will be an exploration into the world of SAT solvers and how they can
     \item Discuss how learning about SAT can help other people learn too.
 \end{itemize}
 
-The motivation behind this project stems from the ever growing need for more efficient and faster SAT solvers. But in order to begin researching in this field, one must know the basics and tried methods present today. This project will do just that, in both studying literature that has formed the basis of most of the field, and implementing a basic SAT solver. 
+The motivation behind this project stems from the ever growing need for more efficient and faster SAT solvers. But in order to begin researching in this field, one must know the basics and tried methods present today. This project will do just that, in both studying literature that has formed the basis of most of the field, and implementing a basic SAT solver.
 
 One of the most common arguments for the research into SAT solving is its viability for both science and industry. This presents a convenient compatibility between the two. As industry requirements grow, so too does the need for research into better algorithms to satisfy those requirements. An example in which SAT solvers are a key part of industry include Electronic Design Automation (or EDA). We will explore these usages further as we progress and highlight the advantages of fast SAT solvers when applied to these industries.
 
 Another common viability for SAT solvers includes their usage for most complex problems that can be reduced to SAT. Most problems in the real world can be cast as optimisation problems. This allows us to create a mathematical description of these problems, which in turn can present themselves for solving. The use of a solver in this instance would produce results which would allow for cost-saving or general efficiency improvements.
 
 \subsection{Aims and Objectives}
-To preface this project we must present the aims and objectives that we wish to aim for. As explained above, we do not wish to push the boundaries of SAT solvers in this particular paper. But instead want to explore the basics and expand on current research. Aiding us in this goal will be the series by Donald Knuth, "The Art of Computer Programming". Knuth has recently taken interest in the concept of satisfiability for "Fascicle 6: Satisfiability" , and presents a large amount of content for us to analyse. In this book, Knuth outlines multiple algorithms that could be used to implement multiple common SAT solvers. These include: 
+% TODO: Refactor this section, especially the DK bit.
+To preface this project we must present the aims and objectives that we wish to aim for. As explained above, we do not wish to push the boundaries of SAT solvers in this particular project. But instead want to explore the basics and expand on current research. Aiding us in this goal will be the series by Donald Knuth, "The Art of Computer Programming". Knuth has recently taken interest in the concept of satisfiability for "Fascicle 6: Satisfiability" , and presents a large amount of content for us to analyse. In this book, Knuth outlines multiple algorithms that could be used to implement multiple common SAT solvers. These include:
 
 \begin{itemize}
     \item Algorithm B - Backtracking with watched literals.
@@ -128,10 +135,10 @@ To preface this project we must present the aims and objectives that we wish to 
     \item Algorithm W - WalkSAT.
 \end{itemize}
 
-% Be careful of the spell checker attempting to "americanize" everything.
-We shall be analysing each of these algorithms and presenting the data structures needed and methods of implementation using C++. Once our implementation is complete, and testing has proved the solver to be working as intended, we will record the performance metrics in a scientific manner to ensure accuracy. These metrics will then be compared to other FOSS solvers that are well tested and commonly used. This will give us a benchmark as to how increasing complexity of the algorithm and program can achieve greater performance. 
+% Be careful of the spell checker attempting to "americani(z)e" everything.
+We shall be analysing each of these algorithms and presenting the data structures needed and methods of implementation using C++. Once our implementation is complete, and testing has proved the solver to be working as intended, we will record the performance metrics in a scientific manner to ensure accuracy. These metrics will then be compared to other FOSS solvers that are well tested and commonly used. This will give us a benchmark as to how increasing complexity of the algorithm and program can achieve greater performance. As well as how the programming language chosen can effect the overall performance.
 
-We can easily turn these actions into functional and non-functional requirements. Doing so will allow us to test against the requirements stated and compare the expected result to the actual result.
+We can easily turn these actions into functional and non-functional requirements. Doing so will allow us to test against the requirements stated and compare the expected result to the actual result. This format matches a more "software engineering" approach, which is desired for this project.
 
 \subsubsection{FREQ1}
 The resulting software should be able to process and input CNF formula in the semi-standard DIMACS format.
@@ -226,6 +233,30 @@ in active development, hosting their code on GitHub for open collaboration.
 \end{itemize}
 
 \subsection{Algorithm}
+The key to all the most successful SAT solvers are the algorithms. The first SAT solver to be implemented for a computer used the DPLL algorithm. As we previously established, the DPLL algorithm is considered one of the firsts and produced good results for the time. As of 2020, there have been a plethora of improvements to the original DPLL algorithm that has allowed it to keep up with the increasing complexity of problems available. The general pseudocode for the original DPLL algorithm can be written as such:
+
+% TODO: Put the DPLL algorithm pseudocode here
+% ! FIX THIS
+\begin{lstlisting}[language=C++]
+    Algorithm DPLL
+        Input: A set of clauses C
+        Output: A truth value
+
+    Function DPLL(C)
+        if C is a consistent set of literals then
+            return true;
+        if C contains an empty clause then
+            return false;
+        for every unit clause {L} in C do
+            C ← unit-propagate(L, C);
+        for every literal L that occurs pure in C do
+            C ← pure-literal-assign(L, C);
+        L ← choose-literal(C);
+        return DPLL(C ∧ {L}) or DPLL(C ∧ {not(L)});
+
+\end{lstlisting}
+
+
 \begin{itemize}
     \item Discuss algorithms presented by DK.
     \item Discuss which algorithm we are planning to implement.
@@ -258,11 +289,12 @@ in active development, hosting their code on GitHub for open collaboration.
 \end{itemize}
 
 \subsection{Output}
+% https://web.archive.org/web/20190913185210/http://www.satcompetition.org:80/2004/format-solvers2004.html
 \begin{itemize}
     \item The output will be "SATISFIABLE" or "NOT SATISFIABLE".
     \item Could also output the best solution.
     \item Explain the output standard for SAT competitions.
-    \item \href{https://web.archive.org/web/20190913185210/http://www.satcompetition.org:80/2004/format-solvers2004.html}{SAT output rules 2002.}
+    \item SAT Competition 2002 output rules (see above comment).
 \end{itemize}
 
 % This is going to be pretty important, attempt to simplify for the reader.
