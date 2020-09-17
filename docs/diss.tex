@@ -9,6 +9,7 @@
 %\usepackage{booktabs}
 %\usepackage{textcomp}
 %\usepackage{rotating}
+\usepackage{float}
 \usepackage{fontspec}
 \usepackage{lipsum}
 \usepackage[T1]{fontenc}
@@ -235,9 +236,9 @@ in active development, hosting their code on GitHub for open collaboration.
 \subsection{Algorithm}
 The key to all the most successful SAT solvers are the algorithms. The first SAT solver to be implemented for a computer used the DPLL algorithm. As we previously established, the DPLL algorithm is considered one of the firsts and produced good results for the time. As of 2020, there have been a plethora of improvements to the original DPLL algorithm that has allowed it to keep up with the increasing complexity of problems available. The general pseudocode for the original DPLL algorithm can be written as such:
 
-\begin{figure}
+\begin{figure}[h]
 % TODO: Put the DPLL algorithm pseudocode here
-% ! FIX THIS
+% Fix the notations not showing up!
 \begin{lstlisting}[language=C++]
     Algorithm DPLL
         Input: A set of clauses C
@@ -253,11 +254,11 @@ The key to all the most successful SAT solvers are the algorithms. The first SAT
         for every literal L that occurs pure in C do
             C ← pure-literal-assign(L, C);
         L ← choose-literal(C);
-        return DPLL(C ∧ {L}) or DPLL(C ∧ {not(L)});
-\end{lstlisting}    
+        return DPLL(C AND {L}) or DPLL(C AND {not(L)});
+\end{lstlisting}
 \end{figure}
 
-For our project, the algorithm that we will be interested in is a general DPLL algorithm. As previously discussed, this is just one of a few algorithms given from Donald Knuth. Although it is relatively simple, it is a good way to explore the basic idea of software SAT solvers. Forming a foundation for further improvements, much like those explained in algorithm L. Donald Knuth describes the algorithm in a series of steps, also outlining the data structures that we need to implement it as he has described. 
+For our project, the algorithm that we will be interested in is a general DPLL algorithm. As previously discussed, this is just one of a few algorithms given from Donald Knuth. Although it is relatively simple, it is a good way to explore the basic idea of software SAT solvers. Forming a foundation for further improvements, much like those explained in algorithm L. Donald Knuth describes the algorithm in a series of steps, also outlining the data structures that we need to implement it as he has described.
 
 
 \begin{itemize}
@@ -308,31 +309,28 @@ For our project, the algorithm that we will be interested in is a general DPLL a
 \end{itemize}
 
 \subsection{Tool-chain}
-\begin{itemize}
-    \item Discuss the compiler and standard libraries
-    \item Discuss the editor and debugger used.
-    \item Discuss the OS \& related things (such as shell).
-\end{itemize}
+The following is a quick overview of the tool-chain that will be used for this project. As these aren't the meat of what the project is about, we shall only spend a short time glazing over the available solutions and those we picked.
 
 \subsubsection{Compiler \& Libraries}
 There are multiple compilers available for C++ dependant on the platform. Generally for each of the three most common platforms (Windows, Linux, and MacOS) there are reliable and well tested compiler suites available. The GNU Compiler Collection, or GCC, is considered one of the standard compiler suites for C and C++. GCC has implementations for each of the aforementioned platforms via ports. The Windows implementation in particular is included in a few software development environments that are freely available; MinGW, MSYS2, and Cygwin.
 
-As for Linux, the GCC suite can be installed natively typically using the preferred distro's package manager. For this project the code will be compiled on a Debian based system using the GCC suite. Linux provides a simpler method of developing using C / C++ and streamlines the time from development to testing. Alongside this, the included GDB debugger allows for a simple and lightweight debugging solution. We will also be making use of bash scripts to invoke the software and provide flags to control options, something that can be a little more challenging on a Windows machine. 
+As for Linux, the GCC suite can be installed natively typically using the preferred distro's package manager. For this project the code will be compiled on a Debian based system using the GCC suite. Linux provides a simpler method of developing using C / C++ and streamlines the time from development to testing. Alongside this, the included GDB debugger allows for a simple and lightweight debugging solution. We will also be making use of bash scripts to invoke the software and provide flags to control options, something that can be a little more challenging on a Windows machine.
 
 No development will be carried out on a Macintosh as we simply do not have access to one. Typically these types of software are compiled and run using a Linux system, and thus it would make the most sense to follow the given norm.
 
 \subsubsection{Editor \& Environment}
-There are a huge swathe of IDE's and editors available for use and as for which one to use, there isn't a definitive answer. We thought that it would be best to just stick with what we know best, and for this instance that would be Visual Studio Code. Although other IDE's are available that can take a lot of the work out of managing a project. It is not really necessary to use one here. This project will not contain a huge amount of code or files, and general debugging and profiling does not need to be done using bloated IDE's. Visual Studio Code contains a massive inventory of extensions available to give an experience just as rich as an IDE, but without the cumbersome nature of one. As for this project we only need a single extension to get the required development environment: 
+There are a huge swathe of IDE's and editors available for use and as for which one to use, there isn't a definitive answer. We thought that it would be best to just stick with what we know best, and for this instance that would be Visual Studio Code. Although other IDE's are available that can take a lot of the work out of managing a project. It is not really necessary to use one here. This project will not contain a huge amount of code or files, and general debugging and profiling does not need to be done using bloated IDE's. Visual Studio Code contains a massive inventory of extensions available to give an experience just as rich as an IDE, but without the cumbersome nature of one. As for this project we only need a single extension to get the required development environment:
 
 \begin{itemize}
-    \item C / C++ -> 1.0
+    \item C / C++
 \end{itemize}
 
-It is also important to mention any other environment software aside from the previously mentioned. We are going to be using the \texttt{'time'} command to accurately measure the time metrics of the software from start to completion. This command is available through bash and is invoked at the same time as the program itself. An example of the method in which it can be invoked is as follows: 
+It is also important to mention any other environment software aside from the previously mentioned. We are going to be using the \texttt{'time'} command to accurately measure the time metrics of the software from start to completion. This command is available through bash and is invoked at the same time as the program itself. An example of the method in which it can be invoked is as follows:
 
-% TODO: Put the time command here to demonstrate invocation. 
-
-
+% TODO: Put the time command here to demonstrate invocation.
+\begin{center}
+    \includegraphics[scale=0.2]{time_command_format.png}
+\end{center}
 
 \subsection{Pseudocode \& Code}
 \begin{itemize}
