@@ -295,7 +295,7 @@ For our project, the algorithm that we will be interested in is a general DPLL a
 \subsection{Output}
 % https://web.archive.org/web/20190913185210/http://www.satcompetition.org:80/2004/format-solvers2004.html
 \begin{itemize}
-    \item The output will be "SATISFIABLE" or "NOT SATISFIABLE".
+    \item The output will be "SATISFIABLE" or "UNSATISFIABLE".
     \item Could also output the best solution.
     \item Explain the output standard for SAT competitions.
     \item SAT Competition 2002 output rules (see above comment).
@@ -331,6 +331,10 @@ It is also important to mention any other environment software aside from the pr
 \begin{center}
     \includegraphics[scale=0.2]{time_command_format.png}
 \end{center}
+
+We need to run this command first in order to achieve the desired format. This is only necessary as we are using the Z-Shell, but the command itself still works the same as traditional Bash. Using the time command we can effectively measure the time that it takes from invocation to completion in a consistent format. This is a simple alternative to implementing a time measuring system into the SAT solver, which could potentially make it less performant. An example of the usage of the time command is shown below:
+
+% TODO: Invoke the command and show an example result here.
 
 \subsection{Pseudocode \& Code}
 \begin{itemize}
