@@ -160,6 +160,9 @@ The resulting software should be able to process a complex formula within a reas
 %    \item Basically FREQ1 and FREQ2.
 %\end{itemize}
 
+\subsection{Methodology}
+This project is not being shared amongst a large team of engineers. This allows us to choose from a plethora of software methodologies that would typically not be considered. The usual norm is to commit to the AGILE methodology no matter the project. But for us we do not need the potentially cumbersome nature that can come from AGILE. We also need to consider the idea of rapid prototyping and development. For this reason, we have chosen to use the traditional Waterfall methodology. It gives us the general structure for the project, and fits well with our rigid requirements.
+
 \section{Background}
 Before we get into the implementation and software, it is always good to have a solid understanding
 of the topic at hand. SAT in particular is quite a deep topic, it is easy to spend a long time
@@ -332,9 +335,13 @@ It is also important to mention any other environment software aside from the pr
     \includegraphics[scale=0.2]{time_command_format.png}
 \end{center}
 
-We need to run this command first in order to achieve the desired format. This is only necessary as we are using the Z-Shell, but the command itself still works the same as traditional Bash. Using the time command we can effectively measure the time that it takes from invocation to completion in a consistent format. This is a simple alternative to implementing a time measuring system into the SAT solver, which could potentially make it less performant. An example of the usage of the time command is shown below:
+We need to run this command first in order to achieve the desired format. This is only necessary as we are using the 
+Z-Shell, but the command itself still works the same as traditional Bash. Using the time command we can effectively measure the time that it takes from invocation to completion in a consistent format. This is a simple alternative to implementing a time measuring system into the SAT solver, which could potentially make it less performant. An example of the usage of the time command is shown below:
 
-% TODO: Invoke the command and show an example result here.
+% TODO: Make this picture look a bit better
+\begin{center}
+    \includegraphics[scale=0.4]{time_command_example.png}
+\end{center}
 
 \subsection{Pseudocode \& Code}
 \begin{itemize}
@@ -394,6 +401,7 @@ We need to run this command first in order to achieve the desired format. This i
     \item Discuss the pandemic.
 \end{itemize}
 % TODO: Talk about the challenges we faced and also what we could improve if doing the project again
+One of the major issues encountered was something completely out of our control. The Coronavirus pandemic of 2020 provided a massive slew of issues for all academia. Specifically for this project it meant the general plan for the project, as well as the time plan, were both interrupted. The general lockdown for the United Kingdom resulted in confinement to the home. The availability of face-to-face meetings proved to be unfavourable, and potential disruptions in the home delayed planned work. 
 
 \section{Conclusion}
 \begin{itemize}
