@@ -335,13 +335,27 @@ It is also important to mention any other environment software aside from the pr
     \includegraphics[scale=0.2]{time_command_format.png}
 \end{center}
 
-We need to run this command first in order to achieve the desired format. This is only necessary as we are using the 
+We need to run this command first in order to achieve the desired format. This is only necessary as we are using the
 Z-Shell, but the command itself still works the same as traditional Bash. Using the time command we can effectively measure the time that it takes from invocation to completion in a consistent format. This is a simple alternative to implementing a time measuring system into the SAT solver, which could potentially make it less performant. An example of the usage of the time command is shown below:
 
-% TODO: Make this picture look a bit better
 \begin{center}
-    \includegraphics[scale=0.4]{time_command_example.png}
+    \texttt{\$ time make bin/dpll}
 \end{center}
+
+This command will invoke the 'make' binary to compile our program, called dpll. The output of this command will include both the output of the make command, as well as the time it took formatted to our previous rules:
+
+% TODO: Improve the way this looks.
+\begin{center}
+    \texttt{
+        real:   4.70s \\
+        user:   2.42s \\
+        sys:    0.45s
+    }
+\end{center}
+% TODO: Make this picture look a bit better
+%\begin{center}
+%    \includegraphics[scale=0.4]{time_command_example.png}
+%\end{center}
 
 \subsection{Pseudocode \& Code}
 \begin{itemize}
@@ -383,6 +397,11 @@ Z-Shell, but the command itself still works the same as traditional Bash. Using 
 \end{itemize}
 % TODO: Talk about the testing of the implemented code and whether it meets the requirements that we have set previously
 
+\subsubsection{UNIX Time Command}
+There are multiple ways in which we could measure the performance of the solver. One way is measuring the CPU time that the solver takes to give a solution to the problem it is given. This is the reason we will be testing using the standard UNIX 'time' command. This command outputs three metrics; real, user, and system. Real corresponds to the 'wall clock' time that the program took. This refers to the actual time it took from invocation to completion whilst the CPU handles other processes. The 'user' time corresponds to the time the CPU spent on the program in User mode. Calls made in Kernel mode will not be reflected in this time. The 'sys' time corresponds to the time the CPU spent in Kernel mode when executing the program.
+
+These three metrics give us a good idea as to what the CPU spends the most time on when executing our program. This, combined with other methods of measuring metrics allow us to assess the performance of the solver more accurately.
+
 \subsection{Improving Performance}
 \begin{itemize}
     \item Explore performance implications of algorithm.
@@ -401,7 +420,7 @@ Z-Shell, but the command itself still works the same as traditional Bash. Using 
     \item Discuss the pandemic.
 \end{itemize}
 % TODO: Talk about the challenges we faced and also what we could improve if doing the project again
-One of the major issues encountered was something completely out of our control. The Coronavirus pandemic of 2020 provided a massive slew of issues for all academia. Specifically for this project it meant the general plan for the project, as well as the time plan, were both interrupted. The general lockdown for the United Kingdom resulted in confinement to the home. The availability of face-to-face meetings proved to be unfavourable, and potential disruptions in the home delayed planned work. 
+One of the major issues encountered was something completely out of our control. The Coronavirus pandemic of 2020 provided a massive slew of issues for all academia. Specifically for this project it meant the general plan for the project, as well as the time plan, were both interrupted. The general lockdown for the United Kingdom resulted in confinement to the home. The availability of face-to-face meetings proved to be unfavourable, and potential disruptions in the home delayed planned work.
 
 \section{Conclusion}
 \begin{itemize}
