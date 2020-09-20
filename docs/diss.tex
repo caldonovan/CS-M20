@@ -5,6 +5,7 @@
 \usepackage{xcolor}
 \usepackage{caption}
 \usepackage{graphicx}
+\usepackage{algpseudocode}
 %\usepackage{amsmath}
 %\usepackage{booktabs}
 %\usepackage{textcomp}
@@ -398,9 +399,9 @@ This command will invoke the 'make' binary to compile our program, called dpll. 
 % TODO: Talk about the testing of the implemented code and whether it meets the requirements that we have set previously
 
 \subsubsection{UNIX Time Command}
-There are multiple ways in which we could measure the performance of the solver. One way is measuring the CPU time that the solver takes to give a solution to the problem it is given. This is the reason we will be testing using the standard UNIX 'time' command. This command outputs three metrics; real, user, and system. Real corresponds to the 'wall clock' time that the program took. This refers to the actual time it took from invocation to completion whilst the CPU handles other processes. The 'user' time corresponds to the time the CPU spent on the program in User mode. Calls made in Kernel mode will not be reflected in this time. The 'sys' time corresponds to the time the CPU spent in Kernel mode when executing the program.
+There are multiple ways in which we could measure the performance of the solver. One easy way is measuring the CPU time that the solver takes to give a solution to the problem it is given. This is the reason we will be testing using the standard UNIX 'time' command. This command outputs three metrics; real, user, and system. Real corresponds to the 'wall clock' time that the program took. This refers to the actual time it took from invocation to completion whilst the CPU handles other processes. The 'user' time corresponds to the time the CPU spent on the program in User mode. Calls made in Kernel mode will not be reflected in this time. The 'sys' time corresponds to the time the CPU spent in Kernel mode when executing the program.
 
-These three metrics give us a good idea as to what the CPU spends the most time on when executing our program. This, combined with other methods of measuring metrics allow us to assess the performance of the solver more accurately.
+These three metrics give us a good idea as to what the CPU spends the most time on when executing our program. This combined with other methods of measuring metrics allow us to assess the performance of the solver more accurately.
 
 \subsection{Improving Performance}
 \begin{itemize}
