@@ -10,10 +10,15 @@
 %\usepackage{booktabs}
 %\usepackage{textcomp}
 %\usepackage{rotating}
+\usepackage{libertinus}
+\usepackage{libertinust1math}
 \usepackage{float}
 \usepackage{lipsum}
 \usepackage[T1]{fontenc}
 \usepackage[english]{babel}
+
+% Best font EU don't @ me
+%\setmainfont{Minion Pro}
 
 % === Colours ===
 \definecolor{codegreen}{rgb}{0,0.6,0}
@@ -110,10 +115,6 @@ Donald Knuth has taken particular interest in this topic with his recent chapter
 This paper will be an exploration into the world of SAT solvers and how they can provide crucial services to both industry and research. As well as methods in which proposed SAT solver algorithms can be implemented into a robust piece of software. Due to the sheer size of literature and research in this field, it would be unrealistic to think it is possible to cover everything in a comprehensive way. Therefore, this paper focuses on the fundamentals of SAT and the significant research through the years since Cooks paper in 1971\cite{scook}. As well as the ideas presented by Donald Knuth for implementation in modern programming languages.
 
 \subsection{Motivation}
-\begin{itemize}
-    \item Discuss how SAT solvers can aid industry.
-    \item Discuss how learning about SAT can help other people learn too.
-\end{itemize}
 
 The motivation behind this project stems from the ever growing need for more efficient and faster SAT solvers. But in order to begin researching in this field, one must know the basics and tried methods present today. This project will do just that, in both studying literature that has formed the basis of most of the field, and implementing a basic SAT solver.
 
@@ -134,14 +135,15 @@ To preface this project we must present the aims and objectives that we wish to 
 \end{itemize}
 
 % Be careful of the spell checker attempting to "americani(z)e" everything.
-We shall be analysing each of these algorithms and presenting the data structures needed and methods of implementation using C++. Once our implementation is complete, and testing has proved the solver to be working as intended, we will record the performance metrics in a scientific manner to ensure accuracy. These metrics will then be compared to other FOSS solvers that are well tested and commonly used. This will give us a benchmark as to how increasing complexity of the algorithm and program can achieve greater performance. As well as how the programming language chosen can effect the overall performance.
+We shall be analysing one of these algorithms and presenting the data structures needed and methods of implementation using C++. Once our implementation is complete, and testing has proved the solver to be working as intended, we will record the performance metrics in a scientific manner to ensure accuracy. These metrics will then be compared to other FOSS solvers that are well tested and commonly used. This will give us a benchmark as to how increasing complexity of the algorithm and program can achieve greater performance. As well as how the programming language chosen can effect the overall performance.
 
 We can easily turn these actions into functional and non-functional requirements. Doing so will allow us to test against the requirements stated and compare the expected result to the actual result. This format matches a more "software engineering" approach, which is desired for this project.
 
 \subsubsection{FREQ1}
-The resulting software should be able to process and input CNF formula in the semi-standard DIMACS format.
+The resulting software should be able to process an input CNF formula in the semi-standard DIMACS format.
 
 \subsubsection{FREQ2}
+% TODO: Clarify this, 'short amount of time' doesn't seem very scientific.
 The resulting software should be able to evaluate the satisfiability of a simple formula from FREQ1, and return the result when found. Simple refers to a formula which most SAT solvers would be able to process in a short amount of time. Result refers to the decision returned from the solver that concludes as "SATISFIABLE" or "UNSATISFIABLE".
 
 \subsubsection{Non-Functional Requirements}
@@ -258,7 +260,12 @@ The key to all the most successful SAT solvers are the algorithms. The first SAT
 \end{lstlisting}
 \end{figure}
 
-For our project, the algorithm that we will be interested in is a general DPLL algorithm. As previously discussed, this is just one of a few algorithms given from Donald Knuth. Although it is relatively simple, it is a good way to explore the basic idea of software SAT solvers. Forming a foundation for further improvements, much like those explained in algorithm L. Donald Knuth describes the algorithm in a series of steps, also outlining the data structures that we need to implement it as he has described.
+For our project, the algorithm that we will be interested in is a general DPLL algorithm. As
+previously discussed, this is just one of a few algorithms given from Donald Knuth. Although it is
+relatively simple, it is a good way to explore the basic idea of software SAT solvers. Forming a
+foundation for possible further improvements, much like those explained in algorithm L. Donald Knuth
+describes the algorithm in a series of steps, also outlining the data structures that we need to
+implement it as he has described.
 
 
 \begin{itemize}
@@ -280,26 +287,80 @@ For our project, the algorithm that we will be interested in is a general DPLL a
 % These are the basic steps of a computer program.
 % Explain to the reader what is included for SAT.
 \subsection{Input}
-\begin{itemize}
-    \item The input will be a CNF formula in the DIMACS file format.
-\end{itemize}
+The input of the program will be a CNF formula presented in the DIMACS file format. This file format
+is the standard for the SAT competitions and allows for simple parsing of the problem. The format
+consists of few elements to ensure the problem is presented cleanly, the first being comments.
+Comments can be marked using the letter \texttt{'c'}.
+
+\begin{center}
+    \texttt{c This is a comment line}
+\end{center}
+
+Lines prefixed with this will be treated as a
+comment and thus will not be parsed as part of the problem. After the comments is a line telling the
+SAT solver about the problem it is about to ingest, denoted using the letter
+\texttt{'p'}.
+
+\begin{center}
+    \texttt{p cnf 255 829}
+\end{center}
+
+This line will include the type of problem, followed by the number of clauses then
+variables. Following the problem description line is the actual formula. This is presented by either
+a positive or negative integer, terminated with a \texttt{'0'}. 
+
+\begin{center}
+    \texttt{15 16 17 18 19 20 21 0}
+\end{center}
+
+Each line corresponds to a clause formatted in the defined problem type. And each integer represents
+a unique variable. Using this format we can create consistent problem files which our solver will be
+able to ingest and process easily. An example of a problem formatted in this format is presented
+below:
+
+% TODO: Get this to actually center
+\begin{center}
+    \begin{lstlisting}
+        c pigeonhole 2 1
+        c label:unsatisfiable
+        c label:easy
+        p cnf 2 3
+        1 0
+        2 0
+        -1 -2 0
+    \end{lstlisting}
+\end{center}
+
+This input will be read line by line by the solvers parser, recording the key information that it
+needs. After successful parsing we can move on to the processing of this problem.
 
 \subsection{Processing}
-\begin{itemize}
-    \item Discuss how the processing works.
-    \item This is the real meat that basically explains the algorithm.
-    \item I feel it would be best to at least discuss the DPLL algorithm.
-    \item Use content from TAOCP and online.
-\end{itemize}
+%\begin{itemize}
+%    \item Discuss how the processing works.
+%    \item This is the real meat that basically explains the algorithm.
+%    \item I feel it would be best to at least discuss the DPLL algorithm.
+%    \item Use content from TAOCP and online.
+%\end{itemize}
+The processing section of the program pipeline is the most important here. This is where our
+algorithm will iterate through each variable and set them to either true or false. The way in which
+our program will go about this depends on the algorithm that we have chosen. In this instance we
+will explain how the DPLL algorithm presented by Donald Knuth will do this. 
+
+% TODO: Explain how the algorithm processes our input.
 
 \subsection{Output}
 % https://web.archive.org/web/20190913185210/http://www.satcompetition.org:80/2004/format-solvers2004.html
-\begin{itemize}
-    \item The output will be "SATISFIABLE" or "UNSATISFIABLE".
-    \item Could also output the best solution.
-    \item Explain the output standard for SAT competitions.
-    \item SAT Competition 2002 output rules (see above comment).
-\end{itemize}
+%\begin{itemize}
+%    \item The output will be "SATISFIABLE" or "UNSATISFIABLE".
+%    \item Could also output the best solution.
+%    \item Explain the output standard for SAT competitions.
+%    \item SAT Competition 2002 output rules (see above comment).
+%\end{itemize}
+
+The output of our program is just as important as the input. After all, we want to know how the
+solver has gotten to the solution it has ended at. Much like the input, we will be following a
+semi-standard format that is outlined at each SAT competition. Using this format will allow us to be
+consistent with how most SAT solvers output their solutions. 
 
 % This is going to be pretty important, attempt to simplify for the reader.
 \subsection{Data Structures}
