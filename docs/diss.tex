@@ -284,13 +284,24 @@ implement it as he has described.
     \item Show the final implementation.
 \end{itemize}
 
+The following will be an in-depth look at the steps we need to consider when implementing our
+project. Following the design, this section details the general input and output of the program. As
+well as the processing that forms the core of the solver. We will also outline the data structures
+that are to be implemented and how they will be integrated with the algorithm to culminate in a
+working SAT solver. 
+
+We will also be glazing over the tool-chain and related items that are to be used to create the
+solver. This includes the language and the compiler that will be used. As well as the editor and
+reasoning behind these choices. 
+
 % These are the basic steps of a computer program.
 % Explain to the reader what is included for SAT.
 \subsection{Input}
 The input of the program will be a CNF formula presented in the DIMACS file format. This file format
 is the standard for the SAT competitions and allows for simple parsing of the problem. The format
 consists of few elements to ensure the problem is presented cleanly, the first of which being
-comments. Comments can be marked using the letter \texttt{'c'}.
+comments. Comments can be marked using the character \texttt{'c'} followed by a single whitespace
+character: 
 
 \begin{center}
     \texttt{c This is a comment line}
@@ -298,8 +309,8 @@ comments. Comments can be marked using the letter \texttt{'c'}.
 
 Lines prefixed with this will be treated as a
 comment and thus will not be parsed as part of the problem. After the comments is a line telling the
-SAT solver about the problem it is about to ingest, denoted using the letter
-\texttt{'p'}.
+SAT solver about the problem it is about to ingest, denoted using the character \texttt{'p'}
+followed by a single whitespace character.
 
 \begin{center}
     \texttt{p cnf 255 829}
