@@ -17,9 +17,6 @@
 \usepackage[T1]{fontenc}
 \usepackage[english]{babel}
 
-% Best font EU don't @ me
-%\setmainfont{Minion Pro}
-
 % === Colours ===
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
@@ -28,6 +25,7 @@
 % === End Colours ===
 
 % === Layout ===
+\setlength{\parskip}{0.5em}
 \graphicspath{ {./images/} }
 \lstdefinestyle{code}{basicstyle=\ttfamily\footnotesize, breakatwhitespace=false,
     breaklines=true, keywordstyle=\color{magenta}, commentstyle=\color{codegreen},
@@ -40,14 +38,10 @@
 \lhead{Implementing SAT Algorithms in Software}
 \rfoot{Page \thepage}
 \lfoot{CS-M20 - 1915769}
-% === End Layout ===
-
 \title{\bfseries Implementing SAT Algorithms in Software}
 \author{Callum Donovan}
 \date{ \today }
-
-\setlength{\parindent}{4em}
-\setlength{\parskip}{0.5em}
+% === End Layout ===
 
 \begin{document}
 
@@ -69,7 +63,6 @@
 % === End Title Page ===
 
 % === Main Content ===
-
 \thispagestyle{empty}
 \begin{center}
 \section*{Abstract}
@@ -454,36 +447,75 @@ This command will invoke the 'make' binary to compile our program, called dpll. 
 % TODO: Talk about how we are going to implement this. Not so much about the actual implementation itself!
 
 \section{Testing}
-\begin{itemize}
-    \item Summarize what we want from the testing phase.
-    \item Discuss the problem sets that we are going to be throwing at this.
-    \item Discuss program testing first, even though this is not really what we mean by "testing".
-    \item Record some testing metrics, such as time to solve, memory, CPU cycles, etc.
-    \item Describe any regions that could potentially be improved.
-\end{itemize}
+%\begin{itemize}
+%    \item Summarize what we want from the testing phase.
+%    \item Discuss the problem sets that we are going to be throwing at this.
+%    \item Discuss program testing first, even though this is not really what we mean by "testing".
+%    \item Record some testing metrics, such as time to solve, memory, CPU cycles, etc.
+%    \item Describe any regions that could potentially be improved.
+%\end{itemize}
+As with all software, one of the most important parts of the development lifecycle is testing. For
+this project we must ensure that it not only works without fault, but also returns the correct
+results that we are looking for. In order to test our software we shall generate a plethora of
+testing criteria to test against. Each of these criteria will have an expected outcome. We will then
+compare the expected outcome to the actual outcome and record whether they are identical. Although
+this is a simple technique, it is hard to apply automated testing to our program as it is so niche.
+
+As for ensuring the program returns correct results, the best way that we will be able to check is
+to use well known and reputable solvers to generate results and compare the two. This can also be
+added to the testing criteria and formatted in a table if preferred. The following will be the
+details of the testing strategy alongside the results.
 
 \subsection{Software Testing}
-\begin{itemize}
-    \item Discuss methods of software testing (Unit, manual, etc...)
-    \item Outline a testing table for manual testing.
-    \item Discuss testing against the functional requirements stated previously.
-\end{itemize}
+%\begin{itemize}
+%    \item Discuss methods of software testing (Unit, manual, etc...)
+%    \item Outline a testing table for manual testing.
+%    \item Discuss testing against the functional requirements stated previously.
+%\end{itemize}
+There are a vast array of testing tools freely available to use for most software projects. These
+have been created from the need for automated testing due to programs changing rapidly. In this
+case, we do not need to deploy any advanced testing techniques or tools. As we have quite rigid
+requirements and a small codebase, keeping track of changes is somewhat trivial. Much like discussed
+in the initial sections of this paper, this is similar to the reasoning behind our choice of
+methodology. Therefore, let us create a simple suite of manual testing criteria.
+
+% TODO: Put a testing table here or something.
+
 
 \subsection{Checking For Correct Solutions}
-\begin{itemize}
-    \item Add results from test folder
-    \item Use two other solvers and give them the same problem
-    \item Check at least 10 times to ensure consistent results
-\end{itemize}
+%\begin{itemize}
+%    \item Add results from test folder
+%    \item Use two other solvers and give them the same problem
+%    \item Check at least 10 times to ensure consistent results
+%\end{itemize}
+Progressing from the program testing, we must also ensure the solver is returning correct results.
+This can also lead us to any bugs that may be present within the program. Using common SAT problems
+presented in the DIMACS format we can compare the results from our program to results from another
+solver. For statistical reasons we should ensure that each problem set is ran at least 10 times on
+each solver. To further back up the testing results we could run the same problems against a third
+solver. This would allow for comparison between each solver as a fall-back. 
+
+The first solver we will be using to ensure correctness is \textit{Minisat}. This solver is one of
+the most tried and tested solvers freely available to use. And comes with plenty of features to
+allow each test set to be completed quickly. \textit{Minisat} comes with a well documented interface
+that we can use to easily build and run our test sets. 
+
+% TODO: Run our test set against Minisat.
+
+The fall-back solver we will be using is \textit{CryptoMiniSat}. This solver is still in active
+development and encorporates some of the most advanced features for a FOSS solver. Compared to
+\textit{Minisat}, this solver is significantly more complex. It should give us safe results that we
+can use to ensure no descrepencies between our solver and \textit{Minisat}.
+
+% TODO: Run our test set against CryptoMiniSat.
 
 \subsection{Monitoring Initial Performance Metrics}
-\begin{itemize}
-    \item Measure the performance of this SAT solver (algorithm we picked?)
-    \item Measure the performance of other SAT solvers.
-    \item Compare the results and deduce why the performance differences exist.
-    \item Explain the use of the \texttt{'time'} command with special format.
-\end{itemize}
-% TODO: Talk about the testing of the implemented code and whether it meets the requirements that we have set previously
+%\begin{itemize}
+%    \item Measure the performance of this SAT solver (algorithm we picked?)
+%    \item Measure the performance of other SAT solvers.
+%    \item Compare the results and deduce why the performance differences exist.
+%    \item Explain the use of the \texttt{'time'} command with special format.
+%\end{itemize}
 
 \subsubsection{UNIX Time Command}
 There are multiple ways in which we could measure the performance of the solver. One easy way is measuring the CPU time that the solver takes to give a solution to the problem it is given. This is the reason we will be testing using the standard UNIX 'time' command. This command outputs three metrics; real, user, and system. Real corresponds to the 'wall clock' time that the program took. This refers to the actual time it took from invocation to completion whilst the CPU handles other processes. The 'user' time corresponds to the time the CPU spent on the program in User mode. Calls made in Kernel mode will not be reflected in this time. The 'sys' time corresponds to the time the CPU spent in Kernel mode when executing the program.
@@ -522,11 +554,12 @@ One of the major issues encountered was something completely out of our control.
     \item Don't forget to basically copy and paste this to the abstract.
 \end{itemize}
 % TODO: Conclude on our findings and all the preceding work we have done.
-
 % === End Main Content ===
 
+% === References ===
 \newpage
 \bibliographystyle{ieeetr}
 \bibliography{references}
+% === End References ===
 
 \end{document}
