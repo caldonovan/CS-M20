@@ -286,11 +286,11 @@ The following will be an in-depth look at the steps we need to consider when imp
 project. Following the design, this section details the general input and output of the program. As
 well as the processing that forms the core of the solver. We will also outline the data structures
 that are to be implemented and how they will be integrated with the algorithm to culminate in a
-working SAT solver. 
+working SAT solver.
 
 We will also be glazing over the tool-chain and related items that are to be used to create the
 solver. This includes the language and the compiler that will be used. As well as the editor and
-reasoning behind these choices. 
+reasoning behind these choices.
 
 % These are the basic steps of a computer program.
 % Explain to the reader what is included for SAT.
@@ -299,7 +299,7 @@ The input of the program will be a CNF formula presented in the DIMACS file form
 is the standard for the SAT competitions and allows for simple parsing of the problem. The format
 consists of few elements to ensure the problem is presented cleanly, the first of which being
 comments. Comments can be marked using the character \texttt{'c'} followed by a single whitespace
-character: 
+character:
 
 \begin{center}
     \texttt{c This is a comment line}
@@ -316,7 +316,7 @@ followed by a single whitespace character.
 
 This line will include the type of problem, followed by the number of clauses then
 variables. Following the problem description line is the actual formula. This is presented by either
-a positive or negative integer, terminated with a \texttt{'0'}. 
+a positive or negative integer, terminated with a \texttt{'0'}.
 
 \begin{center}
     \texttt{15 16 17 18 19 20 21 0}
@@ -353,7 +353,7 @@ needs. After successful parsing we can move on to the processing of this problem
 The processing section of the program pipeline is the most important here. This is where our
 algorithm will iterate through each variable and set them to either true or false. The way in which
 our program will go about this depends on the algorithm that we have chosen. In this instance we
-will explain how the DPLL algorithm presented by Donald Knuth will do this. 
+will explain how the DPLL algorithm presented by Donald Knuth will do this.
 
 % TODO: Explain how the algorithm processes our input.
 
@@ -369,12 +369,12 @@ will explain how the DPLL algorithm presented by Donald Knuth will do this.
 The output of our program is just as important as the input. After all, we want to know how the
 solver has gotten to the solution it has ended at. Much like the input, we will be following a
 semi-standard format that is outlined at each SAT competition. Using this format will allow us to be
-consistent with how most SAT solvers output their solutions. 
+consistent with how most SAT solvers output their solutions.
 
 The format of the output is somewhat similar to the DIMACS format. In that each line is prefixed
 with a single character denoting its purpose, followed by a single whitespace character. The main
 difference here being that there is no particular order in which the lines must appear. There are
-three distinct types of lines in this format: 
+three distinct types of lines in this format:
 
 \begin{itemize}
     \item \texttt{'c '}: Denotes a comment line in which the program can output any auxilliary
@@ -386,7 +386,7 @@ three distinct types of lines in this format:
 
 The resulting output should combine all three of these types to create a comprehensive result to the
 user. This includes the model that the solver has settled on if the solution is satisfiable. This
-will allow for the checking of the answer to ensure its correctness. 
+will allow for the checking of the answer to ensure its correctness.
 
 % TODO: Add an example of the output here.
 
@@ -498,21 +498,25 @@ This can also lead us to any bugs that may be present within the program. Using 
 presented in the DIMACS format we can compare the results from our program to results from another
 solver. For statistical reasons we should ensure that each problem set is ran at least 10 times on
 each solver. To further back up the testing results we could run the same problems against a third
-solver. This would allow for comparison between each solver as a fall-back. 
+solver. This would allow for comparison between each solver as a fall-back.
 
 The first solver we will be using to ensure correctness is \textit{Minisat}. This solver is one of
 the most tried and tested solvers freely available to use. And comes with plenty of features to
 allow each test set to be completed quickly. \textit{Minisat} comes with a well documented interface
-that we can use to easily build and run our test sets. 
+that we can use to easily build and run our test sets.
 
-% TODO: Run our test set against Minisat.
+% TODO: Run our test set against Minisat. Record results here.
 
 The fall-back solver we will be using is \textit{CryptoMiniSat}. This solver is still in active
 development and encorporates some of the most advanced features for a FOSS solver. Compared to
 \textit{Minisat}, this solver is significantly more complex. It should give us safe results that we
 can use to ensure no descrepencies between our solver and \textit{Minisat}.
 
-% TODO: Run our test set against CryptoMiniSat.
+% TODO: Run our test set against CryptoMiniSat. Record results here.
+
+Using the two mentioned solvers we can compare their results against our own. This is worth doing to make sure there are as little bugs as possible. The results for our testing are displayed below.
+
+% TODO: Put the results from our solver here.
 
 \subsection{Monitoring Initial Performance Metrics}
 %\begin{itemize}
@@ -543,7 +547,9 @@ to its solution. Typically more complex solvers that contain multiple algorithms
 individual parts of the problem, can take up much less memory than a simpler one. The reason we add
 more complexity is to ensure that the solver knows when it should stop trying to branch in a
 particular direction. Less branching means we save a bit more memory and can sift through the
-problem much quicker. 
+problem much quicker.
+
+% TODO: Think about other ways of measuring performance.
 
 \section{Results}
 \begin{itemize}
@@ -569,7 +575,20 @@ problem much quicker.
 \end{itemize}
 
 \subsection{Algorithm Performance}
-\subsection{Paralell Solving}
+There are multiple improvements that are suggested by Donald Knuth to speed up the initial DPLL algorithm based solver. The first of which is already listed as one of his alternative algorithms. Algorithm L uses the lookahead concept to substantially speed up the standard DPLL algorithm. This concept % TODO: Expand.
+
+\subsection{Pre-processing}
+One simple method that could greatly assist our solver is using a pre-processor. This will take the problem set and analyse it, and return a much simplified problem. This concept is applied accross modern solvers already, and is considered a vital part of the SAT solving system.
+
+% TODO: Add some examples from existing solvers.
+
+\subsection{Parallel Solving}
+A more interesting concept is to capitalise on modern processor architectures, and the cheap availability of multi-core CPU's. It is commonplace to find consumer CPU's with at least 4 cores and hyper-threading. By taking advantage of this we can try to divide up the problem set and apply a solver to each smaller instance running on an individual thread. As usual with parallelism, this would not necessarily lead to a linear performance increase. It would require some research and engineering to determine the best way forward in order to achieve the desired results.
+
+% TODO: Talk a bit more about this.
+
+\subsection{SIMD}
+Another interesting technique that could be applied to SAT solving is the use of SIMD instructions for data level parallelism. It has been shown in other applications that utilising SIMD instructions can quickly lead to almost linear performance improvements corresponding to each bit width of data.
 
 \section{Challenges}
 \begin{itemize}
