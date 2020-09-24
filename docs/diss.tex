@@ -2,7 +2,6 @@
 \usepackage{listings}
 \usepackage[utf8]{inputenc}
 \usepackage{fancyhdr}
-\usepackage{hyperref}
 \usepackage{xcolor}
 \usepackage{caption}
 \usepackage{graphicx}
@@ -14,10 +13,10 @@
 \usepackage[english]{babel}
 
 % === Hyperlinks ===
-\hypersetup{
-    colorlinks=false,
-    linktoc=all
-}
+%\hypersetup{
+%    colorlinks=false,
+%    linktoc=all
+%}
 % === End Hyperlinks ===
 
 % === Colours ===
@@ -524,9 +523,27 @@ can use to ensure no descrepencies between our solver and \textit{Minisat}.
 %\end{itemize}
 
 \subsubsection{UNIX Time Command}
-There are multiple ways in which we could measure the performance of the solver. One easy way is measuring the CPU time that the solver takes to give a solution to the problem it is given. This is the reason we will be testing using the standard UNIX 'time' command. This command outputs three metrics; real, user, and system. Real corresponds to the 'wall clock' time that the program took. This refers to the actual time it took from invocation to completion whilst the CPU handles other processes. The 'user' time corresponds to the time the CPU spent on the program in User mode. Calls made in Kernel mode will not be reflected in this time. The 'sys' time corresponds to the time the CPU spent in Kernel mode when executing the program.
+There are multiple ways in which we could measure the performance of the solver. One easy way is
+measuring the CPU time that the solver takes to give a solution to the problem it is given. This is
+the reason we will be testing using the standard UNIX 'time' command. This command outputs three
+metrics; real, user, and system. Real corresponds to the 'wall clock' time that the program took.
+This refers to the actual time it took from invocation to completion whilst the CPU handles other
+processes. The 'user' time corresponds to the time the CPU spent on the program in User mode. Calls
+made in Kernel mode will not be reflected in this time. The 'sys' time corresponds to the time the
+CPU spent in Kernel mode when executing the program. These three metrics give us a good idea as to
+what the CPU spends the most time on when executing our program.
 
-These three metrics give us a good idea as to what the CPU spends the most time on when executing our program. This combined with other methods of measuring metrics allow us to assess the performance of the solver more accurately.
+\subsubsection{Memory Usage}
+Another method in which we can measure the performance of our solver is by keeping track of the
+memory that is used. Although this may not seem like a performance related metric, it can tell us
+about potential memory leaks which can in turn effect the general performance of the system. Aside
+from this, it is important to keep track of the memory usage as a method of judging the solver
+itself. Higher memory usage can indicate how many branches the solver is heading into before coming
+to its solution. Typically more complex solvers that contain multiple algorithms, to solve
+individual parts of the problem, can take up much less memory than a simpler one. The reason we add
+more complexity is to ensure that the solver knows when it should stop trying to branch in a
+particular direction. Less branching means we save a bit more memory and can sift through the
+problem much quicker. 
 
 \section{Results}
 \begin{itemize}
