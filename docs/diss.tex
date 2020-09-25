@@ -8,7 +8,7 @@
 \usepackage{graphicx}
 \usepackage{algpseudocode}
 \usepackage{libertinus}
-\usepackage{libertinust1math}
+%\usepackage{libertinust1math}
 \usepackage{float}
 \usepackage{lipsum}
 \usepackage[english]{babel}
@@ -263,24 +263,32 @@ previously discussed, this is just one of a few algorithms given from Donald Knu
 relatively simple, it is a good way to explore the basic idea of software SAT solvers. Forming a
 foundation for possible further improvements, much like those explained in algorithm L. Donald Knuth
 describes the algorithm in a series of steps, also outlining the data structures that we need to
-implement it as he has described.
+implement it as he has described. The following is the algorithm steps that are detailed by Knuth in his book:
+
+% TODO: Finish adding this.
+\begin{enumerate}
+    \item Set $m_0 \leftarrow d \leftarrow h \leftarrow t \leftarrow 0$, and do the following for $k = n, n - 1, ..., 1:$ Set $x_k ← -1$ (denoting an unset value); if $W_{2k} \neq 0$ or $W_{2k+1} \neq 0$, set \texttt{NEXT}($k$) $ \leftarrow h, h \leftarrow k$, and if $t = 0$ also set $t \leftarrow k$. Finally, if $t \neq 0$, complete the active ring by setting \texttt{NEXT}($t$)$ \leftarrow h$.
+    \item Terminate if $t = 0$ (all clauses are satisfied). Otherwise set $k \leftarrow t$.
+\end{enumerate}
+
+This algorithm will form the basis of our program and each step will be translated to appropriate code. This algorithm relies on the 'active ring' data structure that Knuth mentions previous to the algorithm. This active ring is key in the operations of the algorithm as we need to have a method of easily deleting and restoring variables in clauses. For C++, it is convienient for us to use the \texttt{std::vector} type when creating the data structure.
 
 
-\begin{itemize}
-    \item Discuss algorithms presented by DK.
-    \item Discuss which algorithm we are planning to implement.
-    \item Talk about the ones we aren't going to anyway?
-\end{itemize}
+%\begin{itemize}
+%    \item Discuss algorithms presented by DK.
+%    \item Discuss which algorithm we are planning to implement.
+%    \item Talk about the ones we aren't going to anyway?
+%\end{itemize}
 % TODO: Talk about how we've design the code based off of the algorithm and preceding content in the book.
 
 \section{Implementation}
-\begin{itemize}
-    \item Discuss the general idea of the program, including inputs (DIMACS) and outputs (SAT / NON-SAT).
-    \item Discuss the process in which we are going to be solving these problems.
-    \item Talk about our tool-chain and related crap.
-    \item Talk about the attempts at implementing it.
-    \item Show the final implementation.
-\end{itemize}
+%\begin{itemize}
+%    \item Discuss the general idea of the program, including inputs (DIMACS) and outputs (SAT / NON-SAT).
+%    \item Discuss the process in which we are going to be solving these problems.
+%    \item Talk about our tool-chain and related crap.
+%    \item Talk about the attempts at implementing it.
+%    \item Show the final implementation.
+%\end{itemize}
 
 The following will be an in-depth look at the steps we need to consider when implementing our
 project. Following the design, this section details the general input and output of the program. As
