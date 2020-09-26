@@ -188,8 +188,11 @@ general concepts and ideas behind 3SAT problems.
 %    \item Explain why 3SAT is of particular interest.
 %\end{itemize}
 
+\subsection{SAT From Other Problems}
+\lipsum[2-3]
+
 \subsection{Complete vs. Incomplete}
-There are two types of SAT solving algorithms; complete and incomplete.
+When we talk about SAT solvers, they can be sorted into two categories; complete and incomplete. Complete solvers are
 % TODO: Talk about this.
 
 \subsection{Modern SAT}
@@ -220,19 +223,21 @@ sized problem sets. First written in 2003 by Niklas Een[!] and Niklas Sorensson[
 was to help developers and researchers get into the field of SAT solving by providing a simple
 interface and minimal codebase.
 
-\begin{itemize}
-    \item Talk about Minisat.
-    \item Go into detail about offshoots from Minisat, such as CryptoMiniSat.
-    \item Newer CDCL algorithms.
-    \item Look into SAT 2020 to find some interesting new solvers.
-    \item Basically talk about applications then the research currently happening.
-\end{itemize}
+%\begin{itemize}
+%    \item Talk about Minisat.
+%    \item Go into detail about offshoots from Minisat, such as CryptoMiniSat.
+%    \item Newer CDCL algorithms.
+%    \item Look into SAT 2020 to find some interesting new solvers.
+%    \item Basically talk about applications then the research currently happening.
+%\end{itemize}
 
 \subsection{CryptoMiniSat}
 As the name suggests, this solver builds upon the foundations laid by Minisat to create an all in
 one solution to multiple problems. CryptoMiniSat implements most of the useful features from Minisat
 2.0 core, along with PrecoSat and Glucose to try to make a one-stop solution. CryptoMiniSat is still
 in active development, hosting their code on GitHub for open collaboration.
+
+This solver capitalises on modern techniques of using appropriate solvers for sections of a problem. By combining multiple solving algorithms
 
 % TODO: Add more current SAT solvers.
 
@@ -376,7 +381,16 @@ needs. After successful parsing we can move on to the processing of this problem
 The processing section of the program pipeline is the most important here. This is where our
 algorithm will iterate through each variable and set them to either true or false. The way in which
 our program will go about this depends on the algorithm that we have chosen. In this instance we
-will explain how the DPLL algorithm presented by Donald Knuth will do this.
+will explain how the cyclic DPLL algorithm presented by Donald Knuth will do this.
+
+\subsubsection{Initial Steps}
+\lipsum[1-2]
+\subsubsection{Unit Propagation}
+\lipsum[1-2]
+\subsubsection{Backtracking}
+\lipsum[1-2]
+\subsubsection{Watched Literals}
+\lipsum[1-2]
 
 % TODO: Explain how the algorithm processes our input.
 
