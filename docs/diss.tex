@@ -20,18 +20,20 @@
 %}
 % === End Hyperlinks ===
 
+\newcommand{\italic}{\textit}
+
 % === Colours ===
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 \definecolor{dark}{rgb}{0.12,0.12,0.14}
-\pagecolor{dark}
-\color{white}
+%\pagecolor{dark}
+%\color{white}
 % === End Colours ===
 
 % === Layout ===
-\setlength{\parskip}{0.5em}
+%\setlength{\parskip}{0.5em}
 \graphicspath{ {./images/} }
 \lstdefinestyle{code}{basicstyle=\ttfamily\footnotesize, breakatwhitespace=false,
     breaklines=true, keywordstyle=\color{magenta}, commentstyle=\color{codegreen},
@@ -182,7 +184,27 @@ general concepts and ideas behind 3SAT problems.
 \end{itemize}
 
 \subsubsection{Boolean Satisfiability Problem}
-\lipsum[1-2]
+The Boolean Satisfiability Problem is one of the most important and renowned in computer science. Forming the basis of NP-Complete problems, it has always been an area of particular interest to computer scientists for a plethora of reasons.
+
+SAT was the first problem to be proved NP-Complete by both Steven Cook and Leonid Levin in 1971 and 1973 respectively\cite{scook}\cite{levin}. It was later included in a well-known paper \italic{Reducibility Among Combinatorial Problems} by Richard Karp\cite{karp}, which generated a renewed interest amongst researchers.
+
+As defined by Donald Knuth, the Boolean Satisfiability Problem is defined as such:
+
+% TODO: Add citation for this quote.
+\begin{quotation}
+    "Given a Boolean Formula $F(x_1,...,x_n)$, expressed in so called "conjunctive normal form" as an AND of ORs, can we "satisfy" $F$ by assigning values to its variables in such a way that $F(x_1,...,x_n)$ = 1?"
+\end{quotation}
+
+Given this definition, we can present a formula as defined above:
+
+\begin{center}
+    $F(x1,x2,x3) = (x_1 \vee \bar{x_2}) \wedge (x_2 \vee x_3) \wedge (\bar{x_1} \vee \bar{x_3}) \wedge (\bar{x_1} \vee \bar{x_2} \vee x_3)$
+\end{center}
+
+This formula can be satisfied when $x_1x_2x_3 = 001$.
+
+We can consider this CNF formula as a set of clauses, where each clause contains a set of literals. We can use the symbol \wedge to denote an \italic{empty} clause, a clause which contains no literals and in turn is unsatisfiable. A clause in which there is only a single literal is known as a \italic{unit} clause. The 3-SAT problem is considered NP-Complete, and is typically considered the "show child" of NP-Complete SAT.
+
 \subsubsection{Example SAT Instances}
 \lipsum[1-2]
 \subsubsection{Unit Clauses}
@@ -294,7 +316,7 @@ and processing data were quite verbose. It involved having to record all the dat
 node onto a magnetic tape before branching. When they wished to backtrack to the previous node,
 they would restore the data from the tape they had created. But now we have huge stocks of memory
 available to use whenever necessary, allowing us to write more complex and faster solvers using
-equally more complex data structures. 
+equally more complex data structures.
 
 
 %\begin{itemize}
