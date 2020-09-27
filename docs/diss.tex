@@ -169,6 +169,26 @@ researching into all the intricacies[!]. For this paper, we will just be concent
 general concepts and ideas behind the most common instances of SAT.
 % TODO: Insert previous CSCM10 research here, cause we ain't doing it again!
 
+\subsection{P vs NP}
+Before we progress into the basics of SAT, we can quickly explore the reason behind it being such an
+important topic within computer science. The P vs NP question is one of the most prevalent in the
+field of complexity theory. It is one of the seven millenium prize problems put forward by the Clay
+Mathematics Institute and, if solved, fetches a \$1 million prize for the first correct solution.
+The concept of P vs NP asks whether every problem whose solution can be verified quickly, can also
+be solved quickly. On the surface sounding simple, but in the details an incredibly hard question
+that has plauged computer scientists since the 1950s.
+
+% TODO: Expand on NP-Complete using previous research.
+A further interest within this field of study concerns the notion of NP-Complete. 
+
+The Boolean Satisfiability Problem was the first to be proved NP-Complete, by both Steven Cook and
+Leonid Levin in 1971 and 1973 respectively\cite{scook}\cite{levin}. It was later included in a
+well-known paper, \textit{Reducibility Among Combinatorial Problems} by Richard Karp\cite{karp},
+which generated a renewed interest amongst researchers. In this paper, Karp proved how a large
+set of problems could be reduced to an instance of SAT. Thus meaning each one would be solvable if
+there was a suitable algorithm. The faster algorithm that we can create for the SAT problem, the
+better we can solve other problems via reducibility. 
+
 \subsection{SAT Fundamentals}
 %\begin{itemize}
 %    \item Define the SAT problem with reference.
@@ -177,43 +197,44 @@ general concepts and ideas behind the most common instances of SAT.
 %    \item Discuss the DPLL algorithm, the first computer implementation of a solver.
 %\end{itemize}
 \subsubsection{Boolean Satisfiability Problem}
-The Boolean Satisfiability Problem is one of the most important and renowned in computer science. Forming the basis of NP-Complete problems, it has always been an area of particular interest to computer scientists for a plethora of reasons.
-
-SAT was the first problem to be proved NP-Complete by both Steven Cook and Leonid Levin in 1971 and 1973 respectively\cite{scook}\cite{levin}. It was later included in a well-known paper \textit{Reducibility Among Combinatorial Problems} by Richard Karp\cite{karp}, which generated a renewed interest amongst researchers.
-
 As stated by Donald Knuth, the Boolean Satisfiability Problem is defined as such:
 
-% TODO: Add citation for this quote.
+% TODO: Add citation for this quote. Also make this look a bit better...
 \begin{quotation}
     "Given a Boolean Formula $F(x_1,...,x_n)$, expressed in so called "conjunctive normal form" as an AND of ORs, can we "satisfy" $F$ by assigning values to its variables in such a way that $F(x_1,...,x_n)$ = 1?"
 \end{quotation}
 
-Given this definition, we can present a formula as defined above:
+Given this definition, we can present a formula as detailed above:
 
 \begin{center}
     $F(x1,x2,x3) = (x_1 \vee \bar{x_2}) \wedge (x_2 \vee x_3) \wedge (\bar{x_1} \vee \bar{x_3}) \wedge (\bar{x_1} \vee \bar{x_2} \vee x_3)$
 \end{center}
 
-Given this formula, we can satisfy it by setting $x_1x_2x_3 = 001$.
+And given this formula, we can satisfy it by setting $x_1x_2x_3 = 001$.
 
 To ensure consistent understanding of these concepts before proceeding, we can simplify the notation
 for each element within SAT. To begin, we have \textit{variables}. These are elements of any
 convenient set. Variables can be denoted in a few ways, but for this we shall be using Knuth's own
 notation as stated in his book. Thus, variables will be denoted using numerals 1, 2, 3, ... to save
-having to repeat characters. 
+having to repeat characters. We can also omit the brackets and operators to make the writing of
+formulas much faster:
+
+\begin{center}
+    $R = \{12\bar{3},23\bar{4},341,4\bar{1}2,\bar{1}\bar{2}3,\bar{2}\bar{3}4,\bar{3}\bar{4}\bar{1},\bar{4}1\bar{2}\}$
+\end{center}
 
 \textit{Literals} are our next notation. They correspond to either a variable or the compliment of
 that variable. Using our previous example for variables, if $1$ is a variable, both $1$ and
 $\bar{1}$ are literals. From this we can easily deduce that if there are $n$ number of variables,
-there can be $2n$ possible literals.
+there can be $2n$ possible literals. A literal may be considered \textit{pure} if its negation does
+not appear anywhere in the formula. And thus can be safely set to true or false respectively.
 
 There are multiple instances of the satisfiability problem, so we shorten satisfiability to just
 SAT. In turn, each instance is typically abbreviated and prefixed to SAT. Examples of this would
 be 2SAT, 3SAT, and $k$SAT. 3SAT is of particular interest, and will be detailed later in its own
 section. 
 
-Alongside these notations, there are more which represent different types of clauses that we could
-encounter. For instance, a clause of length 1 is called a \textit{unit clause}. Clauses of length 2
+There are more definitions which represent alternative types of clauses that we could encounter. For  instance, a clause of length 1 is called a \textit{unit clause}. Clauses of length 2
 would be called \textit{binary clause} and length 3, \textit{ternary clauses}. We can also
 encounter clauses in which there are no literals, which would be called \textit{empty clauses}.
 \textit{Empty clauses} are denoted using $\epsilon$ and are always unsatisfiable. As you would
@@ -221,12 +242,18 @@ think, shorter clauses would be easier to satisfy as they contain less literals,
 necessarily the case. As we progress further into the design and implementation of this solver, we
 will learn the importance of covering all bases and making no assumptions of difficulty.
 
-%\subsubsection{Example SAT Instances}
-%\lipsum[1-2]
-\subsubsection{Pure Literals}
-\lipsum[1-2]
+% TODO: Figure out a better name for this heading.
+\subsubsection{Converting to SAT}
+There are a plethora of problems that can be formulated into the previously stated problem. It is
+for this reason that we find the field of SAT solvers so important.
+
 \subsubsection{Complete vs Incomplete SAT Methods}
-\lipsum[1-2]
+Before we progress onto the details of SAT algorithms, we must understand the two distinct types of
+solvers; complete and incomplete. Currently we are most interested in the former of the two, as it
+presents the best usage out of all the problems that are faced within SAT. A complete SAT algorithm
+is one that finds both satisfiable and unsatisfiable solutions, and returns the corresponding model
+if satisfiable. 
+
 \subsubsection{DLL Algorithm}
 \lipsum[1-2]
 \subsubsection{DPLL Algorithm}
