@@ -174,40 +174,42 @@ general concepts and ideas behind 3SAT problems.
 
 \subsection{SAT Fundamentals}
 % TODO: Explain the fundamentals of SAT and the people who found it.
-%\begin{itemize}
-%    \item Define the SAT problem with reference.
-%    \item Explain how SAT formulas are constructed.
-%    \item Explain early attempts to solve SAT formulas.
-%    \item Discuss the DPLL algorithm, the first computer implementation of a solver.
-%\end{itemize}
+\begin{itemize}
+    \item Define the SAT problem with reference.
+    \item Explain how SAT formulas are constructed.
+    \item Explain early attempts to solve SAT formulas.
+    \item Discuss the DPLL algorithm, the first computer implementation of a solver.
+\end{itemize}
+
+\subsubsection{Boolean Satisfiability Problem}
+\lipsum[1-2]
+\subsubsection{Example SAT Instances}
+\lipsum[1-2]
+\subsubsection{Unit Clauses}
+\lipsum[1-2]
+\subsubsection{Pure Literals}
+\lipsum[1-2]
+\subsubsection{DLL Algorithm}
+\lipsum[1-2]
+\subsubsection{DPLL Algorithm}
+\lipsum[1-2]
 
 \subsection{3SAT}
-%\begin{itemize}
-%    \item Define 3SAT.
-%    \item Show a problem that would be considered 3SAT.
-%    \item Explain why 3SAT is of particular interest.
-%\end{itemize}
-
-\subsection{SAT From Other Problems}
-\lipsum[2-3]
-
-\subsection{Complete vs. Incomplete}
-When we talk about SAT solvers, they can be sorted into two categories; complete and incomplete. Complete solvers are
-% TODO: Talk about this.
+\begin{itemize}
+    \item Define 3SAT.
+    \item Show a problem that would be considered 3SAT.
+    \item Explain why 3SAT is of particular interest.
+\end{itemize}
 
 \subsection{Modern SAT}
-%\begin{itemize}
-%    \item Talk about how SAT has evolved since the original DPLL.
-%    \item Modern SAT competitions.
-%    \item Parallel SAT solvers.
-%    \item General future SAT solver stuff.
-%\end{itemize}
-Modern SAT solvers typically fall into two categories: \textit{Conflict Driven Clause Learning} and local search based. Out of the two, CDCL solvers are the most commonly used. Local-search based solvers are usually not used as they are often not considered \textit{complete}. Alongside this, they are usually slower than modern CDCL solvers. Outside of these two reasons, there are situations where local-search can be used on specific problems. % TODO: Expand
+\begin{itemize}
+    \item Talk about how SAT has evolved since the original DPLL.
+    \item Modern SAT competitions.
+    \item Parallel SAT solvers.
+    \item General future SAT solver stuff.
+\end{itemize}
 
-\subsubsection{CDCL Solvers}
-\textit{Conflict Driven Clause Learning} solvers are themselves an evolution of the original \textit{Davis-Putnam-Logemann-Loveland} algorithm. A CDCL solver is normally both complete and sound. The difference between a traditional DPLL solver and a CDCL solver is the inclusion of \textit{non-chronological backtracking}, or \textit{backjumping}. This feature allows the solver to determine at what point a variable assignment was made, and jump back multiple nodes to avoid running into the same conflict multple times.
-
-The way in which we can implement this \textit{backjumping} is by analysing the current conflict, often called \textit{conflict clause}. This finds the earliest variable assignment that has lead to the conflict and jumps back to it. This conflict clause is then added to the problem to revisiting nodes within the search space that have already been visited.
+\subsection{Income}
 
 \section{Related Work}
 % TODO: Add related work, such as alternative FOSS solutions.
@@ -223,21 +225,19 @@ sized problem sets. First written in 2003 by Niklas Een[!] and Niklas Sorensson[
 was to help developers and researchers get into the field of SAT solving by providing a simple
 interface and minimal codebase.
 
-%\begin{itemize}
-%    \item Talk about Minisat.
-%    \item Go into detail about offshoots from Minisat, such as CryptoMiniSat.
-%    \item Newer CDCL algorithms.
-%    \item Look into SAT 2020 to find some interesting new solvers.
-%    \item Basically talk about applications then the research currently happening.
-%\end{itemize}
+\begin{itemize}
+    \item Talk about Minisat.
+    \item Go into detail about offshoots from Minisat, such as CryptoMiniSat.
+    \item Newer CDCL algorithms.
+    \item Look into SAT 2020 to find some interesting new solvers.
+    \item Basically talk about applications then the research currently happening.
+\end{itemize}
 
 \subsection{CryptoMiniSat}
 As the name suggests, this solver builds upon the foundations laid by Minisat to create an all in
 one solution to multiple problems. CryptoMiniSat implements most of the useful features from Minisat
 2.0 core, along with PrecoSat and Glucose to try to make a one-stop solution. CryptoMiniSat is still
 in active development, hosting their code on GitHub for open collaboration.
-
-This solver capitalises on modern techniques of using appropriate solvers for sections of a problem. By combining multiple solving algorithms
 
 % TODO: Add more current SAT solvers.
 
@@ -248,8 +248,8 @@ This solver capitalises on modern techniques of using appropriate solvers for se
     \item Discuss the data structures that we will need to implement based off of DK's ideas.
 \end{itemize}
 
-\subsection{Algorithm D - Satisfiability by Cyclic DPLL}
-The key to all the most successful SAT solvers are the algorithms. The first SAT solver to be implemented for a computer used the DPLL algorithm[!]. As we previously established, the DPLL algorithm is considered one of the firsts and produced good results for the time. As of 2020, there have been a plethora of improvements to the original DPLL algorithm that has allowed it to keep up with the increasing complexity of problems available. The general pseudocode for the original DPLL algorithm can be written as such:
+\subsection{Base Algorithm}
+The key to all the most successful SAT solvers is the algorithms. The first SAT solver to be implemented for a computer used the DPLL algorithm. As we previously established, the DPLL algorithm is considered one of the firsts and produced good results for the time. As of 2020, there have been a plethora of improvements to the original DPLL algorithm that has allowed it to keep up with the increasing complexity of problems available. The general pseudocode for the original DPLL algorithm can be written as such:
 
 \begin{figure}[h]
 % TODO: Put the DPLL algorithm pseudocode here
@@ -286,12 +286,15 @@ implement it as he has described. The following is the algorithm steps that are 
     \item Terminate if $t = 0$ (all clauses are satisfied). Otherwise set $k \leftarrow t$.
 \end{enumerate}
 
-This algorithm uses both unit
-
-\subsection{Algorithm L - Cyclic DPLL with Lookahead}
-This algorithms extends our initial version of Algorithm D by adding look-ahead procedures.
-
-This algorithm will form the basis of our program and each step will be translated to appropriate code. This algorithm relies on the 'active ring' data structure that Knuth mentions previous to the algorithm. This active ring is key in the operations of the algorithm as we need to have a method of easily deleting and restoring variables in clauses. For C++, it is convienient for us to use the \texttt{std::vector} type when creating the data structure.
+Knuth names this algorithm "\textit{Algorithm D - Satisfiability by Cyclic DPLL}. It is based on the
+original algorithm presented by Martin Davis, George Logemann, and Donald Loveland\cite{dpll},
+extending previous work Davis did with Hilary Putnam[!]. At the time of it's inception, this
+algorithm was seen as fantastic. But due to limitations of the hardware, their methods of storing
+and processing data were quite verbose. It involved having to record all the data of the current
+node onto a magnetic tape before branching. When they wished to backtrack to the previous node,
+they would restore the data from the tape they had created. But now we have huge stocks of memory
+available to use whenever necessary, allowing us to write more complex and faster solvers using
+equally more complex data structures. 
 
 
 %\begin{itemize}
@@ -381,16 +384,7 @@ needs. After successful parsing we can move on to the processing of this problem
 The processing section of the program pipeline is the most important here. This is where our
 algorithm will iterate through each variable and set them to either true or false. The way in which
 our program will go about this depends on the algorithm that we have chosen. In this instance we
-will explain how the cyclic DPLL algorithm presented by Donald Knuth will do this.
-
-\subsubsection{Initial Steps}
-\lipsum[1-2]
-\subsubsection{Unit Propagation}
-\lipsum[1-2]
-\subsubsection{Backtracking}
-\lipsum[1-2]
-\subsubsection{Watched Literals}
-\lipsum[1-2]
+will explain how the DPLL algorithm presented by Donald Knuth will do this.
 
 % TODO: Explain how the algorithm processes our input.
 
