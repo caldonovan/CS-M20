@@ -1,4 +1,5 @@
 \documentclass{article}
+\usepackage{amsmath}
 \usepackage{listings}
 \usepackage[utf8]{inputenc}
 \usepackage{fancyhdr}
@@ -7,11 +8,11 @@
 \usepackage{caption}
 \usepackage{graphicx}
 \usepackage{algpseudocode}
-\usepackage{libertinus}
-%\usepackage{libertinust1math}
 \usepackage{float}
 \usepackage{lipsum}
 \usepackage[english]{babel}
+\usepackage{libertinus}
+\usepackage{libertinust1math}
 
 % === Hyperlinks ===
 %\hypersetup{
@@ -19,8 +20,6 @@
 %    linktoc=all
 %}
 % === End Hyperlinks ===
-
-\newcommand{\italic}{\textit}
 
 % === Colours ===
 \definecolor{codegreen}{rgb}{0,0.6,0}
@@ -32,6 +31,7 @@
 %\color{white}
 % === End Colours ===
 
+% TODO: Configure page layout to conform to requirements.
 % === Layout ===
 %\setlength{\parskip}{0.5em}
 \graphicspath{ {./images/} }
@@ -166,29 +166,22 @@ This project is not being shared amongst a large team of engineers. This allows 
 Before we get into the implementation and software, it is always good to have a solid understanding
 of the topic at hand. SAT in particular is quite a deep topic, it is easy to spend a long time
 researching into all the intricacies[!]. For this paper, we will just be concentrating on the
-general concepts and ideas behind 3SAT problems.
-
-\begin{itemize}
-    \item Maybe include some complex problem sets here?
-\end{itemize}
-
+general concepts and ideas behind the most common instances of SAT.
 % TODO: Insert previous CSCM10 research here, cause we ain't doing it again!
 
 \subsection{SAT Fundamentals}
-% TODO: Explain the fundamentals of SAT and the people who found it.
-\begin{itemize}
-    \item Define the SAT problem with reference.
-    \item Explain how SAT formulas are constructed.
-    \item Explain early attempts to solve SAT formulas.
-    \item Discuss the DPLL algorithm, the first computer implementation of a solver.
-\end{itemize}
-
+%\begin{itemize}
+%    \item Define the SAT problem with reference.
+%    \item Explain how SAT formulas are constructed.
+%    \item Explain early attempts to solve SAT formulas.
+%    \item Discuss the DPLL algorithm, the first computer implementation of a solver.
+%\end{itemize}
 \subsubsection{Boolean Satisfiability Problem}
 The Boolean Satisfiability Problem is one of the most important and renowned in computer science. Forming the basis of NP-Complete problems, it has always been an area of particular interest to computer scientists for a plethora of reasons.
 
-SAT was the first problem to be proved NP-Complete by both Steven Cook and Leonid Levin in 1971 and 1973 respectively\cite{scook}\cite{levin}. It was later included in a well-known paper \italic{Reducibility Among Combinatorial Problems} by Richard Karp\cite{karp}, which generated a renewed interest amongst researchers.
+SAT was the first problem to be proved NP-Complete by both Steven Cook and Leonid Levin in 1971 and 1973 respectively\cite{scook}\cite{levin}. It was later included in a well-known paper \textit{Reducibility Among Combinatorial Problems} by Richard Karp\cite{karp}, which generated a renewed interest amongst researchers.
 
-As defined by Donald Knuth, the Boolean Satisfiability Problem is defined as such:
+As stated by Donald Knuth, the Boolean Satisfiability Problem is defined as such:
 
 % TODO: Add citation for this quote.
 \begin{quotation}
@@ -201,14 +194,35 @@ Given this definition, we can present a formula as defined above:
     $F(x1,x2,x3) = (x_1 \vee \bar{x_2}) \wedge (x_2 \vee x_3) \wedge (\bar{x_1} \vee \bar{x_3}) \wedge (\bar{x_1} \vee \bar{x_2} \vee x_3)$
 \end{center}
 
-This formula can be satisfied when $x_1x_2x_3 = 001$.
+Given this formula, we can satisfy it by setting $x_1x_2x_3 = 001$.
 
-We can consider this CNF formula as a set of clauses, where each clause contains a set of literals. We can use the symbol \wedge to denote an \italic{empty} clause, a clause which contains no literals and in turn is unsatisfiable. A clause in which there is only a single literal is known as a \italic{unit} clause. The 3-SAT problem is considered NP-Complete, and is typically considered the "show child" of NP-Complete SAT.
+To ensure consistent understanding of these concepts before proceeding, we can simplify the notation
+for each element within SAT. To begin, we have \textit{variables}. These are elements of any
+convenient set. Variables can be denoted in a few ways, but for this we shall be using Knuth's own
+notation as stated in his book. Thus, variables will be denoted using numerals 1, 2, 3, ... to save
+having to repeat characters. 
 
-\subsubsection{Example SAT Instances}
-\lipsum[1-2]
-\subsubsection{Unit Clauses}
-\lipsum[1-2]
+\textit{Literals} are our next notation. They correspond to either a variable or the compliment of
+that variable. Using our previous example for variables, if $1$ is a variable, both $1$ and
+$\bar{1}$ are literals. From this we can easily deduce that if there are $n$ number of variables,
+there can be $2n$ possible literals.
+
+There are multiple instances of the satisfiability problem, so we shorten satisfiability to just
+SAT. In turn, each instance is typically abbreviated and prefixed to SAT. Examples of this would
+be 2SAT, 3SAT, and $k$SAT. 3SAT is of particular interest, and will be detailed later in its own
+section. 
+
+Alongside these notations, there are more which represent different types of clauses that we could
+encounter. For instance, a clause of length 1 is called a \textit{unit clause}. Clauses of length 2
+would be called \textit{binary clause} and length 3, \textit{ternary clauses}. We can also
+encounter clauses in which there are no literals, which would be called \textit{empty clauses}.
+\textit{Empty clauses} are denoted using $\epsilon$ and are always unsatisfiable. As you would
+think, shorter clauses would be easier to satisfy as they contain less literals, but this is not
+necessarily the case. As we progress further into the design and implementation of this solver, we
+will learn the importance of covering all bases and making no assumptions of difficulty.
+
+%\subsubsection{Example SAT Instances}
+%\lipsum[1-2]
 \subsubsection{Pure Literals}
 \lipsum[1-2]
 \subsubsection{Complete vs Incomplete SAT Methods}
