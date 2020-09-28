@@ -284,7 +284,7 @@ with the quickly advancing hardware, allowing for the processing of SAT problems
 to millions of clauses. Alongside the state of the art solver have also been attempts to simplify
 methods used in software, to try and help people just getting into the topic. Solvers such as
 \textit{Minisat} were designed to be as small and simple as possible, whilst still incorporating
-advanced techniques for maximum efficiency. 
+advanced techniques for maximum efficiency.
 
 Alongside these advancements has been the annual SAT competition. This competition collates the
 latest and greatest work from the field and tests it against a plethora of advanced problems to see
@@ -362,6 +362,7 @@ one solution to multiple problems. CryptoMiniSat implements most of the useful f
 2.0 core, along with PrecoSat and Glucose to try to make a one-stop solution. CryptoMiniSat is still
 in active development, hosting their code on GitHub for open collaboration.
 
+% TODO: Finish this section
 \subsubsection{Chaff / zChaff}
 \lipsum[2-3]
 \subsubsection{GRASP}
@@ -419,18 +420,18 @@ Before we progress to the next algorithms, it is important that we establish the
 outlines the data structures that are important to these specific algorithms, and explains how their usefulness depends on how
 they are implemented. For his introduction to \textit{Algorithm B}, Knuth proposes that we use \textit{watched literals}. This
 concept details that we only need to keep an eye on the relevent literal per clause at any one time[!]. Using this notion, Knuth
-proceeds to heavily simplify his original data structures fromr \textit{Algorithm A}, and achieving an impressively small
-procedure that is still capable of solving small to medium sized problems. 
+proceeds to heavily simplify his original data structures from \textit{Algorithm A}, and achieving an impressively small
+procedure that is still capable of solving small to medium sized problems.
 
 For our case however, we will be utilising both the lazy data structure that Knuth proposes for \textit{Algorithm B}, and combines
 it with a method of capitalising on \textit{unit clauses}. The resulting data structure is perfect for a solver which implements
-the general DPLL algorithm. 
+the general DPLL algorithm.
 
 % TODO: Actually talk about the damn data structures!
 
 \subsection{Algorithm D - SAT by Cyclic DPLL}
 Knuth presents multiple algorithms to us in his book, but for this project are interested in specifically two of them. Algorithm D
-is the first we shall analyse, which will lay the foundation for Algorithm L. 
+is the first we shall analyse, which will lay the foundation for Algorithm L.
 
 % TODO: FIX THIS! NOT THE ALGORITHM WE ARE USING ANYMORE!
 For our project, the algorithm that we will be interested in is a general DPLL algorithm. As
@@ -457,7 +458,7 @@ available to use whenever necessary, allowing us to write more complex and faste
 equally more complex data structures.
 
 \subsection{Algorithm L - Utilising Lookahead}
-\lipsum[1-5]
+Knuth further expands on the previous algorithm by implementing a procedure called \textit{look-ahead}. This procedure attempts to determine the best direction in which to branch by performing \textit{look-ahead} on a set of variables, then evaluating the resulting reduction of the formula. Put simply, the \textit{look-ahead} procedure attempts to predict the future for the success of the present.
 
 %\begin{itemize}
 %    \item Discuss algorithms presented by DK.
@@ -485,8 +486,8 @@ We will also be glazing over the tool-chain and related items that are to be use
 solver. This includes the language and the compiler that will be used. As well as the editor and
 reasoning behind these choices.
 
+% TODO: Alter this title
 \subsection{White Box}
-
 % These are the basic steps of a computer program.
 % Explain to the reader what is included for SAT.
 \subsubsection{Input}
@@ -685,7 +686,7 @@ methodology. Therefore, let us create a simple suite of manual testing criteria.
 Now we can safely apply some of the traditional testing methodologies to our program.
 
 \subsubsection{Unit Testing}
-Unit testing is 
+Unit testing is
 
 
 \subsection{Checking For Correct Solutions}
@@ -804,7 +805,7 @@ As with any project there will always be some challenges faced that skew the pla
 that specifically effected this project and what could potentially be done to avoid facing these in the future.
 
 \subsection{Software Based}
-Implementing software will always 
+Implementing software will always
 
 \subsection{Project Based}
 \subsubsection{Late Start}
