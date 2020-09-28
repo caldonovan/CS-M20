@@ -271,13 +271,6 @@ The former capitalises on \textit{unit clauses} to avoid a large section of the 
 
 The latter capitalises on variables which only appear in one form throughout the forumula, a \textit{pure literal}. If this is the case, clauses in which this pure literal appear can be safely assigned in a way that makes all clauses they are contained in true. Doing this means the solver can safely delete the clauses where this is the case and further reduce the search space.
 
-\subsection{3SAT}
-%\begin{itemize}
-%    \item Define 3SAT.
-%    \item Show a problem that would be considered 3SAT.
-%    \item Explain why 3SAT is of particular interest.
-%\end{itemize}
-
 \subsection{Modern SAT}
 %\begin{itemize}
 %    \item Talk about how SAT has evolved since the original DPLL.
@@ -343,7 +336,9 @@ to not be anywhere near as performant as state-of-the-art SAT solvers, such as t
 for the potential use of machine learning and AI in the world of SAT. As we have all come to expect in Computer Science, machine
 learning can sometimes be considered a buzzword for a lot of things that amount to nothing. However, NeuroSAT has been able to
 solve substantially larger SAT instances than it had been trained on[!]. Thus proving to be quite promising in concept and
-sparking interest in its potential as a way forward for future innovation.
+sparking interest in its potential. Although the concluding remarks of this paper suggest that there is no obvious way forward
+from this concept, it seems that it could potentially be something that could be learned from as a method of approaching SAT from
+a different direction.
 
 \subsection{Popular SAT Solvers}
 \subsubsection{Minisat}
@@ -373,8 +368,11 @@ in active development, hosting their code on GitHub for open collaboration.
 \lipsum[2-3]
 
 \subsection{Limitations}
-Although there exist a large amount of very efficient SAT solvers, there are still plenty of limitations that plague each of them.
-The most notable of which being their utilisation of current high performance hardware.
+It can be quite challenging to come up with potential limitations for state-of-the-art solvers. But, when generally speaking,
+there is always potential for improvement based upon the advancements in computer hardware. Many SAT solvers nowadays are already
+more than good enough for industrial purposes. They are something that would have been merely dreamed of when the DPLL algorithm
+was first created. But as we go ahead into a promising future filled with technological innovations, such as the rise of quantum
+computing or alternative methods of constructing the transistor, we can be sure that further innovations with SAT will follow.
 
 \section{Design}
 %\begin{itemize}
@@ -382,9 +380,17 @@ The most notable of which being their utilisation of current high performance ha
 %    \item Include the algorithm from Donald Knuth (algorithm D).
 %    \item Discuss the data structures that we will need to implement based off of DK's ideas.
 %\end{itemize}
+The following section will include analysing and detailing the algorithms presented by Knuth. This will include both
+\textit{Algorithm D} and \textit{Algorithm L}, both of which are representitive of modern DPLL solvers. We will flesh out the
+general structure to be translated into code and investigate the required data structures along with how they can be implemented
+in our chosen language.
 
 \subsection{Base Algorithm}
-The key to all the most successful SAT solvers is the algorithms. The first SAT solver to be implemented for a computer used the DPLL algorithm. As we previously established, the DPLL algorithm is considered one of the firsts and produced good results for the time. As of 2020, there have been a plethora of improvements to the original DPLL algorithm that has allowed it to keep up with the increasing complexity of problems available. The general pseudocode for the original DPLL algorithm can be written as such:
+The key to all the most successful SAT solvers is the algorithms. The first SAT solver to be implemented for a computer used the
+DPLL algorithm[!]. As we previously established, the DPLL algorithm is considered one of the firsts and produced good results for
+the time. As of the last decade, there have been a plethora of improvements to the original DPLL algorithm that has allowed it to
+keep up with the increasing complexity of problems available. The general pseudocode for the original DPLL algorithm can be
+written as such:
 
 \begin{figure}[h]
 % TODO: Put the DPLL algorithm pseudocode here
@@ -408,8 +414,19 @@ The key to all the most successful SAT solvers is the algorithms. The first SAT 
 \end{lstlisting}
 \end{figure}
 
+\subsection{Data Structures}
+Before we progress to the next algorithms, it is important that we establish the data structures we will be needing. Knuth
+outlines the data structures that are important to these specific algorithms, and explains how their usefulness depends on how
+they are implemented. For his introduction to \textit{Algorithm B}, Knuth proposes that we use \textit{watched literals}. This
+concept details that we only need to keep an eye on the relevent literal per clause at any one time[!]. Using this notion, Knuth
+proceeds to heavily simplify his original data structures fromr \textit{Algorithm A}, and achieving an impressively small
+procedure that is still capable of solving small to medium sized problems. 
+
+
+
 \subsection{Algorithm D - SAT by Cyclic DPLL}
-\lipsum[1-5]
+Knuth presents multiple algorithms to us in his book, but for this project are interested in specifically two of them. Algorithm D
+is the first we shall analyse, which will lay the foundation for Algorithm L. 
 
 % TODO: FIX THIS! NOT THE ALGORITHM WE ARE USING ANYMORE!
 For our project, the algorithm that we will be interested in is a general DPLL algorithm. As
@@ -437,10 +454,6 @@ equally more complex data structures.
 
 \subsection{Algorithm L - Utilising Lookahead}
 \lipsum[1-5]
-
-\subsection{Data Structures}
-\lipsum[1-5]
-
 
 %\begin{itemize}
 %    \item Discuss algorithms presented by DK.
