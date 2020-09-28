@@ -325,7 +325,26 @@ is in part due to the regularity of the SAT competitions that encourage people t
 groundbreaking solvers.
 
 \subsection{Current Research}
-\lipsum[2-3]
+\subsubsection{CDCL}
+Although it may feel like progress in this field can be quite slow, there is constantly ongoing research into methods in which we
+can improve the existing methods. Typical DPLL based solvers iteratively improve by including extra features that solve individual
+problems, such as look-ahead. Other research has suggested altering the traditional DPLL algorithm to be utilised on other
+problems such as \textit{satisfiability modulo theories}. In this instance, an extension of the DPLL algorithm was created called
+\textit{DPLL(T)}. Put simply, this version of the algorithm transforms an SMT problem into a SAT formula where atoms are replaced
+by boolean variables. Modern SAT goes a step futher by implementing advanced features such as \textit{clause learning} and
+\textit{back jumping}, more taking inspiration from the original DPLL algorithm as opposed to iterating on top of it. The
+resulting algorithms are called \textit{conflict-driven clause learning} and present a massive improvement over traditional DPLL
+based solver.
+
+\subsubsection{NeuroSAT}
+But aside from these developments, there is still alternative research being done to approach the SAT problem in different ways.
+One such instance of this is \textit{NeuroSAT}, a SAT solver that utilises neural networks to power its internals. Although proven
+to not be anywhere near as performant as state-of-the-art SAT solvers, such as the ones mentioned above, it lays the foundation
+for the potential use of machine learning and AI in the world of SAT. As we have all come to expect in Computer Science, machine
+learning can sometimes be considered a buzzword for a lot of things that amount to nothing. However, NeuroSAT has been able to
+solve substantially larger SAT instances than it had been trained on[!]. Thus proving to be quite promising in concept and
+sparking interest in its potential as a way forward for future innovation.
+
 \subsection{Popular SAT Solvers}
 \subsubsection{Minisat}
 A popular and early solver that has won many competitions[!] is Minisat. Written in C++ and boasting
