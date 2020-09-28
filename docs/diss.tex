@@ -179,7 +179,7 @@ be solved quickly. On the surface sounding simple, but in the details an incredi
 that has plauged computer scientists since the 1950s.
 
 % TODO: Expand on NP-Complete using previous research.
-A further interest within this field of study concerns the notion of NP-Complete. 
+A further interest within this field of study concerns the notion of NP-Complete.
 
 The Boolean Satisfiability Problem was the first to be proved NP-Complete, by both Steven Cook and
 Leonid Levin in 1971 and 1973 respectively\cite{scook}\cite{levin}. It was later included in a
@@ -187,7 +187,7 @@ well-known paper, \textit{Reducibility Among Combinatorial Problems} by Richard 
 which generated a renewed interest amongst researchers. In this paper, Karp proved how a large
 set of problems could be reduced to an instance of SAT. Thus meaning each one would be solvable if
 there was a suitable algorithm. The faster algorithm that we can create for the SAT problem, the
-better we can solve other problems via reducibility. 
+better we can solve other problems via reducibility.
 
 \subsection{Boolean Satisfiability Problem}
 %\begin{itemize}
@@ -231,7 +231,7 @@ not appear anywhere in the formula. And thus can be safely set to true or false 
 There are multiple instances of the satisfiability problem, so we shorten satisfiability to just
 SAT. In turn, each instance is typically abbreviated and prefixed to SAT. Examples of this would
 be 2SAT, 3SAT, and $k$SAT. 3SAT is of particular interest, and will be detailed later in its own
-section. 
+section.
 
 There are more definitions which represent alternative types of clauses that we could encounter. For  instance, a clause of length 1 is called a \textit{unit clause}. Clauses of length 2
 would be called \textit{binary clause} and length 3, \textit{ternary clauses}. We can also
@@ -251,12 +251,26 @@ Before we progress onto the details of SAT algorithms, we must understand the tw
 solvers; complete and incomplete. Currently we are most interested in the former of the two, as it
 presents the best usage out of all the problems that are faced within SAT. A complete SAT algorithm
 is one that finds both satisfiable and unsatisfiable solutions, and returns the corresponding model
-if satisfiable. 
+if satisfiable.
 
-\subsection{DLL Algorithm}
-\lipsum[1-2]
+Modern SAT solvers are almost all complete and incorporate the original DPLL algorithm. They are extended using modern techniques to significantly speed up the solving process, and in most cases are capable of solving problems with millions of variables. Examples of some modern complete SAT solvers are Minisat and CryptoMiniSat. As we will detail below, these are two interesting solvers that are designed for particular purposes.
+
+Incomplete solvers are much more rare compared to their complete counterparts. The obvious reason being that they do not return a result that we would be satisfied with, as they do not report if an instance of SAT is unsatisfiable. Aside from this, they do have their uses for specific types of SAT problems, hence why they are still being developed today. An example of an incomplete SAT solver is \textit{WalkSAT}. WalkSAT is based on a local search algorithm which tries to find a satisfying assignment by iteratively improving on them until all constraints are satisfied.
+
 \subsection{DPLL Algorithm}
-\lipsum[1-2]
+The DPLL algorithm is one of the most important milestones in the history of SAT. Itself being a further development of work by Martin Davis and Hilary Putnam in their 1960 paper \textit{A Computing Procedure for Quantification Theory}\cite{putnam}, the DPLL algorithm attempted to take this initial work and refine it.
+% TODO: Maybe talk about Herbrands Theorem here too?
+
+The DPLL algorithm still forms the basis of most efficient SAT solvers today. Each instance of a SAT solver that utilises the original DPLL algorithm typically adds their own optimisations and improvements to achieve a greater efficiency, something we will expand on in further sections. In simplified terms, the backtracking section works by choosing a literal, assigning a truth value to it, simplifying the formula then checking if the new simplified formula is satisfiable. If this is the case the solver will return that the original formula is satisfiable and return the model. If this is not the case, the solver will backtrack and assign the opposite truth value and run the above checks again. The improvements made to this basic backtracking approach include adding rules to each step for enhanced performance. These rules are:
+
+\begin{itemize}
+    \item Unit Propagation.
+    \item Pure Literal Elimination.
+\end{itemize}
+
+The former capitalises on \textit{unit clauses} to avoid a large section of the search space. By finding a unit clause, the solver will then assign the appropriate truth value to the literal to make it true, making these clauses trivial.
+
+The latter capitalises on variables which only appear in one form throughout the forumula, a \textit{pure literal}. If this is the case, clauses in which this pure literal appear can be safely assigned in a way that makes all clauses they are contained in true. Doing this means the solver can safely delete the clauses where this is the case and further reduce the search space.
 
 \subsection{3SAT}
 \begin{itemize}
