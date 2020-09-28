@@ -76,23 +76,23 @@
 \section*{Abstract}
 \end{center}
 % TODO: Use the word "implement" a lot less!
-The Boolean Satisfiability Problem is a fundamental part of Computer Science. First proven to be an
-NP-Complete problem by both Stephen Cook in 1971\cite{scook}, and Leonid Levin in 1973\cite{levin}. Since then, many more
-NP-Complete problems have been identified, along with their respective uses in the real world
-outside of pure computer science. Due to this, there has been a growing need for solvers that can
-effectively and efficiently process these problems. In the last two decades alone, huge progress has
-been made to coincide with the advancements in technology. And more SAT solvers have appeared that
-can be deployed in industries where they are most needed.
+%The Boolean Satisfiability Problem is a fundamental part of Computer Science. First proven to be an
+%NP-Complete problem by both Stephen Cook in 1971\cite{scook}, and Leonid Levin in 1973\cite{levin}. Since then, many more
+%NP-Complete problems have been identified, along with their respective uses in the real world
+%outside of pure computer science. Due to this, there has been a growing need for solvers that can
+%effectively and efficiently process these problems. In the last two decades alone, huge progress has
+%been made to coincide with the advancements in technology. And more SAT solvers have appeared that
+%can be deployed in industries where they are most needed.
 
-This paper explores the basic concept behind SAT solvers, and how they can be implemented in
-software using modern programming languages and tools. The algorithm that will be
-implemented is one proposed by Donald Knuth in his book "The Art of Computer Programming". Knuth proposes
-many algorithms, ranging from the most basic backtracking based algorithm, to an advanced
-implementation of WalkSAT[!]. We will explore the fundamentals of how to implement these algorithms,
-implement one of them, then test its performance against a suite of SAT problems.
+%This paper explores the basic concept behind SAT solvers, and how they can be implemented in
+%software using modern programming languages and tools. The algorithm that will be
+%implemented is one proposed by Donald Knuth in his book "The Art of Computer Programming". Knuth proposes
+%many algorithms, ranging from the most basic backtracking based algorithm, to an advanced
+%implementation of WalkSAT[!]. We will explore the fundamentals of how to implement these algorithms,
+%implement one of them, then test its performance against a suite of SAT problems.
 
-The result of this paper will be a SAT solver implemented in C++, using the data structures and
-steps provided by Donald Knuth in his book "The Art of Computer Programming".
+%The result of this paper will be a SAT solver implemented in C++, using the data structures and
+%steps provided by Donald Knuth in his book "The Art of Computer Programming".
 
 \newpage
 \thispagestyle{empty}
@@ -159,14 +159,13 @@ The resulting software should be able to process a complex formula within a reas
 %    \item Basically FREQ1 and FREQ2.
 %\end{itemize}
 
-\subsection{Methodology}
-This project is not being shared amongst a large team of engineers. This allows us to choose from a plethora of software methodologies that would typically not be considered. The usual norm is to commit to the AGILE methodology no matter the project. But for us we do not need the potentially cumbersome nature that can come from AGILE. We also need to consider the idea of rapid prototyping and development. For this reason, we have chosen to use the traditional Waterfall methodology. It gives us the general structure for the project, and fits well with our rigid requirements.
-
 \section{Background}
 Before we get into the implementation and software, it is always good to have a solid understanding
 of the topic at hand. SAT in particular is quite a deep topic, it is easy to spend a long time
-researching into all the intricacies[!]. For this paper, we will just be concentrating on the
-general concepts and ideas behind the most common instances of SAT.
+researching into all the intricacies[!]. For this project, we will just be concentrating on the
+general concepts and ideas behind the most common instances of SAT. Along with some deep diving when required to ensure we
+understand what we're trying to achieve.
+
 % TODO: Insert previous CSCM10 research here, cause we ain't doing it again!
 
 \subsection{P vs NP}
@@ -181,7 +180,7 @@ that has plauged computer scientists since the 1950s.
 % TODO: Expand on NP-Complete using previous research.
 A further interest within this field of study concerns the notion of NP-Complete.
 
-The Boolean Satisfiability Problem was the first to be proved NP-Complete, by both Steven Cook and
+The Boolean Satisfiability Problem was the first to be proven NP-Complete, by both Steven Cook and
 Leonid Levin in 1971 and 1973 respectively\cite{scook}\cite{levin}. It was later included in a
 well-known paper, \textit{Reducibility Among Combinatorial Problems} by Richard Karp\cite{karp},
 which generated a renewed interest amongst researchers. In this paper, Karp proved how a large
@@ -320,41 +319,50 @@ style solver is \textit{HordeSat}[!], which is capable of almost linear speedup 
 problem set. % TODO: Maybe add some proof of this speedup here?
 
 \section{Related Work}
-% TODO: Add related work, such as alternative FOSS solutions.
 Moving on from the background of SAT, we can look into existing solutions that are freely available.
 As of 2020, there are plenty of FOSS programs that can be used to solve large sets of problems. This
 is in part due to the regularity of the SAT competitions that encourage people to build
 groundbreaking solvers.
 
-\subsection{Minisat}
+\subsection{Current Research}
+\lipsum[2-3]
+\subsection{Popular SAT Solvers}
+\subsubsection{Minisat}
 A popular and early solver that has won many competitions[!] is Minisat. Written in C++ and boasting
 just a mere few hundred lines of code, Minisat has been proven to be an effective tool for medium
 sized problem sets. First written in 2003 by Niklas Een[!] and Niklas Sorensson[!], its primary goal
 was to help developers and researchers get into the field of SAT solving by providing a simple
 interface and minimal codebase.
 
-\begin{itemize}
-    \item Talk about Minisat.
-    \item Go into detail about offshoots from Minisat, such as CryptoMiniSat.
-    \item Newer CDCL algorithms.
-    \item Look into SAT 2020 to find some interesting new solvers.
-    \item Basically talk about applications then the research currently happening.
-\end{itemize}
+%\begin{itemize}
+%    \item Talk about Minisat.
+%    \item Go into detail about offshoots from Minisat, such as CryptoMiniSat.
+%    \item Newer CDCL algorithms.
+%    \item Look into SAT 2020 to find some interesting new solvers.
+%    \item Basically talk about applications then the research currently happening.
+%\end{itemize}
 
-\subsection{CryptoMiniSat}
+\subsubsection{CryptoMiniSat}
 As the name suggests, this solver builds upon the foundations laid by Minisat to create an all in
 one solution to multiple problems. CryptoMiniSat implements most of the useful features from Minisat
 2.0 core, along with PrecoSat and Glucose to try to make a one-stop solution. CryptoMiniSat is still
 in active development, hosting their code on GitHub for open collaboration.
 
-% TODO: Add more current SAT solvers.
+\subsubsection{Chaff / zChaff}
+\lipsum[2-3]
+\subsubsection{GRASP}
+\lipsum[2-3]
+
+\subsection{Limitations}
+Although there exist a large amount of very efficient SAT solvers, there are still plenty of limitations that plague each of them.
+The most notable of which being their utilisation of current high performance hardware.
 
 \section{Design}
-\begin{itemize}
-    \item Summary of what we would want from a design.
-    \item Include the algorithm from Donald Knuth (algorithm D).
-    \item Discuss the data structures that we will need to implement based off of DK's ideas.
-\end{itemize}
+%\begin{itemize}
+%    \item Summary of what we would want from a design.
+%    \item Include the algorithm from Donald Knuth (algorithm D).
+%    \item Discuss the data structures that we will need to implement based off of DK's ideas.
+%\end{itemize}
 
 \subsection{Base Algorithm}
 The key to all the most successful SAT solvers is the algorithms. The first SAT solver to be implemented for a computer used the DPLL algorithm. As we previously established, the DPLL algorithm is considered one of the firsts and produced good results for the time. As of 2020, there have been a plethora of improvements to the original DPLL algorithm that has allowed it to keep up with the increasing complexity of problems available. The general pseudocode for the original DPLL algorithm can be written as such:
@@ -381,6 +389,10 @@ The key to all the most successful SAT solvers is the algorithms. The first SAT 
 \end{lstlisting}
 \end{figure}
 
+\subsection{Algorithm D - SAT by Cyclic DPLL}
+\lipsum[1-5]
+
+% TODO: FIX THIS! NOT THE ALGORITHM WE ARE USING ANYMORE!
 For our project, the algorithm that we will be interested in is a general DPLL algorithm. As
 previously discussed, this is just one of a few algorithms given from Donald Knuth. Although it is
 relatively simple, it is a good way to explore the basic idea of software SAT solvers. Forming a
@@ -403,6 +415,12 @@ node onto a magnetic tape before branching. When they wished to backtrack to the
 they would restore the data from the tape they had created. But now we have huge stocks of memory
 available to use whenever necessary, allowing us to write more complex and faster solvers using
 equally more complex data structures.
+
+\subsection{Algorithm L - Utilising Lookahead}
+\lipsum[1-5]
+
+\subsection{Data Structures}
+\lipsum[1-5]
 
 
 %\begin{itemize}
@@ -431,9 +449,11 @@ We will also be glazing over the tool-chain and related items that are to be use
 solver. This includes the language and the compiler that will be used. As well as the editor and
 reasoning behind these choices.
 
+\subsection{White Box}
+
 % These are the basic steps of a computer program.
 % Explain to the reader what is included for SAT.
-\subsection{Input}
+\subsubsection{Input}
 The input of the program will be a CNF formula presented in the DIMACS file format. This file format
 is the standard for the SAT competitions and allows for simple parsing of the problem. The format
 consists of few elements to ensure the problem is presented cleanly, the first of which being
@@ -482,21 +502,22 @@ below:
 This input will be read line by line by the solvers parser, recording the key information that it
 needs. After successful parsing we can move on to the processing of this problem.
 
-\subsection{Processing}
+\subsubsection{Processing}
 %\begin{itemize}
 %    \item Discuss how the processing works.
 %    \item This is the real meat that basically explains the algorithm.
 %    \item I feel it would be best to at least discuss the DPLL algorithm.
 %    \item Use content from TAOCP and online.
 %\end{itemize}
-The processing section of the program pipeline is the most important here. This is where our
-algorithm will iterate through each variable and set them to either true or false. The way in which
-our program will go about this depends on the algorithm that we have chosen. In this instance we
-will explain how the DPLL algorithm presented by Donald Knuth will do this.
+This section details the bulk of what our program will do. Based off of Algorithm L dicussed in the design section, we will be
+implementing it as closely as possible in modern C++. Our data structures will also be integral to how this part will operate, and
+thus we must ensure we spend appropriate time to optimise them the best that we can.
+
+Let us begin with the first step of the algorithm.
 
 % TODO: Explain how the algorithm processes our input.
 
-\subsection{Output}
+\subsubsection{Output}
 % https://web.archive.org/web/20190913185210/http://www.satcompetition.org:80/2004/format-solvers2004.html
 %\begin{itemize}
 %    \item The output will be "SATISFIABLE" or "UNSATISFIABLE".
@@ -530,11 +551,11 @@ will allow for the checking of the answer to ensure its correctness.
 % TODO: Add an example of the output here.
 
 % This is going to be pretty important, attempt to simplify for the reader.
-\subsection{Data Structures}
-\begin{itemize}
-    \item Discuss why we're going to have to implement specific data types.
-    \item Provide examples on the types of structures to be used.
-\end{itemize}
+\subsection{Implementing the Data Structures}
+%\begin{itemize}
+%    \item Discuss why we're going to have to implement specific data types.
+%    \item Provide examples on the types of structures to be used.
+%\end{itemize}
 
 \subsection{Tool-chain}
 The following is a quick overview of the tool-chain that will be used for this project. As these aren't the meat of what the project is about, we shall only spend a short time glazing over the available solutions and those we picked.
@@ -582,12 +603,12 @@ This command will invoke the 'make' binary to compile our program, called dpll. 
 %    \includegraphics[scale=0.4]{time_command_example.png}
 %\end{center}
 
-\subsection{Pseudocode \& Code}
-\begin{itemize}
-    \item Investigate general pseudocode of generic DPLL algorithm (Wiki).
-    \item Create some pseudocode from algorithm.
-    \item Create some actual code to show?
-\end{itemize}
+\subsection{Final Program}
+%\begin{itemize}
+%    \item Investigate general pseudocode of generic DPLL algorithm (Wiki).
+%    \item Create some pseudocode from algorithm.
+%    \item Create some actual code to show?
+%\end{itemize}
 % TODO: Talk about how we are going to implement this. Not so much about the actual implementation itself!
 
 \section{Testing}
@@ -624,6 +645,11 @@ in the initial sections of this paper, this is similar to the reasoning behind o
 methodology. Therefore, let us create a simple suite of manual testing criteria.
 
 % TODO: Put a testing table here or something.
+
+Now we can safely apply some of the traditional testing methodologies to our program.
+
+\subsubsection{Unit Testing}
+Unit testing is 
 
 
 \subsection{Checking For Correct Solutions}
@@ -691,27 +717,27 @@ problem much quicker.
 % TODO: Think about other ways of measuring performance.
 
 \section{Results}
-\begin{itemize}
-    \item Discuss what we found from our testing
-\end{itemize}
+%\begin{itemize}
+%    \item Discuss what we found from our testing
+%\end{itemize}
 
 \section{Evaluation}
-\begin{itemize}
-    \item Discuss our findings statistically.
-    \item Discuss how implemented code could be improved (summarise).
-    \item Talk about the methodology we used.
-    \item Talk about the risks encountered, and the time frame in which we carried this out.
-    \item Discuss the things that could potentially be improved if we did the project again.
-    \item Discuss the pandemic.
-\end{itemize}
+%\begin{itemize}
+%    \item Discuss our findings statistically.
+%    \item Discuss how implemented code could be improved (summarise).
+%    \item Talk about the methodology we used.
+%    \item Talk about the risks encountered, and the time frame in which we carried this out.
+%    \item Discuss the things that could potentially be improved if we did the project again.
+%    \item Discuss the pandemic.
+%\end{itemize}
 
 \section{Future Work}
-\begin{itemize}
-    \item Explore performance implications of algorithm.
-    \item Talk about DK's performance predictions from TAOCP.
-    \item Talk about how we could potentially improve the performance of our solver.
-    \item Maybe talk about things like parallelism?
-\end{itemize}
+%\begin{itemize}
+%    \item Explore performance implications of algorithm.
+%    \item Talk about DK's performance predictions from TAOCP.
+%    \item Talk about how we could potentially improve the performance of our solver.
+%    \item Maybe talk about things like parallelism?
+%\end{itemize}
 
 \subsection{Algorithm Performance}
 There are multiple improvements that are suggested by Donald Knuth to speed up the initial DPLL algorithm based solver. The first of which is already listed as one of his alternative algorithms. Algorithm L uses the lookahead concept to substantially speed up the standard DPLL algorithm. This concept % TODO: Expand.
@@ -738,12 +764,17 @@ Another interesting technique that could be applied to SAT solving is the use of
 %    \item Discuss how the nature of C++ can lead to confusion in development.
 %    \item Discuss how a non-existent mathematical background made this \textit{very f*cking hard}.
 %\end{itemize}
-As with any project there will always be some challenges faced that skew the planned timeline. The following details the problems that specifically effected this project and what could potentially be done to avoid facing these in the future.
+As with any project there will always be some challenges faced that skew the planned timeline. The following details the problems
+that specifically effected this project and what could potentially be done to avoid facing these in the future.
 
-\subsection{Late Start}
+\subsection{Software Based}
+Implementing software will always 
+
+\subsection{Project Based}
+\subsubsection{Late Start}
 One of the first challenges that had effected this project was the late start. This was in part due to both personal obligations that could not be avoided. As well as in part due to the Coronavirus pandemic. Although this did not effect the overall project progressing, it did push the establised timeframe beyond what had been originally planned.
 
-\subsection{Coronavirus}
+\subsubsection{Coronavirus}
 The second major issues encountered was something completely out of our control. The Coronavirus
 pandemic of 2020 provided a massive slew of issues for all academia. Specifically for this project
 it meant the general plan for the project, as well as the time plan, were both interrupted. The
@@ -751,10 +782,10 @@ general lockdown for the United Kingdom resulted in confinement to the home. The
 face-to-face meetings proved to be unfavourable, and potential disruptions in the home delayed
 planned work.
 
-\subsection{Maths Heavy Topic}
+\subsubsection{Maths Heavy Topic}
 Another major issue encountered for this project was the lack of initial mathematical background. This topic is a rather maths heavy topic, with complex algorithms that can confuse most people who do not have strong mathematical skills. This lead to this project being delayed in certain phases where more time had to be spent to understand the maths involved.
 
-\subsection{C++ Learning Curve}
+\subsubsection{C++ Learning Curve}
 The final major issue that was encountered in this project is the depth of knowledge required in the chosen programming language. Both C and C++ have a heavy learning curve associated with advanced usage. Like previously stated, this lead to some project phases being delayed due to the challenges of implementing theoretical concepts into program code.
 
 \section{Conclusion}
