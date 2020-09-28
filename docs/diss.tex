@@ -422,7 +422,11 @@ concept details that we only need to keep an eye on the relevent literal per cla
 proceeds to heavily simplify his original data structures fromr \textit{Algorithm A}, and achieving an impressively small
 procedure that is still capable of solving small to medium sized problems. 
 
+For our case however, we will be utilising both the lazy data structure that Knuth proposes for \textit{Algorithm B}, and combines
+it with a method of capitalising on \textit{unit clauses}. The resulting data structure is perfect for a solver which implements
+the general DPLL algorithm. 
 
+% TODO: Actually talk about the damn data structures!
 
 \subsection{Algorithm D - SAT by Cyclic DPLL}
 Knuth presents multiple algorithms to us in his book, but for this project are interested in specifically two of them. Algorithm D
