@@ -189,14 +189,13 @@ set of problems could be reduced to an instance of SAT. Thus meaning each one wo
 there was a suitable algorithm. The faster algorithm that we can create for the SAT problem, the
 better we can solve other problems via reducibility. 
 
-\subsection{SAT Fundamentals}
+\subsection{Boolean Satisfiability Problem}
 %\begin{itemize}
 %    \item Define the SAT problem with reference.
 %    \item Explain how SAT formulas are constructed.
 %    \item Explain early attempts to solve SAT formulas.
 %    \item Discuss the DPLL algorithm, the first computer implementation of a solver.
 %\end{itemize}
-\subsubsection{Boolean Satisfiability Problem}
 As stated by Donald Knuth, the Boolean Satisfiability Problem is defined as such:
 
 % TODO: Add citation for this quote. Also make this look a bit better...
@@ -237,26 +236,26 @@ section.
 There are more definitions which represent alternative types of clauses that we could encounter. For  instance, a clause of length 1 is called a \textit{unit clause}. Clauses of length 2
 would be called \textit{binary clause} and length 3, \textit{ternary clauses}. We can also
 encounter clauses in which there are no literals, which would be called \textit{empty clauses}.
-\textit{Empty clauses} are denoted using $\epsilon$ and are always unsatisfiable. As you would
+\textit{Empty clauses} are denoted using $\epsilon$ and are always unsatisfiable. As you might
 think, shorter clauses would be easier to satisfy as they contain less literals, but this is not
 necessarily the case. As we progress further into the design and implementation of this solver, we
 will learn the importance of covering all bases and making no assumptions of difficulty.
 
 % TODO: Figure out a better name for this heading.
-\subsubsection{Converting to SAT}
+\subsection{Converting to SAT}
 There are a plethora of problems that can be formulated into the previously stated problem. It is
 for this reason that we find the field of SAT solvers so important.
 
-\subsubsection{Complete vs Incomplete SAT Methods}
+\subsection{Complete vs Incomplete SAT Methods}
 Before we progress onto the details of SAT algorithms, we must understand the two distinct types of
 solvers; complete and incomplete. Currently we are most interested in the former of the two, as it
 presents the best usage out of all the problems that are faced within SAT. A complete SAT algorithm
 is one that finds both satisfiable and unsatisfiable solutions, and returns the corresponding model
 if satisfiable. 
 
-\subsubsection{DLL Algorithm}
+\subsection{DLL Algorithm}
 \lipsum[1-2]
-\subsubsection{DPLL Algorithm}
+\subsection{DPLL Algorithm}
 \lipsum[1-2]
 
 \subsection{3SAT}
