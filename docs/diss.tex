@@ -273,19 +273,51 @@ The former capitalises on \textit{unit clauses} to avoid a large section of the 
 The latter capitalises on variables which only appear in one form throughout the forumula, a \textit{pure literal}. If this is the case, clauses in which this pure literal appear can be safely assigned in a way that makes all clauses they are contained in true. Doing this means the solver can safely delete the clauses where this is the case and further reduce the search space.
 
 \subsection{3SAT}
-\begin{itemize}
-    \item Define 3SAT.
-    \item Show a problem that would be considered 3SAT.
-    \item Explain why 3SAT is of particular interest.
-\end{itemize}
+%\begin{itemize}
+%    \item Define 3SAT.
+%    \item Show a problem that would be considered 3SAT.
+%    \item Explain why 3SAT is of particular interest.
+%\end{itemize}
 
 \subsection{Modern SAT}
-\begin{itemize}
-    \item Talk about how SAT has evolved since the original DPLL.
-    \item Modern SAT competitions.
-    \item Parallel SAT solvers.
-    \item General future SAT solver stuff.
-\end{itemize}
+%\begin{itemize}
+%    \item Talk about how SAT has evolved since the original DPLL.
+%    \item Modern SAT competitions.
+%    \item Parallel SAT solvers.
+%    \item General future SAT solver stuff.
+%\end{itemize}
+Since the original instances of SAT there has been an astonishing amount of development into
+faster and more efficient methods. Since the milennium alone SAT solvers have managed to keep up
+with the quickly advancing hardware, allowing for the processing of SAT problems with sometimes up
+to millions of clauses. Alongside the state of the art solver have also been attempts to simplify
+methods used in software, to try and help people just getting into the topic. Solvers such as
+\textit{Minisat} were designed to be as small and simple as possible, whilst still incorporating
+advanced techniques for maximum efficiency. 
+
+Alongside these advancements has been the annual SAT competition. This competition collates the
+latest and greatest work from the field and tests it against a plethora of advanced problems to see
+who comes out on top. For researches, or even hobbyists, being the victor of one of these
+competitions is an astonishing achievement. But there is more to the competition that just the
+prize. Multiple categories within the competition have allowed for more experimental ideas to come
+to fruition. Such examples as \textit{Lingeling, Plingeling,} and \textit{Treengeling} capitalise on
+the notion of parallelism and attempt to drastically speed up processing times. This is of course
+easier said than done, and prove that achieving efficient parallelism in SAT is quite a challenging
+task. As parallelism is becoming a key part of modern processor technology, it is integral to the
+development of software such as SAT solvers to exploit high core counts. As for SAT, there are a few
+ways one can go about this.
+
+\textit{Portfolio} SAT solvers are composed of multiple solvers that are all good at tackling
+different types of problems. As there is no single solver that is better at all problems than all
+others, it makes sense to apply each solver to a part of the problem that it is best at. For
+instance, we can collate some of the most competitive solvers into a single \textit{portfolio}, and
+feed all of them the same problem. Once one of the solvers returns their result, all the others will
+also terminate. As you can imagine, this would lead to a large amount of duplicate processing. And
+whilst this is true, the advantage is that applying the problem to all these solvers will still be
+competitive, as the range of solvers will increase the chances of finding a solution in the fastest
+time possible. As with most parallel workloads, the downside to this is that the machine running
+these solvers will have to posess a large amount of memory. An example of an effective portfolio
+style solver is \textit{HordeSat}[!], which is capable of almost linear speedup depending on the
+problem set. % TODO: Maybe add some proof of this speedup here?
 
 \section{Related Work}
 % TODO: Add related work, such as alternative FOSS solutions.
