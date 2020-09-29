@@ -357,10 +357,7 @@ interface and minimal codebase.
 %\end{itemize}
 
 \subsubsection{CryptoMiniSat}
-As the name suggests, this solver builds upon the foundations laid by Minisat to create an all in
-one solution to multiple problems. CryptoMiniSat implements most of the useful features from Minisat
-2.0 core, along with PrecoSat and Glucose to try to make a one-stop solution. CryptoMiniSat is still
-in active development, hosting their code on GitHub for open collaboration.
+CryptoMiniSat is an advanced, modern SAT solver created by Mate Soos, Karsten Nohl, and Claude Castelluccia[!]. As the name suggests, this solver builds upon the foundations laid by Minisat to create an all in one solution to multiple problems. CryptoMiniSat implements most of the useful features from Minisat 2.0 core, along with PrecoSat and Glucose to try to make a one-stop solution. CryptoMiniSat is still in active development, hosting their code on GitHub for open collaboration. This solver is the work of massive proportions and contains a extensive list of features to try to make as efficient a solver as possible. Based off of their 2009 conference paper \textit{Extending SAT Solver to Cryptographic Problems}, it contains over 50,000 lines of code as opposed to Minisat's 1,500. As stated in the projects FAQ, one of its main aims from the offset was to apply SAT solvers to cryptographic problems. However this ended up being just one of the many types of SAT that it excelled at.
 
 % TODO: Finish this section
 \subsubsection{Chaff / zChaff}
@@ -424,9 +421,8 @@ concept details that we only need to keep an eye on the relevent literal per cla
 proceeds to heavily simplify his original data structures from \textit{Algorithm A}, and achieving an impressively small
 procedure that is still capable of solving small to medium sized problems.
 
-For our case however, we will be utilising both the lazy data structure that Knuth proposes for \textit{Algorithm B}, and combines
-it with a method of capitalising on \textit{unit clauses}. The resulting data structure is perfect for a solver which implements
-the general DPLL algorithm.
+For our case however, we will be utilising both the lazy data structure that Knuth proposes for \textit{Algorithm B}, and combine
+it with a method of capitalising on \textit{unit clauses}. Knuth details that we can extend the data structures from \textit{Algorithm B} by introducing indicies $h_1...h_n$.
 
 % TODO: Actually talk about the damn data structures!
 
@@ -551,14 +547,7 @@ This section details the bulk of what our program will do. Based off of Algorith
 implementing it as closely as possible in modern C++. Our data structures will also be integral to how this part will operate, and
 thus we must ensure we spend appropriate time to optimise them the best that we can.
 
-Let us begin with the first step of the algorithm; filling all necessary variables with the appropriate data.
 
-\begin{enumerate}
-    \item Fill the appropriate variables with the problem data.
-    \item Pre-process the given formula and elimitate unit clauses. Terminate if no clauses remain.
-    \item Something to do with lookahead here?
-    \item Let us continue.
-\end{enumerate}
 
 % TODO: Explain how the algorithm processes our input.
 
