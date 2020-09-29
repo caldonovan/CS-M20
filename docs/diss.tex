@@ -767,21 +767,11 @@ requirements and a small codebase, keeping track of changes is somewhat trivial.
 in the initial sections of this paper, this is similar to the reasoning behind our choice of
 methodology.
 
-% TODO: Put a testing table here or something.
-
 \subsubsection{Unit Testing}
 Unit testing is one of the most common types developers can use. This type of testing is where individual components or sections
 of the program are individually tested against a given criteria. Although there are multiple ways in which to achieve this, we do
 not need to overcomplicate this by writing hundreds of edge case tests. More importantly for this project, we only need to ensure
 that the program both compiles successfully, and produces the correct result. Unit testing may not be exactly translatable to our program as there isn't so much individual components. But we can use the idea instead to test individual files.
-
-% TODO: Find an actual name for this...
-\subsubsection{Manual Result Testing}
-Another solution that we can use for our testing strategy is quite simple. Utilising a well-known solver that has been proven to 
-be accurate, we could give it a range of problems in alternating difficulty and compare the results to that of our solver. 
-Although this is rudimentary, it can be applied quite well in our instance and can quickly discover potential discrepancies in 
-our program.
-% TODO: Add the manual testing table stuff here.
 
 \subsection{Checking For Correct Solutions}
 %\begin{itemize}
@@ -789,6 +779,7 @@ our program.
 %    \item Use two other solvers and give them the same problem
 %    \item Check at least 10 times to ensure consistent results
 %\end{itemize}
+% TODO: Attempt to add results from other solvers here.
 Progressing from the program testing, we must also ensure the solver is returning correct results.
 This can also lead us to any bugs that may be present within the program. Using common SAT problems
 presented in the DIMACS format we can compare the results from our program to results from another
@@ -801,14 +792,10 @@ the most tried and tested solvers freely available to use. And comes with plenty
 allow each test set to be completed quickly. \textit{Minisat} comes with a well documented interface
 that we can use to easily build and run our test sets.
 
-% TODO: Run our test set against Minisat. Record results here.
-
 The fall-back solver we will be using is \textit{CryptoMiniSat}. This solver is still in active
 development and encorporates some of the most advanced features for a FOSS solver. Compared to
 \textit{Minisat}, this solver is significantly more complex. It should give us safe results that we
 can use to ensure no descrepencies between our solver and \textit{Minisat}.
-
-% TODO: Run our test set against CryptoMiniSat. Record results here.
 
 Using the two mentioned solvers we can compare their results against our own. This is worth doing to make sure there are as
 little bugs as possible. The results for our testing are displayed below.
@@ -883,6 +870,38 @@ standard \textit{time} command. Then by executing the script, we get the name of
 system time, as well as whether the solver managed to solve it within the timeout period we assign. Although the output format of
 this batch test could be much improved, it serves a simple purpose and means we do not have to individually time each problem
 instance.
+
+After testing each instance at least 10 times, we can analyse the results and come to a conclusion on the efficacy of our solver.
+First off, we can quickly look at the results from the \textit{easy} problem set. As you would expect, a solver of this caliber
+should be able to breeze by these simple problem instances. However, it is still worth checking that this is true as there could
+be an edge case to which the solver may struggle with.
+
+% TODO: Add the results for the 'easy' set here.
+
+Second, we can look into the results of the \textit{medium} problem set. Although this set may present itself to be more
+challenging to a simpler implementation of a SAT solver, it should not stress ours. But, as stated above, it is still worth
+gathering more data than necessary as it could provide valuable information. 
+
+% TODO: Add the results for the 'medium' set here.
+
+Finally, we move onto the \textit{hard} problem set. This set presents the most challenging formulas to our solver, and as
+expected there are some which take it to the limits. We shall analyse this in more detail below.
+
+% TODO: Add the results for the 'hard' set here.
+
+What we can see from the \textit{hard} problem set is quite interesting. There are consistent timeouts across all 10 tests that
+show exactly the ones that our solver struggles with:
+
+\begin{itemize}
+    \item Waerden-5-5-177.
+    \item bf-2670-001.
+    \item Cook-9-10.
+    \item Fsnark-51.
+    \item Fsnark-99.
+    \item SSA2670-141.
+\end{itemize}
+
+
 \section{Evaluation}
 %\begin{itemize}
 %    \item Discuss our findings statistically.
