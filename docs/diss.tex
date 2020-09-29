@@ -396,6 +396,7 @@ written as such:
 \begin{figure}[h]
 % TODO: Put the DPLL algorithm pseudocode here
 % Fix the notations not showing up!
+\centering
 \begin{lstlisting}[language=C++]
     Algorithm DPLL
         Input: A set of clauses C
@@ -550,7 +551,14 @@ This section details the bulk of what our program will do. Based off of Algorith
 implementing it as closely as possible in modern C++. Our data structures will also be integral to how this part will operate, and
 thus we must ensure we spend appropriate time to optimise them the best that we can.
 
-Let us begin with the first step of the algorithm.
+Let us begin with the first step of the algorithm; filling all necessary variables with the appropriate data.
+
+\begin{enumerate}
+    \item Fill the appropriate variables with the problem data.
+    \item Pre-process the given formula and elimitate unit clauses. Terminate if no clauses remain.
+    \item Something to do with lookahead here?
+    \item Let us continue.
+\end{enumerate}
 
 % TODO: Explain how the algorithm processes our input.
 
@@ -585,7 +593,11 @@ The resulting output should combine all three of these types to create a compreh
 user. This includes the model that the solver has settled on if the solution is satisfiable. This
 will allow for the checking of the answer to ensure its correctness.
 
-% TODO: Add an example of the output here.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{output_example.jpg}
+    \caption{Output format.}
+\end{figure}
 
 % This is going to be pretty important, attempt to simplify for the reader.
 \subsection{Implementing the Data Structures}
@@ -593,6 +605,10 @@ will allow for the checking of the answer to ensure its correctness.
 %    \item Discuss why we're going to have to implement specific data types.
 %    \item Provide examples on the types of structures to be used.
 %\end{itemize}
+
+The data structures that Knuth presents to us are not the easiest to implement in practice. As he mentions, programmers enjoy having clear and concise programs, but sometimes there needs to be complexity in order to achieve a specific goal. Because of this, the data structures for this algorithm ended up being rather complex to replicate with C++.
+
+% TODO: Detail how the data structures are pretty complex.
 
 \subsection{Tool-chain}
 The following is a quick overview of the tool-chain that will be used for this project. As these aren't the meat of what the project is about, we shall only spend a short time glazing over the available solutions and those we picked.
@@ -611,7 +627,7 @@ There are a huge swathe of IDE's and editors available for use and as for which 
     \item C / C++
 \end{itemize}
 
-It is also important to mention any other environment software aside from the previously mentioned. We are going to be using the \texttt{'time'} command to accurately measure the time metrics of the software from start to completion. This command is available through bash and is invoked at the same time as the program itself. An example of the method in which it can be invoked is as follows:
+It is also important to mention any other environment software aside from the previously mentioned. We are going to be using the \textit{time} command to accurately measure the time metrics of the software from start to completion. This command is available through bash and is invoked at the same time as the program itself. But before we can use this we must invoke another command:
 
 \begin{figure}[h]
     \centering
@@ -619,8 +635,7 @@ It is also important to mention any other environment software aside from the pr
     \caption{Command to achieve desired output format}
 \end{figure}
 
-We need to run this command first in order to achieve the desired format. This is only necessary as we are using the
-Z-Shell, but the command itself still works the same as traditional Bash. Using the time command we can effectively measure the time that it takes from invocation to completion in a consistent format. This is a simple alternative to implementing a time measuring system into the SAT solver, which could potentially make it less performant. An example of the usage of the time command is shown below:
+This command allows us to achieve the desired format. This is only necessary as we are using the Z-Shell, but the command itself still works the same as traditional Bash. Using the time command we can effectively measure the time that it takes from invocation to completion in a consistent format. This is a simple alternative to implementing a time measuring system into the SAT solver, which could potentially make it less performant. An example of the usage of the time command is shown below:
 
 \begin{center}
     \texttt{\$ time make bin/dpll}
@@ -646,7 +661,8 @@ This command will invoke the 'make' binary to compile our program, called dpll. 
 %    \item Create some pseudocode from algorithm.
 %    \item Create some actual code to show?
 %\end{itemize}
-% TODO: Talk about how we are going to implement this. Not so much about the actual implementation itself!
+The final program works just as any other modern SAT solver would.
+% TODO: Explain more about the final program.
 
 \section{Testing}
 %\begin{itemize}
@@ -686,7 +702,7 @@ methodology. Therefore, let us create a simple suite of manual testing criteria.
 Now we can safely apply some of the traditional testing methodologies to our program.
 
 \subsubsection{Unit Testing}
-Unit testing is
+Unit testing is one of the most common types developers can use. This type of testing is where individual components or sections of the program are individually tested against a given criteria. Although there are multiple ways in which to achieve this, we do not need to overcomplicate this by writing hundreds of edge case tests. More importantly for this project, we only need to ensure that the program both compiles successfully, and produces the correct result.
 
 
 \subsection{Checking For Correct Solutions}
