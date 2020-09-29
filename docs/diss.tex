@@ -928,7 +928,9 @@ way forward in order to achieve the desired results.
 Another interesting technique that could be applied to SAT solving is the use of SIMD instructions for data level parallelism. It 
 has been shown in other applications that utilising SIMD instructions can quickly lead to almost linear performance improvements 
 corresponding to each bit width of data processed. The most common SIMD instruction set is \textit{SSE} (Streaming SIMD 
-Extensions). Introduced in 1999 by Intel, it is now commonplace is all modern consumer x86 processors.
+Extensions). Introduced in 1999 by Intel, it is now commonplace is all modern consumer x86 processors. If there was a way to truly
+implement SIMD into SAT solvers then there could be a massive potential for speedups in a range of applications. Even if the SIMD
+instructions were implemented in auxilliary areas of the solver itself, it is worth the time to investigate the potential. 
 
 % TODO: Maybe include some examples of SIMD in a solver?
 
@@ -943,31 +945,46 @@ As with any project there will always be some challenges faced that skew the pla
 that specifically effected this project and what could potentially be done to avoid facing these in the future.
 
 \subsection{Software Based}
-Implementing software will always
+Implementing software will always come with its own set of challenges. Many projects have failed in the past for trivial reasons
+associated with the software section not being fully understood. With this project, the main issue that we faced was with the
+programming language itself, as detailed below.
+
+\subsubsection{C++ Learning Curve}
+The programming lanuage that was used for this project was deemed suitable based on the style of program to be created. SAT
+solvers rely on heavy and intricate data structures to achieve what they need in the fastest time possible. Using C++ seemed like
+a logical solution to this problem, as complex data structures can be created with ease. However, this does require some in-depth
+knowledge of the language and its features first. C++ is notorious for being a language with a steep learning curve, and given the
+time to learn it, ends up being one of the most powerful. The problem for this project was that prior in-depth knowledge of the
+language was not known. This was thought of in the initial design of the project, but combined with the issues of a maths heavy
+topic, proved to be more challenging that initially expected. 
 
 \subsection{Project Based}
+As stated above, most projects will face some form of setback or turmoil within their timescale. This project was no different,
+and out of all the different forms of risks and setbacks that could have been encountered, one in particular stood out. However,
+it would not be the only one that we could blame for this project not turning out as successful as intially hoped. There were a
+few personal reasons which ended up causing much more damage to the time plan than intially thought. And on top of this,
+over-ambition ended up playing a much bigger role than anticipated, as we will detail in the next few sections.
+
 \subsubsection{Late Start}
 One of the first challenges that had effected this project was the late start. This was in part due to both personal obligations 
 that could not be avoided. As well as in part due to the Coronavirus pandemic. Although this did not effect the overall project 
-progressing, it did push the establised timeframe beyond what had been originally planned.
+progressing, it did push the establised timeframe beyond what had been originally planned. The domino effect of moving beyond the
+allowed time buffer meant that each stage of the project had to be pushed back. Thus in turn creeping the expected deadline much
+further back than anticipated.
 
 \subsubsection{Coronavirus}
-The second major issues encountered was something completely out of our control. The Coronavirus
-pandemic of 2020 provided a massive slew of issues for all academia. Specifically for this project
-it meant the general plan for the project, as well as the time plan, were both interrupted. The
-general lockdown for the United Kingdom resulted in confinement to the home. The availability of
-face-to-face meetings proved to be unfavourable, and potential disruptions in the home delayed
-planned work.
+The second major issues encountered was something completely out of our control. The Coronavirus pandemic of 2020 provided a
+massive slew of issues for all academia. Specifically for this project it meant the general plan for the project, as well as the
+time plan, were both interrupted. The general lockdown for the United Kingdom resulted in confinement to the home. The
+availability of face-to-face meetings proved to be unfavourable, and potential disruptions in the home delayed planned work.
 
 \subsubsection{Maths Heavy Topic}
-Another major issue encountered for this project was the lack of initial mathematical background. This topic is a rather maths 
-heavy topic, with complex algorithms that can confuse most people who do not have strong mathematical skills. This lead to this 
-project being delayed in certain phases where more time had to be spent to understand the maths involved.
-
-\subsubsection{C++ Learning Curve}
-The final major issue that was encountered in this project is the depth of knowledge required in the chosen programming language.
-Both C and C++ have a heavy learning curve associated with advanced usage. Like previously stated, this lead to some project
-phases being delayed due to the challenges of implementing theoretical concepts into program code.
+Another major issue encountered for this project was the lack of initial general mathematical background . This topic is a rather
+maths heavy topic, with complex algorithms that can confuse most people who do not have strong mathematical skills. This lead to
+this project being delayed in certain phases where more time had to be spent to understand the maths involved. Although in the end
+this turned out to be good in the sense of challenging, the over-ambition to assume the ability to understand of all relevent
+material turned against us. As such, in future projects there should be the advance knowledge of the required mathematical
+background before starting. 
 
 \section{Reflection}
 
