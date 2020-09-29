@@ -847,7 +847,13 @@ problem much quicker.
 %\begin{itemize}
 %    \item Discuss what we found from our testing
 %\end{itemize}
-
+After we are confident that the solver created from \textit{Algorithm L} is working as intended, we can commit to measuring its
+performance against other solvers of a similar nature. For this, we modified an already included bash script to print out not just
+the output from the solver, but also the time each individual problem took. Like stated previously, this was done simply with the
+standard \textit{time} command. Then by executing the script, we get the name of each problem, along with the real, user, and
+system time, as well as whether the solver managed to solve it within the timeout period we assign. Although the output format of
+this batch test could be much improved, it serves a simple purpose and means we do not have to individually time each problem
+instance. 
 \section{Evaluation}
 %\begin{itemize}
 %    \item Discuss our findings statistically.
@@ -903,11 +909,6 @@ algorithms, they proved to be a bonus when analysing the potential of each again
 %    \item Maybe talk about things like parallelism?
 %\end{itemize}
 
-\subsection{Algorithm Performance}
-There are multiple improvements that are suggested by Donald Knuth to speed up the initial DPLL algorithm based solver. The first 
-of which is already listed as one of his alternative algorithms. Algorithm L uses the lookahead concept to substantially speed up 
-the standard DPLL algorithm. This concept % TODO: Expand.
-
 \subsection{Pre-processing}
 One simple method that could greatly assist our solver is using a pre-processor. This will take the problem set and analyse it, 
 and return a much simplified problem. This concept is applied accross modern solvers already, and is considered a vital part of 
@@ -925,6 +926,7 @@ way forward in order to achieve the desired results.
 % TODO: Talk a bit more about this.
 
 \subsection{SIMD}
+% TODO: Make sure that this is correct and not just some generic waffle.
 Another interesting technique that could be applied to SAT solving is the use of SIMD instructions for data level parallelism. It 
 has been shown in other applications that utilising SIMD instructions can quickly lead to almost linear performance improvements 
 corresponding to each bit width of data processed. The most common SIMD instruction set is \textit{SSE} (Streaming SIMD 

@@ -1,0 +1,162 @@
+Testing binary bin/look
+make: 'bin/look' is up to date.
+Testing label:satisfiable, label:medium: 
+test/RTI_k3_n100_m429_0.cnf 
+real	0m0.012s
+user	0m0.000s
+sys	0m0.000s
+[32m✔[0m
+test/langford_11.cnf 
+real	0m0.029s
+user	0m0.016s
+sys	0m0.000s
+[32m✔[0m
+test/langford_12.cnf 
+real	0m0.035s
+user	0m0.031s
+sys	0m0.000s
+[32m✔[0m
+test/langford_7.cnf 
+real	0m0.012s
+user	0m0.000s
+sys	0m0.016s
+[32m✔[0m
+test/langford_8.cnf 
+real	0m0.015s
+user	0m0.016s
+sys	0m0.000s
+[32m✔[0m
+test/langford_prime_11.cnf 
+real	0m0.032s
+user	0m0.016s
+sys	0m0.016s
+[32m✔[0m
+test/langford_prime_12.cnf 
+real	0m0.037s
+user	0m0.016s
+sys	0m0.016s
+[32m✔[0m
+test/langford_prime_7.cnf 
+real	0m0.015s
+user	0m0.000s
+sys	0m0.000s
+[32m✔[0m
+test/langford_prime_8.cnf 
+real	0m0.015s
+user	0m0.016s
+sys	0m0.000s
+[32m✔[0m
+test/pigeonhole_20_20.cnf 
+real	0m0.033s
+user	0m0.031s
+sys	0m0.000s
+[32m✔[0m
+test/pigeonhole_8_8.cnf 
+real	0m0.011s
+user	0m0.000s
+sys	0m0.016s
+[32m✔[0m
+test/rand_100_450_3_1.cnf 
+real	0m0.012s
+user	0m0.000s
+sys	0m0.016s
+[32m✔[0m
+test/ssa_min.cnf 
+real	0m0.080s
+user	0m0.078s
+sys	0m0.000s
+[32m✔[0m
+test/subset_sum_10_5.cnf 
+real	0m0.012s
+user	0m0.000s
+sys	0m0.016s
+[32m✔[0m
+test/waerden_4_4_34.cnf 
+real	0m0.013s
+user	0m0.016s
+sys	0m0.000s
+[32m✔[0m
+
+Testing label:unsatisfiable, label:medium:
+test/factoring_17.cnf 
+real	0m0.010s
+user	0m0.000s
+sys	0m0.000s
+[32m✔[0m
+test/fsnark_9.cnf 
+real	0m0.014s
+user	0m0.000s
+sys	0m0.000s
+[32m✔[0m
+test/fsnark_prime_9.cnf 
+real	0m0.015s
+user	0m0.000s
+sys	0m0.016s
+[32m✔[0m
+test/langford_6.cnf 
+real	0m0.011s
+user	0m0.000s
+sys	0m0.000s
+[32m✔[0m
+test/langford_9.cnf 
+real	0m0.161s
+user	0m0.156s
+sys	0m0.016s
+[32m✔[0m
+test/langford_prime_10.cnf 
+real	0m0.639s
+user	0m0.641s
+sys	0m0.000s
+[32m✔[0m
+test/langford_prime_5.cnf 
+real	0m0.010s
+user	0m0.000s
+sys	0m0.000s
+[32m✔[0m
+test/langford_prime_6.cnf 
+real	0m0.010s
+user	0m0.000s
+sys	0m0.000s
+[32m✔[0m
+test/langford_prime_9.cnf 
+real	0m0.154s
+user	0m0.141s
+sys	0m0.000s
+[32m✔[0m
+test/pigeonhole_5_4.cnf 
+real	0m0.010s
+user	0m0.000s
+sys	0m0.016s
+[32m✔[0m
+test/pigeonhole_7_6.cnf 
+real	0m0.016s
+user	0m0.000s
+sys	0m0.016s
+[32m✔[0m
+test/pigeonhole_8_7.cnf 
+real	0m0.052s
+user	0m0.031s
+sys	0m0.016s
+[32m✔[0m
+test/rand_100_450_3_2.cnf 
+real	0m0.011s
+user	0m0.000s
+sys	0m0.000s
+[32m✔[0m
+test/rand_100_450_3_3.cnf 
+real	0m0.011s
+user	0m0.000s
+sys	0m0.000s
+[32m✔[0m
+test/waerden_3_6_32.cnf 
+real	0m0.015s
+user	0m0.000s
+sys	0m0.016s
+[32m✔[0m
+test/waerden_4_4_35.cnf 
+real	0m0.014s
+user	0m0.000s
+sys	0m0.000s
+[32m✔[0m
+
+31 succeeded, 0 failed, 0 timed out in 2 seconds.

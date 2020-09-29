@@ -1,0 +1,97 @@
+Testing binary bin/look
+make: 'bin/look' is up to date.
+Testing label:satisfiable, label:hard: 
+test/ssa7552-038.cnf 
+real	0m0.043s
+user	0m0.031s
+sys	0m0.000s
+[32m✔[0m
+test/ssa7552-158.cnf 
+real	0m0.030s
+user	0m0.031s
+sys	0m0.000s
+[32m✔[0m
+test/ssa7552-159.cnf 
+real	0m0.031s
+user	0m0.016s
+sys	0m0.016s
+[32m✔[0m
+test/ssa7552-160.cnf 
+real	0m0.032s
+user	0m0.016s
+sys	0m0.016s
+[32m✔[0m
+test/waerden_5_5_177.cnf 
+real	1m0.008s
+user	0m59.828s
+sys	0m0.078s
+[33m⏱[0m
+
+Testing label:unsatisfiable, label:hard:
+test/bf0432-007.cnf 
+real	0m0.086s
+user	0m0.063s
+sys	0m0.016s
+[32m✔[0m
+test/bf1355-075.cnf 
+real	0m7.474s
+user	0m7.406s
+sys	0m0.016s
+[32m✔[0m
+test/bf1355-638.cnf 
+real	0m1.545s
+user	0m1.547s
+sys	0m0.000s
+[32m✔[0m
+test/bf2670-001.cnf 
+real	1m0.007s
+user	0m59.828s
+sys	0m0.000s
+[33m⏱[0m
+test/cook_9_10.cnf 
+real	1m0.007s
+user	0m58.953s
+sys	0m0.938s
+[33m⏱[0m
+test/fsnark_51.cnf 
+real	1m0.008s
+user	0m59.875s
+sys	0m0.016s
+[33m⏱[0m
+test/fsnark_99.cnf 
+real	1m0.008s
+user	0m59.875s
+sys	0m0.000s
+[33m⏱[0m
+test/langford_10.cnf 
+real	0m0.698s
+user	0m0.672s
+sys	0m0.016s
+[32m✔[0m
+test/pigeonhole_10_9.cnf 
+real	0m5.091s
+user	0m5.063s
+sys	0m0.016s
+[32m✔[0m
+test/ssa0432-003.cnf 
+real	0m0.012s
+user	0m0.000s
+sys	0m0.016s
+[32m✔[0m
+test/ssa2670-130.cnf 
+real	0m21.198s
+user	0m21.156s
+sys	0m0.016s
+[32m✔[0m
+test/ssa2670-141.cnf 
+real	1m0.007s
+user	0m59.719s
+sys	0m0.031s
+[33m⏱[0m
+test/ssa6288-047.cnf 
+real	0m0.052s
+user	0m0.016s
+sys	0m0.031s
+[32m✔[0m
+
+12 succeeded, 0 failed, 6 timed out in 396 seconds.

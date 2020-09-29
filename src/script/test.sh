@@ -66,7 +66,7 @@ if [[ satisfiable == "${LABEL_ARG}"* ]]; then
     echo "Testing label:satisfiable, ${LABEL}: ${VERIFY_BIN}"
     for filename in $(grep -l "${LABEL}" test/*.cnf | xargs grep -l 'label:satisfiable'); do
         printf "${filename} "
-        output="$(timeout ${TIMEOUT} ${VERIFY_BIN} ${BINARY} ${SEED_ARG} ${PARAMS_ARG} ${filename} 1>/dev/null 2>&1)"
+        output="$(time timeout ${TIMEOUT} ${VERIFY_BIN} ${BINARY} ${SEED_ARG} ${PARAMS_ARG} ${filename} 1>/dev/null 2>&1)"
         result="$?"
         if [ "${VERIFY}" -eq "1" ] && [ "$result" -eq "0" ]; then
             printf $'\u001b[32m\u2714\u001b[0m\n' # Green check
@@ -95,7 +95,7 @@ if [[ unsatisfiable == "${LABEL_ARG}"* ]]; then
     echo "Testing label:unsatisfiable, ${LABEL}:"
     for filename in $(grep -l "${LABEL}" test/*.cnf | xargs grep -l 'label:unsatisfiable'); do
         printf "${filename} "
-        output="$(timeout ${TIMEOUT} ${VERIFY_BIN} ${BINARY} ${SEED_ARG} ${PROOF_ARG} ${PARAMS_ARG} ${filename} 1>/dev/null 2>&1)"
+        output="$(time timeout ${TIMEOUT} ${VERIFY_BIN} ${BINARY} ${SEED_ARG} ${PROOF_ARG} ${PARAMS_ARG} ${filename} 1>/dev/null 2>&1)"
         result="$?"
         if [ "${VERIFY}" -eq "1" ] && [ "$result" -eq "0" ]; then
             printf $'\u001b[32m\u2714\u001b[0m\n' # Green check

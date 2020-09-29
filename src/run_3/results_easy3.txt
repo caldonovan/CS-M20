@@ -1,0 +1,272 @@
+Testing binary bin/look
+make: 'bin/look' is up to date.
+Testing label:satisfiable, label:easy: 
+test/empty.cnf 
+real	0m0.010s
+user	0m0.000s
+sys	0m0.016s
+[32m✔[0m
+test/factoring_4.cnf 
+real	0m0.011s
+user	0m0.000s
+sys	0m0.016s
+[32m✔[0m
+test/factoring_6.cnf 
+real	0m0.011s
+user	0m0.000s
+sys	0m0.000s
+[32m✔[0m
+test/format_test_1.cnf 
+real	0m0.010s
+user	0m0.000s
+sys	0m0.000s
+[32m✔[0m
+test/langford_3.cnf 
+real	0m0.011s
+user	0m0.000s
+sys	0m0.016s
+[32m✔[0m
+test/langford_4.cnf 
+real	0m0.010s
+user	0m0.000s
+sys	0m0.016s
+[32m✔[0m
+test/langford_prime_4.cnf 
+real	0m0.010s
+user	0m0.000s
+sys	0m0.016s
+[32m✔[0m
+test/multiline.cnf 
+real	0m0.011s
+user	0m0.000s
+sys	0m0.000s
+[32m✔[0m
+test/pigeonhole_2_2.cnf 
+real	0m0.011s
+user	0m0.000s
+sys	0m0.000s
+[32m✔[0m
+test/pigeonhole_2_3.cnf 
+real	0m0.010s
+user	0m0.000s
+sys	0m0.000s
+[32m✔[0m
+test/pigeonhole_5_5.cnf 
+real	0m0.010s
+user	0m0.000s
+sys	0m0.016s
+[32m✔[0m
+test/pigeonhole_7_7.cnf 
+real	0m0.011s
+user	0m0.000s
+sys	0m0.016s
+[32m✔[0m
+test/pigeonhole_8_9.cnf 
+real	0m0.011s
+user	0m0.016s
+sys	0m0.000s
+[32m✔[0m
+test/rand_10_25_3_1.cnf 
+real	0m0.011s
+user	0m0.000s
+sys	0m0.000s
+[32m✔[0m
+test/rand_10_25_3_2.cnf 
+real	0m0.011s
+user	0m0.000s
+sys	0m0.016s
+[32m✔[0m
+test/rivest_sat.cnf 
+real	0m0.011s
+user	0m0.000s
+sys	0m0.016s
+[32m✔[0m
+test/simple_1.cnf 
+real	0m0.011s
+user	0m0.016s
+sys	0m0.000s
+[32m✔[0m
+test/simple_11.cnf 
+real	0m0.010s
+user	0m0.000s
+sys	0m0.016s
+[32m✔[0m
+test/simple_12.cnf 
+real	0m0.011s
+user	0m0.000s
+sys	0m0.000s
+[32m✔[0m
+test/simple_13.cnf 
+real	0m0.011s
+user	0m0.000s
+sys	0m0.000s
+[32m✔[0m
+test/simple_14.cnf 
+real	0m0.010s
+user	0m0.000s
+sys	0m0.016s
+[32m✔[0m
+test/simple_15.cnf 
+real	0m0.011s
+user	0m0.000s
+sys	0m0.016s
+[32m✔[0m
+test/simple_16.cnf 
+real	0m0.011s
+user	0m0.000s
+sys	0m0.031s
+[32m✔[0m
+test/simple_17.cnf 
+real	0m0.011s
+user	0m0.000s
+sys	0m0.016s
+[32m✔[0m
+test/simple_18.cnf 
+real	0m0.011s
+user	0m0.000s
+sys	0m0.000s
+[32m✔[0m
+test/simple_2.cnf 
+real	0m0.011s
+user	0m0.000s
+sys	0m0.000s
+[32m✔[0m
+test/simple_4.cnf 
+real	0m0.010s
+user	0m0.000s
+sys	0m0.016s
+[32m✔[0m
+test/simple_5.cnf 
+real	0m0.010s
+user	0m0.000s
+sys	0m0.016s
+[32m✔[0m
+test/simple_6.cnf 
+real	0m0.010s
+user	0m0.000s
+sys	0m0.000s
+[32m✔[0m
+test/simple_9.cnf 
+real	0m0.010s
+user	0m0.000s
+sys	0m0.000s
+[32m✔[0m
+test/subset_sum_10_5_min.cnf 
+real	0m0.011s
+user	0m0.000s
+sys	0m0.016s
+[32m✔[0m
+test/uf20-01.cnf 
+real	0m0.010s
+user	0m0.000s
+sys	0m0.000s
+[32m✔[0m
+test/waerden_3_3_5.cnf 
+real	0m0.010s
+user	0m0.016s
+sys	0m0.000s
+[32m✔[0m
+test/waerden_3_3_8.cnf 
+real	0m0.010s
+user	0m0.000s
+sys	0m0.000s
+[32m✔[0m
+test/waerden_3_4_17.cnf 
+real	0m0.010s
+user	0m0.000s
+sys	0m0.000s
+[32m✔[0m
+test/waerden_3_6_31.cnf 
+real	0m0.012s
+user	0m0.000s
+sys	0m0.016s
+[32m✔[0m
+
+Testing label:unsatisfiable, label:easy:
+test/cook_3_4.cnf 
+real	0m0.010s
+user	0m0.000s
+sys	0m0.016s
+[32m✔[0m
+test/cook_3_5.cnf 
+real	0m0.010s
+user	0m0.000s
+sys	0m0.000s
+[32m✔[0m
+test/empty_clause.cnf 
+real	0m0.010s
+user	0m0.000s
+sys	0m0.000s
+[32m✔[0m
+test/factoring_5.cnf 
+real	0m0.010s
+user	0m0.000s
+sys	0m0.016s
+[32m✔[0m
+test/factoring_7.cnf 
+real	0m0.011s
+user	0m0.000s
+sys	0m0.000s
+[32m✔[0m
+test/fsnark_5.cnf 
+real	0m0.010s
+user	0m0.000s
+sys	0m0.000s
+[32m✔[0m
+test/fsnark_prime_5.cnf 
+real	0m0.010s
+user	0m0.000s
+sys	0m0.000s
+[32m✔[0m
+test/langford_2.cnf 
+real	0m0.010s
+user	0m0.000s
+sys	0m0.000s
+[32m✔[0m
+test/langford_5.cnf 
+real	0m0.010s
+user	0m0.000s
+sys	0m0.016s
+[32m✔[0m
+test/pigeonhole_2_1.cnf 
+real	0m0.010s
+user	0m0.000s
+sys	0m0.000s
+[32m✔[0m
+test/rivest_unsat.cnf 
+real	0m0.010s
+user	0m0.000s
+sys	0m0.000s
+[32m✔[0m
+test/simple_10.cnf 
+real	0m0.010s
+user	0m0.016s
+sys	0m0.000s
+[32m✔[0m
+test/simple_3.cnf 
+real	0m0.010s
+user	0m0.000s
+sys	0m0.016s
+[32m✔[0m
+test/simple_7.cnf 
+real	0m0.010s
+user	0m0.000s
+sys	0m0.000s
+[32m✔[0m
+test/simple_8.cnf 
+real	0m0.010s
+user	0m0.000s
+sys	0m0.000s
+[32m✔[0m
+test/waerden_3_3_9.cnf 
+real	0m0.010s
+user	0m0.000s
+sys	0m0.000s
+[32m✔[0m
+test/waerden_3_4_18.cnf 
+real	0m0.010s
+user	0m0.016s
+sys	0m0.000s
+[32m✔[0m
+
+53 succeeded, 0 failed, 0 timed out in 1 seconds.
