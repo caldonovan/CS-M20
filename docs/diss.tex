@@ -203,11 +203,11 @@ understand what we're trying to achieve.
 \subsection{P vs NP}
 Before we progress into the basics of SAT, we can quickly explore the reason behind it being such an
 important topic within computer science. The P vs NP question is one of the most prevalent in the
-field of complexity theory. It is one of the seven millenium prize problems put forward by the Clay
+field of complexity theory. It is one of the seven millennium prize problems put forward by the Clay
 Mathematics Institute and, if solved, fetches a \$1 million prize for the first correct solution.
 The concept of P vs NP asks whether every problem whose solution can be verified quickly, can also
 be solved quickly. On the surface sounding simple, but in the details an incredibly hard question
-that has plauged computer scientists since the 1950s.
+that has plagued computer scientists since the 1950s.
 
 % TODO: Expand on NP-Complete using previous research.
 A further interest within this field of study concerns the notion of NP-Complete.
@@ -275,7 +275,7 @@ will learn the importance of covering all bases and making no assumptions of dif
 % TODO: Figure out a better name for this heading.
 \subsection{Polynomial Time Reduction}
 There are a plethora of problems that can be formulated into the previously stated problem. It is
-for this reason that we find the field of SAT solvers so important. Karp\cite{karp} introdeced the idea of converting alternative
+for this reason that we find the field of SAT solvers so important. Karp\cite{karp} introduced the idea of converting alternative
 problems to the SAT problem via \textit{Polynomial Time Reduction}.
 % TODO: Expand on this.
 
@@ -319,7 +319,7 @@ adding rules to each step for enhanced performance. These rules are:
 The former capitalises on \textit{unit clauses} to avoid a large section of the search space. By finding a unit clause, the
 solver will then assign the appropriate truth value to the literal to make it true, making these clauses trivial.
 
-The latter capitalises on variables which only appear in one form throughout the forumula, a \textit{pure literal}. If this is
+The latter capitalises on variables which only appear in one form throughout the formula, a \textit{pure literal}. If this is
 the case, clauses in which this pure literal appear can be safely assigned in a way that makes all clauses they are contained in
 true. Doing this means the solver can safely delete the clauses where this is the case and further reduce the search space.
 
@@ -331,7 +331,7 @@ true. Doing this means the solver can safely delete the clauses where this is th
 %    \item General future SAT solver stuff.
 %\end{itemize}
 Since the original instances of SAT there has been an astonishing amount of development into
-faster and more efficient methods. Since the milennium alone SAT solvers have managed to keep up
+faster and more efficient methods. Since the millennium alone SAT solvers have managed to keep up
 with the quickly advancing hardware, allowing for the processing of SAT problems with sometimes up
 to millions of clauses. Alongside the state of the art solver have also been attempts to simplify
 methods used in software, to try and help people just getting into the topic. Solvers such as
@@ -359,7 +359,7 @@ also terminate. As you can imagine, this would lead to a large amount of duplica
 whilst this is true, the advantage is that applying the problem to all these solvers will still be
 competitive, as the range of solvers will increase the chances of finding a solution in the fastest
 time possible. As with most parallel workloads, the downside to this is that the machine running
-these solvers will have to posess a large amount of memory. An example of an effective portfolio
+these solvers will have to posses a large amount of memory. An example of an effective portfolio
 style solver is \textit{HordeSat}[!], which is capable of almost linear speedup depending on the
 problem set. % TODO: Maybe add some proof of this speedup here?
 
@@ -376,7 +376,7 @@ can improve the existing methods. Typical DPLL based solvers iteratively improve
 problems, such as look-ahead. Other research has suggested altering the traditional DPLL algorithm to be utilised on other
 problems such as \textit{satisfiability modulo theories}. In this instance, an extension of the DPLL algorithm was created called
 \textit{DPLL(T)}. Put simply, this version of the algorithm transforms an SMT problem into a SAT formula where atoms are replaced
-by boolean variables. Modern SAT goes a step futher by implementing advanced features such as \textit{clause learning} and
+by boolean variables. Modern SAT goes a step further by implementing advanced features such as \textit{clause learning} and
 \textit{back jumping}, more taking inspiration from the original DPLL algorithm as opposed to iterating on top of it. The
 resulting algorithms are called \textit{conflict-driven clause learning} and present a massive improvement over traditional DPLL
 based solver.
@@ -438,7 +438,7 @@ computing or alternative methods of constructing the transistor, we can be sure 
 %    \item Discuss the data structures that we will need to implement based off of DK's ideas.
 %\end{itemize}
 The following section will include analysing and detailing the algorithms presented by Knuth. This will include both
-\textit{Algorithm D} and \textit{Algorithm L}, both of which are representitive of modern DPLL solvers. We will flesh out the
+\textit{Algorithm D} and \textit{Algorithm L}, both of which are representative of modern DPLL solvers. We will flesh out the
 general structure to be translated into code and investigate the required data structures along with how they can be implemented
 in our chosen language.
 
@@ -476,12 +476,12 @@ written as such:
 Before we progress to the next algorithms, it is important that we establish the data structures we will be needing. Knuth
 outlines the data structures that are important to these specific algorithms, and explains how their usefulness depends on how
 they are implemented. For his introduction to \textit{Algorithm B}, Knuth proposes that we use \textit{watched literals}. This
-concept details that we only need to keep an eye on the relevent literal per clause at any one time[!]. Using this notion, Knuth
+concept details that we only need to keep an eye on the relevant literal per clause at any one time[!]. Using this notion, Knuth
 proceeds to heavily simplify his original data structures from \textit{Algorithm A}, and achieving an impressively small
 procedure that is still capable of solving small to medium sized problems.
 
 For our case however, we will be utilising both the lazy data structure that Knuth proposes for \textit{Algorithm B}, and combine
-it with a method of capitalising on \textit{unit clauses}. Knuth details that we can extend the data structures from \textit{Algorithm B} by introducing indicies $h_1...h_n$.
+it with a method of capitalising on \textit{unit clauses}. Knuth details that we can extend the data structures from \textit{Algorithm B} by introducing indices $h_1...h_n$.
 
 % TODO: Actually talk about the damn data structures!
 
@@ -602,7 +602,7 @@ needs. After successful parsing we can move on to the processing of this problem
 %    \item I feel it would be best to at least discuss the DPLL algorithm.
 %    \item Use content from TAOCP and online.
 %\end{itemize}
-This section details the bulk of what our program will do. Based off of Algorithm L dicussed in the design section, we will be
+This section details the bulk of what our program will do. Based off of Algorithm L discussed in the design section, we will be
 implementing it as closely as possible in modern C++. Our data structures will also be integral to how this part will operate, and
 thus we must ensure we spend appropriate time to optimise them the best that we can.
 
@@ -630,7 +630,7 @@ difference here being that there is no particular order in which the lines must 
 three distinct types of lines in this format:
 
 \begin{itemize}
-    \item \texttt{'c '}: Denotes a comment line in which the program can output any auxilliary
+    \item \texttt{'c '}: Denotes a comment line in which the program can output any auxiliary
           information.
     \item \texttt{'s '}: Denotes the line where the solution is presented. This must be either
           'satisfiable', 'unsatisfiable', or 'unknown'. Only one instance of this line is allowed.
@@ -793,9 +793,9 @@ allow each test set to be completed quickly. \textit{Minisat} comes with a well 
 that we can use to easily build and run our test sets.
 
 The fall-back solver we will be using is \textit{CryptoMiniSat}. This solver is still in active
-development and encorporates some of the most advanced features for a FOSS solver. Compared to
+development and incorporates some of the most advanced features for a FOSS solver. Compared to
 \textit{Minisat}, this solver is significantly more complex. It should give us safe results that we
-can use to ensure no descrepencies between our solver and \textit{Minisat}.
+can use to ensure no discrepancies between our solver and \textit{Minisat}.
 
 Using the two mentioned solvers we can compare their results against our own. This is worth doing to make sure there are as
 little bugs as possible. The results for our testing are displayed below.
@@ -903,6 +903,9 @@ show exactly the ones that our solver struggles with:
 
 
 \section{Evaluation}
+The following will be an objective evaluation of the execution and results of this project after it had been completed. Each
+section will contain criticisms and ideas that could assist in future projects that may concern the same topic. It will also
+document things that went well, and will conclude with ideas for future work for this field that we thought may be of interest.
 %\begin{itemize}
 %    \item Discuss our findings statistically.
 %    \item Discuss how implemented code could be improved (summarise).
@@ -932,7 +935,7 @@ and implementing their ideas. This would of course take another project, and pot
 increases.
 
 \subsection{Methodology}
-The methodology used for this project turned out to be perfectly suitable, as intially thought. Like stated at the start, the
+The methodology used for this project turned out to be perfectly suitable, as initially thought. Like stated at the start, the
 project goals and requirements were very rigid in theory, and in practice stayed consistent to that fact. We found no need to add
 extra features, especially considering the task at hand was challenging enough. And if any features were deemed interesting to
 add, that would be something for another project, as mentioned above. One thing to consider would be the possibility of starting
@@ -959,7 +962,7 @@ algorithms, they proved to be a bonus when analysing the potential of each again
 
 \subsection{Pre-processing}
 One simple method that could greatly assist our solver is using a pre-processor. This will take the problem set and analyse it,
-and return a much simplified problem. This concept is applied accross modern solvers already, and is considered a vital part of
+and return a much simplified problem. This concept is applied across modern solvers already, and is considered a vital part of
 the SAT solving system.
 
 % TODO: Add some examples from existing solvers.
@@ -980,7 +983,7 @@ has been shown in other applications that utilising SIMD instructions can quickl
 corresponding to each bit width of data processed. The most common SIMD instruction set is \textit{SSE} (Streaming SIMD
 Extensions). Introduced in 1999 by Intel, it is now commonplace is all modern consumer x86 processors. If there was a way to truly
 implement SIMD into SAT solvers then there could be a massive potential for speedups in a range of applications. Even if the SIMD
-instructions were implemented in auxilliary areas of the solver itself, it is worth the time to investigate the potential.
+instructions were implemented in auxiliary areas of the solver itself, it is worth the time to investigate the potential.
 
 % TODO: Maybe include some examples of SIMD in a solver?
 
@@ -1000,7 +1003,7 @@ associated with the software section not being fully understood. With this proje
 programming language itself, as detailed below.
 
 \subsubsection{C++ Learning Curve}
-The programming lanuage that was used for this project was deemed suitable based on the style of program to be created. SAT
+The programming language that was used for this project was deemed suitable based on the style of program to be created. SAT
 solvers rely on heavy and intricate data structures to achieve what they need in the fastest time possible. Using C++ seemed like
 a logical solution to this problem, as complex data structures can be created with ease. However, this does require some in-depth
 knowledge of the language and its features first. C++ is notorious for being a language with a steep learning curve, and given the
@@ -1011,14 +1014,14 @@ topic, proved to be more challenging that initially expected.
 \subsection{Project Based}
 As stated above, most projects will face some form of setback or turmoil within their timescale. This project was no different,
 and out of all the different forms of risks and setbacks that could have been encountered, one in particular stood out. However,
-it would not be the only one that we could blame for this project not turning out as successful as intially hoped. There were a
-few personal reasons which ended up causing much more damage to the time plan than intially thought. And on top of this,
+it would not be the only one that we could blame for this project not turning out as successful as initially hoped. There were a
+few personal reasons which ended up causing much more damage to the time plan than initially thought. And on top of this,
 over-ambition ended up playing a much bigger role than anticipated, as we will detail in the next few sections.
 
 \subsubsection{Late Start}
 One of the first challenges that had effected this project was the late start. This was in part due to both personal obligations
 that could not be avoided. As well as in part due to the Coronavirus pandemic. Although this did not effect the overall project
-progressing, it did push the establised timeframe beyond what had been originally planned. The domino effect of moving beyond the
+progressing, it did push the established timeframe beyond what had been originally planned. The domino effect of moving beyond the
 allowed time buffer meant that each stage of the project had to be pushed back. Thus in turn creeping the expected deadline much
 further back than anticipated.
 
@@ -1032,7 +1035,7 @@ availability of face-to-face meetings proved to be unfavourable, and potential d
 Another major issue encountered for this project was the lack of initial general mathematical background . This topic is a rather
 maths heavy topic, with complex algorithms that can confuse most people who do not have strong mathematical skills. This lead to
 this project being delayed in certain phases where more time had to be spent to understand the maths involved. Although in the end
-this turned out to be good in the sense of challenging, the over-ambition to assume the ability to understand of all relevent
+this turned out to be good in the sense of challenging, the over-ambition to assume the ability to understand of all relevant
 material turned against us. As such, in future projects there should be the advance knowledge of the required mathematical
 background before starting.
 
