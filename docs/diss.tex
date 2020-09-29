@@ -1,4 +1,5 @@
 \documentclass{article}
+\usepackage{url}
 \usepackage{amsmath}
 \usepackage{listings}
 \usepackage[utf8]{inputenc}
@@ -73,7 +74,7 @@
 % === Main Content ===
 \thispagestyle{empty}
 \begin{center}
-\section*{Abstract}
+    \section*{Abstract}
 \end{center}
 % TODO: Use the word "implement" a lot less!
 %The Boolean Satisfiability Problem is a fundamental part of Computer Science. First proven to be an
@@ -111,20 +112,41 @@ advanced solvers, such as Minisat, zChaff, and CaDiCaL. On top of these, paralle
 gained popularity and one such solver, called Plingaling, ranked very highly in the SAT Competition
 2020. Showing how parallel solvers can be just as good as their counterparts, if not better.
 
-Donald Knuth has taken particular interest in this topic with his recent chapter of "The Art of Computer Programming". He discusses how important SAT solvers are to both industry and research, as well as providing algorithms and sample problems to test them against.
+Donald Knuth has taken particular interest in this topic with his recent chapter of "The Art of Computer Programming". He 
+discusses how important SAT solvers are to both industry and research, as well as providing algorithms and sample problems to 
+test them against.
 
-This paper will be an exploration into the world of SAT solvers and how they can provide crucial services to both industry and research. As well as methods in which proposed SAT solver algorithms can be implemented into a robust piece of software. Due to the sheer size of literature and research in this field, it would be unrealistic to think it is possible to cover everything in a comprehensive way. Therefore, this paper focuses on the fundamentals of SAT and the significant research through the years since Cooks paper in 1971\cite{scook}. As well as the ideas presented by Donald Knuth for implementation in modern programming languages.
+This paper will be an exploration into the world of SAT solvers and how they can provide crucial services to both industry and 
+research. As well as methods in which proposed SAT solver algorithms can be implemented into a robust piece of software. Due to 
+the sheer size of literature and research in this field, it would be unrealistic to think it is possible to cover everything in a 
+comprehensive way. Therefore, this paper focuses on the fundamentals of SAT and the significant research through the years since 
+Cooks paper in 1971\cite{scook}. As well as the ideas presented by Donald Knuth for implementation in modern programming 
+languages.
 
 \subsection{Motivation}
-The motivation behind this project stems from the ever growing need for more efficient and faster SAT solvers. But in order to begin researching in this field, one must know the basics and tried methods present today. This project will do just that, in both studying literature that has formed the basis of most of the field, and implementing a basic SAT solver.
+The motivation behind this project stems from the ever growing need for more efficient and faster SAT solvers. But in order to 
+begin researching in this field, one must know the basics and tried methods present today. This project will do just that, in 
+both studying literature that has formed the basis of most of the field, and implementing a basic SAT solver.
 
-One of the most common arguments for the research into SAT solving is its viability for both science and industry. This presents a convenient compatibility between the two. As industry requirements grow, so too does the need for research into better algorithms to satisfy those requirements. An example in which SAT solvers are a key part of industry include Electronic Design Automation (or EDA). We will explore these usages further as we progress and highlight the advantages of fast SAT solvers when applied to these industries.
+One of the most common arguments for the research into SAT solving is its viability for both science and industry. This presents 
+a convenient compatibility between the two. As industry requirements grow, so too does the need for research into better 
+algorithms to satisfy those requirements. An example in which SAT solvers are a key part of industry include Electronic Design 
+Automation (or EDA). We will explore these usages further as we progress and highlight the advantages of fast SAT solvers when 
+applied to these industries.
 
-Another common viability for SAT solvers includes their usage for most complex problems that can be reduced to SAT. Most problems in the real world can be cast as optimisation problems. This allows us to create a mathematical description of these problems, which in turn can present themselves for solving. The use of a solver in this instance would produce results which would allow for cost-saving or general efficiency improvements.
+Another common viability for SAT solvers includes their usage for most complex problems that can be reduced to SAT. Most problems 
+in the real world can be cast as optimisation problems. This allows us to create a mathematical description of these problems, 
+which in turn can present themselves for solving. The use of a solver in this instance would produce results which would allow 
+for cost-saving or general efficiency improvements.
 
 \subsection{Aims and Objectives}
 % TODO: Refactor this section, especially the DK bit.
-To preface this project we must present the aims and objectives that we wish to aim for. As explained above, we do not wish to push the boundaries of SAT solvers in this particular project. But instead want to explore the basics and expand on current research. Aiding us in this goal will be the series by Donald Knuth, "The Art of Computer Programming". Knuth has recently taken interest in the concept of satisfiability for "Fascicle 6: Satisfiability" , and presents a large amount of content for us to analyse. In this book, Knuth outlines multiple algorithms that could be used to implement multiple common SAT solvers\cite{donald}. These include:
+To preface this project we must present the aims and objectives that we wish to aim for. As explained above, we do not wish to 
+push the boundaries of SAT solvers in this particular project. But instead want to explore the basics and expand on current 
+research. Aiding us in this goal will be the series by Donald Knuth, "The Art of Computer Programming". Knuth has recently taken 
+interest in the concept of satisfiability for "Fascicle 6: Satisfiability" , and presents a large amount of content for us to 
+analyse. In this book, Knuth outlines multiple algorithms that could be used to implement multiple common SAT solvers\cite{donald}
+. These include:
 
 \begin{itemize}
     \item Algorithm B - Backtracking with watched literals.
@@ -135,22 +157,32 @@ To preface this project we must present the aims and objectives that we wish to 
 \end{itemize}
 
 % Be careful of the spell checker attempting to "americani(z)e" everything.
-We shall be analysing one of these algorithms and presenting the data structures needed and methods of implementation using C++. Once our implementation is complete, and testing has proved the solver to be working as intended, we will record the performance metrics in a scientific manner to ensure accuracy. These metrics will then be compared to other FOSS solvers that are well tested and commonly used. This will give us a benchmark as to how increasing complexity of the algorithm and program can achieve greater performance. As well as how the programming language chosen can effect the overall performance.
+We shall be analysing one of these algorithms and presenting the data structures needed and methods of implementation using C++. 
+Once our implementation is complete, and testing has proved the solver to be working as intended, we will record the performance 
+metrics in a scientific manner to ensure accuracy. These metrics will then be compared to other FOSS solvers that are well tested 
+and commonly used. This will give us a benchmark as to how increasing complexity of the algorithm and program can achieve greater 
+performance. As well as how the programming language chosen can effect the overall performance.
 
-We can easily turn these actions into functional and non-functional requirements. Doing so will allow us to test against the requirements stated and compare the expected result to the actual result. This format matches a more "software engineering" approach, which is desired for this project.
+We can easily turn these actions into functional and non-functional requirements. Doing so will allow us to test against the 
+requirements stated and compare the expected result to the actual result. This format matches a more "software engineering" 
+approach, which is desired for this project.
 
 \subsubsection{FREQ1}
 The resulting software should be able to process an input CNF formula in the semi-standard DIMACS format.
 
 \subsubsection{FREQ2}
 % TODO: Clarify this, 'short amount of time' doesn't seem very scientific.
-The resulting software should be able to evaluate the satisfiability of a simple formula from FREQ1, and return the result when found. Simple refers to a formula which most SAT solvers would be able to process in a short amount of time. Result refers to the decision returned from the solver that concludes as "SATISFIABLE" or "UNSATISFIABLE".
+The resulting software should be able to evaluate the satisfiability of a simple formula from FREQ1, and return the result when 
+found. Simple refers to a formula which most SAT solvers would be able to process in a short amount of time. Result refers to the 
+decision returned from the solver that concludes as "SATISFIABLE" or "UNSATISFIABLE".
 
 \subsubsection{Non-Functional Requirements}
-These requirements differ from functional requirements as they are not crucial to the project's success. These are simply goals that, if time allows, can be implemented for further data.
+These requirements differ from functional requirements as they are not crucial to the project's success. These are simply goals 
+that, if time allows, can be implemented for further data.
 
 \subsubsection{NFREQ1}
-The resulting software should be able to process a complex formula within a reasonable amount of time. Reasonable refers to the length of time it takes to return a result when compared to other SAT solvers, i.e. 300 seconds to return "SATISFIABLE".
+The resulting software should be able to process a complex formula within a reasonable amount of time. Reasonable refers to the 
+length of time it takes to return a result when compared to other SAT solvers, i.e. 300 seconds to return "SATISFIABLE".
 
 %\begin{itemize}
 %    \item To make a SAT solver using instructions from "TAOCP"
@@ -213,7 +245,7 @@ And given this formula, we can satisfy it by setting $x_1x_2x_3 = 001$.
 To ensure consistent understanding of these concepts before proceeding, we can simplify the notation
 for each element within SAT. To begin, we have \textit{variables}. These are elements of any
 convenient set. Variables can be denoted in a few ways, but for this we shall be using Knuth's own
-notation as stated in his book. Thus, variables will be denoted using numerals 1, 2, 3, ... to save
+notation as stated in his book. Thus, variables will be denoted using numerals $1, 2, 3, ...$ to save
 having to repeat characters. We can also omit the brackets and operators to make the writing of
 formulas much faster:
 
@@ -229,11 +261,11 @@ not appear anywhere in the formula. And thus can be safely set to true or false 
 
 There are multiple instances of the satisfiability problem, so we shorten satisfiability to just
 SAT. In turn, each instance is typically abbreviated and prefixed to SAT. Examples of this would
-be 2SAT, 3SAT, and $k$SAT. 3SAT is of particular interest, and will be detailed later in its own
-section.
+be 2SAT, 3SAT, and $k$SAT.
 
-There are more definitions which represent alternative types of clauses that we could encounter. For  instance, a clause of length 1 is called a \textit{unit clause}. Clauses of length 2
-would be called \textit{binary clause} and length 3, \textit{ternary clauses}. We can also
+There are more definitions which represent alternative types of clauses that we could encounter. For  instance, a clause of 
+length 1 is called a \textit{unit clause}. Clauses of length 2
+would be called \textit{binary clause}, length 3 \textit{ternary clauses}, and so on. We can also
 encounter clauses in which there are no literals, which would be called \textit{empty clauses}.
 \textit{Empty clauses} are denoted using $\epsilon$ and are always unsatisfiable. As you might
 think, shorter clauses would be easier to satisfy as they contain less literals, but this is not
@@ -241,9 +273,11 @@ necessarily the case. As we progress further into the design and implementation 
 will learn the importance of covering all bases and making no assumptions of difficulty.
 
 % TODO: Figure out a better name for this heading.
-\subsection{Converting to SAT}
+\subsection{Polynomial Time Reduction}
 There are a plethora of problems that can be formulated into the previously stated problem. It is
-for this reason that we find the field of SAT solvers so important.
+for this reason that we find the field of SAT solvers so important. Karp\cite{karp} introdeced the idea of converting alternative
+problems to the SAT problem via \textit{Polynomial Time Reduction}.
+% TODO: Expand on this.
 
 \subsection{Complete vs Incomplete SAT Methods}
 Before we progress onto the details of SAT algorithms, we must understand the two distinct types of
@@ -252,24 +286,42 @@ presents the best usage out of all the problems that are faced within SAT. A com
 is one that finds both satisfiable and unsatisfiable solutions, and returns the corresponding model
 if satisfiable.
 
-Modern SAT solvers are almost all complete and incorporate the original DPLL algorithm. They are extended using modern techniques to significantly speed up the solving process, and in most cases are capable of solving problems with millions of variables. Examples of some modern complete SAT solvers are Minisat and CryptoMiniSat. As we will detail below, these are two interesting solvers that are designed for particular purposes.
+Modern SAT solvers are almost all complete and incorporate the original DPLL algorithm. They are extended using modern techniques
+to significantly speed up the solving process, and in most cases are capable of solving problems with millions of variables.
+Examples of some modern complete SAT solvers are Minisat and CryptoMiniSat. As we will detail below, these are two interesting
+solvers that are designed for particular purposes.
 
-Incomplete solvers are much more rare compared to their complete counterparts. The obvious reason being that they do not return a result that we would be satisfied with, as they do not report if an instance of SAT is unsatisfiable. Aside from this, they do have their uses for specific types of SAT problems, hence why they are still being developed today. An example of an incomplete SAT solver is \textit{WalkSAT}. WalkSAT is based on a local search algorithm which tries to find a satisfying assignment by iteratively improving on them until all constraints are satisfied.
+Incomplete solvers are much more rare compared to their complete counterparts. The obvious reason being that they do not return a
+result that we would be satisfied with, as they do not report if an instance of SAT is unsatisfiable. Aside from this, they do 
+have their uses for specific types of SAT problems, hence why they are still being developed today. An example of an incomplete 
+SAT solver is \textit{WalkSAT}. WalkSAT is based on a local search algorithm which tries to find a satisfying assignment by 
+iteratively improving on them until all constraints are satisfied.
 
 \subsection{DPLL Algorithm}
-The DPLL algorithm is one of the most important milestones in the history of SAT. Itself being a further development of work by Martin Davis and Hilary Putnam in their 1960 paper \textit{A Computing Procedure for Quantification Theory}\cite{putnam}, the DPLL algorithm attempted to take this initial work and refine it.
+The DPLL algorithm is one of the most important milestones in the history of SAT. Itself being a further development of work by 
+Martin Davis and Hilary Putnam in their 1960 paper \textit{A Computing Procedure for Quantification Theory}\cite{putnam}, the 
+DPLL algorithm attempted to take this initial work and refine it.
 % TODO: Maybe talk about Herbrands Theorem here too?
 
-The DPLL algorithm still forms the basis of most efficient SAT solvers today. Each instance of a SAT solver that utilises the original DPLL algorithm typically adds their own optimisations and improvements to achieve a greater efficiency, something we will expand on in further sections. In simplified terms, the backtracking section works by choosing a literal, assigning a truth value to it, simplifying the formula then checking if the new simplified formula is satisfiable. If this is the case the solver will return that the original formula is satisfiable and return the model. If this is not the case, the solver will backtrack and assign the opposite truth value and run the above checks again. The improvements made to this basic backtracking approach include adding rules to each step for enhanced performance. These rules are:
+The DPLL algorithm still forms the basis of most efficient SAT solvers today. Each instance of a SAT solver that utilises the 
+original DPLL algorithm typically adds their own optimisations and improvements to achieve a greater efficiency, something we 
+will expand on in further sections. In simplified terms, the backtracking section works by choosing a literal, assigning a truth 
+value to it, simplifying the formula then checking if the new simplified formula is satisfiable. If this is the case the solver 
+will return that the original formula is satisfiable and return the model. If this is not the case, the solver will backtrack and 
+assign the opposite truth value and run the above checks again. The improvements made to this basic backtracking approach include 
+adding rules to each step for enhanced performance. These rules are:
 
 \begin{itemize}
     \item Unit Propagation.
     \item Pure Literal Elimination.
 \end{itemize}
 
-The former capitalises on \textit{unit clauses} to avoid a large section of the search space. By finding a unit clause, the solver will then assign the appropriate truth value to the literal to make it true, making these clauses trivial.
+The former capitalises on \textit{unit clauses} to avoid a large section of the search space. By finding a unit clause, the 
+solver will then assign the appropriate truth value to the literal to make it true, making these clauses trivial.
 
-The latter capitalises on variables which only appear in one form throughout the forumula, a \textit{pure literal}. If this is the case, clauses in which this pure literal appear can be safely assigned in a way that makes all clauses they are contained in true. Doing this means the solver can safely delete the clauses where this is the case and further reduce the search space.
+The latter capitalises on variables which only appear in one form throughout the forumula, a \textit{pure literal}. If this is 
+the case, clauses in which this pure literal appear can be safely assigned in a way that makes all clauses they are contained in 
+true. Doing this means the solver can safely delete the clauses where this is the case and further reduce the search space.
 
 \subsection{Modern SAT}
 %\begin{itemize}
@@ -357,7 +409,14 @@ interface and minimal codebase.
 %\end{itemize}
 
 \subsubsection{CryptoMiniSat}
-CryptoMiniSat is an advanced, modern SAT solver created by Mate Soos, Karsten Nohl, and Claude Castelluccia\cite{10.1007/978-3-642-02777-2_24}. As the name suggests, this solver builds upon the foundations laid by Minisat to create an all in one solution to multiple problems. CryptoMiniSat implements most of the useful features from Minisat 2.0 core, along with PrecoSat and Glucose to try to make a one-stop solution. CryptoMiniSat is still in active development, hosting their code on GitHub for open collaboration. This solver is the work of massive proportions and contains a extensive list of features to try to make as efficient a solver as possible. Based off of their 2009 conference paper \textit{Extending SAT Solver to Cryptographic Problems}, it contains over 50,000 lines of code as opposed to Minisat's 1,500. As stated in the projects FAQ, one of its main aims from the offset was to apply SAT solvers to cryptographic problems. However this ended up being just one of the many types of SAT that it excelled at.
+CryptoMiniSat is an advanced, modern SAT solver created by Mate Soos, Karsten Nohl, and Claude Castelluccia\cite{cryptominisat}.
+As the name suggests, this solver builds upon the foundations laid by Minisat to create an all in one solution to multiple 
+problems. CryptoMiniSat implements most of the useful features from Minisat 2.0 core, along with PrecoSat and Glucose to try to 
+make a one-stop solution. CryptoMiniSat is still in active development, hosting their code on GitHub for open collaboration. This 
+solver is the work of massive proportions and contains a extensive list of features to try to make as efficient a solver as 
+possible. Based off of their 2009 conference paper \textit{Extending SAT Solver to Cryptographic Problems}, it contains over 50,
+000 lines of code as opposed to Minisat's 1,500. As stated in the projects FAQ, one of its main aims from the offset was to apply 
+SAT solvers to cryptographic problems. However this ended up being just one of the many types of SAT that it excelled at.
 
 % TODO: Finish this section
 \subsubsection{Chaff / zChaff}
@@ -391,10 +450,10 @@ keep up with the increasing complexity of problems available. The general pseudo
 written as such:
 
 \begin{figure}[h]
-% TODO: Put the DPLL algorithm pseudocode here
-% Fix the notations not showing up!
-\centering
-\begin{lstlisting}[language=C++]
+    % TODO: Put the DPLL algorithm pseudocode here
+    % Fix the notations not showing up!
+    \centering
+    \begin{lstlisting}[language=C++]
     Algorithm DPLL
         Input: A set of clauses C
         Output: A truth value
@@ -572,9 +631,9 @@ three distinct types of lines in this format:
 
 \begin{itemize}
     \item \texttt{'c '}: Denotes a comment line in which the program can output any auxilliary
-    information.
+          information.
     \item \texttt{'s '}: Denotes the line where the solution is presented. This must be either
-    'satisfiable', 'unsatisfiable', or 'unknown'. Only one instance of this line is allowed.
+          'satisfiable', 'unsatisfiable', or 'unknown'. Only one instance of this line is allowed.
     \item \texttt{'v '}: Denotes the values of the solution if one is found.
 \end{itemize}
 
@@ -600,23 +659,41 @@ The data structures that Knuth presents to us are not the easiest to implement i
 % TODO: Detail how the data structures are pretty complex.
 
 \subsection{Tool-chain}
-The following is a quick overview of the tool-chain that will be used for this project. As these aren't the meat of what the project is about, we shall only spend a short time glazing over the available solutions and those we picked.
+The following is a quick overview of the tool-chain that will be used for this project. As these aren't the meat of what the 
+project is about, we shall only spend a short time glazing over the available solutions and those we picked.
 
 \subsubsection{Compiler \& Libraries}
-There are multiple compilers available for C++ dependant on the platform. Generally for each of the three most common platforms (Windows, Linux, and MacOS) there are reliable and well tested compiler suites available. The GNU Compiler Collection, or GCC, is considered one of the standard compiler suites for C and C++. GCC has implementations for each of the aforementioned platforms via ports. The Windows implementation in particular is included in a few software development environments that are freely available; MinGW, MSYS2, and Cygwin.
+There are multiple compilers available for C++ dependant on the platform. Generally for each of the three most common platforms 
+(Windows, Linux, and MacOS) there are reliable and well tested compiler suites available. The GNU Compiler Collection, or GCC, is
+considered one of the standard compiler suites for C and C++. GCC has implementations for each of the aforementioned platforms 
+via ports. The Windows implementation in particular is included in a few software development environments that are freely 
+available; MinGW, MSYS2, and Cygwin.
 
-As for Linux, the GCC suite can be installed natively typically using the preferred distro's package manager. For this project the code will be compiled on a Debian based system using the GCC suite. Linux provides a simpler method of developing using C / C++ and streamlines the time from development to testing. Alongside this, the included GDB debugger allows for a simple and lightweight debugging solution. We will also be making use of bash scripts to invoke the software and provide flags to control options, something that can be a little more challenging on a Windows machine.
+As for Linux, the GCC suite can be installed natively typically using the preferred distro's package manager. For this project the
+code will be compiled on a Debian based system using the GCC suite. Linux provides a simpler method of developing using C / C+
++ and streamlines the time from development to testing. Alongside this, the included GDB debugger allows for a simple and 
+lightweight debugging solution. We will also be making use of bash scripts to invoke the software and provide flags to control 
+options, something that can be a little more challenging on a Windows machine.
 
-No development will be carried out on a Macintosh as we simply do not have access to one. Typically these types of software are compiled and run using a Linux system, and thus it would make the most sense to follow the given norm.
+No development will be carried out on a Macintosh as we simply do not have access to one. Typically these types of software are 
+compiled and run using a Linux system, and thus it would make the most sense to follow the given norm.
 
 \subsubsection{Editor \& Environment}
-There are a huge swathe of IDE's and editors available for use and as for which one to use, there isn't a definitive answer. We thought that it would be best to just stick with what we know best, and for this instance that would be Visual Studio Code. Although other IDE's are available that can take a lot of the work out of managing a project. It is not really necessary to use one here. This project will not contain a huge amount of code or files, and general debugging and profiling does not need to be done using bloated IDE's. Visual Studio Code contains a massive inventory of extensions available to give an experience just as rich as an IDE, but without the cumbersome nature of one. As for this project we only need a single extension to get the required development environment:
+There are a huge swathe of IDE's and editors available for use and as for which one to use, there isn't a definitive answer. We 
+thought that it would be best to just stick with what we know best, and for this instance that would be Visual Studio Code. 
+Although other IDE's are available that can take a lot of the work out of managing a project. It is not really necessary to use 
+one here. This project will not contain a huge amount of code or files, and general debugging and profiling does not need to be 
+done using bloated IDE's. Visual Studio Code contains a massive inventory of extensions available to give an experience just as 
+rich as an IDE, but without the cumbersome nature of one. As for this project we only need a single extension to get the required 
+development environment:
 
 \begin{itemize}
     \item C / C++
 \end{itemize}
 
-It is also important to mention any other environment software aside from the previously mentioned. We are going to be using the \textit{time} command to accurately measure the time metrics of the software from start to completion. This command is available through bash and is invoked at the same time as the program itself. But before we can use this we must invoke another command:
+It is also important to mention any other environment software aside from the previously mentioned. We are going to be using the 
+\textit{time} command to accurately measure the time metrics of the software from start to completion. This command is available 
+through bash and is invoked at the same time as the program itself. But before we can use this we must invoke another command:
 
 \begin{figure}[h]
     \centering
@@ -624,13 +701,17 @@ It is also important to mention any other environment software aside from the pr
     \caption{Command to achieve desired output format}
 \end{figure}
 
-This command allows us to achieve the desired format. This is only necessary as we are using the Z-Shell, but the command itself still works the same as traditional Bash. Using the time command we can effectively measure the time that it takes from invocation to completion in a consistent format. This is a simple alternative to implementing a time measuring system into the SAT solver, which could potentially make it less performant. An example of the usage of the time command is shown below:
+This command allows us to achieve the desired format. This is only necessary as we are using the Z-Shell, but the command itself 
+still works the same as traditional Bash. Using the time command we can effectively measure the time that it takes from 
+invocation to completion in a consistent format. This is a simple alternative to implementing a time measuring system into the 
+SAT solver, which could potentially make it less performant. An example of the usage of the time command is shown below:
 
 \begin{center}
     \texttt{\$ time make bin/dpll}
 \end{center}
 
-This command will invoke the 'make' binary to compile our program, called dpll. The output of this command will include both the output of the make command, as well as the time it took formatted to our previous rules:
+This command will invoke the 'make' binary to compile our program, called dpll. The output of this command will include both the 
+output of the make command, as well as the time it took formatted to our previous rules:
 
 % TODO: Improve the way this looks.
 \begin{align*}
@@ -691,7 +772,10 @@ methodology. Therefore, let us create a simple suite of manual testing criteria.
 Now we can safely apply some of the traditional testing methodologies to our program.
 
 \subsubsection{Unit Testing}
-Unit testing is one of the most common types developers can use. This type of testing is where individual components or sections of the program are individually tested against a given criteria. Although there are multiple ways in which to achieve this, we do not need to overcomplicate this by writing hundreds of edge case tests. More importantly for this project, we only need to ensure that the program both compiles successfully, and produces the correct result.
+Unit testing is one of the most common types developers can use. This type of testing is where individual components or sections 
+of the program are individually tested against a given criteria. Although there are multiple ways in which to achieve this, we do 
+not need to overcomplicate this by writing hundreds of edge case tests. More importantly for this project, we only need to ensure 
+that the program both compiles successfully, and produces the correct result.
 
 
 \subsection{Checking For Correct Solutions}
@@ -721,7 +805,8 @@ can use to ensure no descrepencies between our solver and \textit{Minisat}.
 
 % TODO: Run our test set against CryptoMiniSat. Record results here.
 
-Using the two mentioned solvers we can compare their results against our own. This is worth doing to make sure there are as little bugs as possible. The results for our testing are displayed below.
+Using the two mentioned solvers we can compare their results against our own. This is worth doing to make sure there are as 
+little bugs as possible. The results for our testing are displayed below.
 
 % TODO: Put the results from our solver here.
 
@@ -790,7 +875,7 @@ complexity. Of course, if we put this implementation against something like \tex
 would be able to match its performance. What we could propose instead is taking the implementation of \textit{Algorithm L}, and
 expanding on it by implementing experimental features, or taking inspiration from another solver such as \textit{CryptoMiniSat}
 and implementing their ideas. This would of course take another project, and potentially much more time as the level of complexity
-increases. 
+increases.
 
 \subsection{Methodology}
 The methodology used for this project turned out to be perfectly suitable, as intially thought. Like stated at the start, the
@@ -798,7 +883,17 @@ project goals and requirements were very rigid in theory, and in practice stayed
 extra features, especially considering the task at hand was challenging enough. And if any features were deemed interesting to
 add, that would be something for another project, as mentioned above. One thing to consider would be the possibility of starting
 another project with another person, in which case the methodology we used may not be as suitable and would have to be discussed
-in more detail. 
+in more detail.
+
+\subsection{Implementation}
+As for the implementation, we were fortunate to find that someone had already implemented all the algorithms from Knuth's booklet.
+As these project files were hosted on GitHub\cite{aaw} and the license given was the \textit{Unlicense License}, we could freely
+attain and modify this code for our own usage. This saved a huge amount of time, and after investigation, was found to have been
+implemented in the exact way that Knuth had proposed. Potential improvements were made to this existing codebase by bringing
+everything up to date with modern standards, and double checking that everything was working as intended. Of course, the resulting
+program that we were interested in was only that of \textit{Algorithm L}. And as such, is the only included binary for this
+project. The other binaries were used for testing purposes. As they are general implementations of each 'style' of common
+algorithms, they proved to be a bonus when analysing the potential of each against \textit{Algorithm L}.
 
 \section{Future Work}
 %\begin{itemize}
@@ -809,20 +904,31 @@ in more detail.
 %\end{itemize}
 
 \subsection{Algorithm Performance}
-There are multiple improvements that are suggested by Donald Knuth to speed up the initial DPLL algorithm based solver. The first of which is already listed as one of his alternative algorithms. Algorithm L uses the lookahead concept to substantially speed up the standard DPLL algorithm. This concept % TODO: Expand.
+There are multiple improvements that are suggested by Donald Knuth to speed up the initial DPLL algorithm based solver. The first 
+of which is already listed as one of his alternative algorithms. Algorithm L uses the lookahead concept to substantially speed up 
+the standard DPLL algorithm. This concept % TODO: Expand.
 
 \subsection{Pre-processing}
-One simple method that could greatly assist our solver is using a pre-processor. This will take the problem set and analyse it, and return a much simplified problem. This concept is applied accross modern solvers already, and is considered a vital part of the SAT solving system.
+One simple method that could greatly assist our solver is using a pre-processor. This will take the problem set and analyse it, 
+and return a much simplified problem. This concept is applied accross modern solvers already, and is considered a vital part of 
+the SAT solving system.
 
 % TODO: Add some examples from existing solvers.
 
 \subsection{Parallel Solving}
-A more interesting concept is to capitalise on modern processor architectures, and the cheap availability of multi-core CPU's. It is commonplace to find consumer CPU's with at least 4 cores and hyper-threading. By taking advantage of this we can try to divide up the problem set and apply a solver to each smaller instance running on an individual thread. As usual with parallelism, this would not necessarily lead to a linear performance increase. It would require some research and engineering to determine the best way forward in order to achieve the desired results.
+A more interesting concept is to capitalise on modern processor architectures, and the cheap availability of multi-core CPU's. It 
+is commonplace to find consumer CPU's with at least 4 cores and hyper-threading. By taking advantage of this we can try to divide 
+up the problem set and apply a solver to each smaller instance running on an individual thread. As usual with parallelism, this 
+would not necessarily lead to a linear performance increase. It would require some research and engineering to determine the best 
+way forward in order to achieve the desired results.
 
 % TODO: Talk a bit more about this.
 
 \subsection{SIMD}
-Another interesting technique that could be applied to SAT solving is the use of SIMD instructions for data level parallelism. It has been shown in other applications that utilising SIMD instructions can quickly lead to almost linear performance improvements corresponding to each bit width of data processed. The most common SIMD instruction set is \textit{SSE} (Streaming SIMD Extensions). Introduced in 1999 by Intel, it is now commonplace is all modern consumer x86 processors.
+Another interesting technique that could be applied to SAT solving is the use of SIMD instructions for data level parallelism. It 
+has been shown in other applications that utilising SIMD instructions can quickly lead to almost linear performance improvements 
+corresponding to each bit width of data processed. The most common SIMD instruction set is \textit{SSE} (Streaming SIMD 
+Extensions). Introduced in 1999 by Intel, it is now commonplace is all modern consumer x86 processors.
 
 % TODO: Maybe include some examples of SIMD in a solver?
 
@@ -841,7 +947,9 @@ Implementing software will always
 
 \subsection{Project Based}
 \subsubsection{Late Start}
-One of the first challenges that had effected this project was the late start. This was in part due to both personal obligations that could not be avoided. As well as in part due to the Coronavirus pandemic. Although this did not effect the overall project progressing, it did push the establised timeframe beyond what had been originally planned.
+One of the first challenges that had effected this project was the late start. This was in part due to both personal obligations 
+that could not be avoided. As well as in part due to the Coronavirus pandemic. Although this did not effect the overall project 
+progressing, it did push the establised timeframe beyond what had been originally planned.
 
 \subsubsection{Coronavirus}
 The second major issues encountered was something completely out of our control. The Coronavirus
@@ -852,7 +960,9 @@ face-to-face meetings proved to be unfavourable, and potential disruptions in th
 planned work.
 
 \subsubsection{Maths Heavy Topic}
-Another major issue encountered for this project was the lack of initial mathematical background. This topic is a rather maths heavy topic, with complex algorithms that can confuse most people who do not have strong mathematical skills. This lead to this project being delayed in certain phases where more time had to be spent to understand the maths involved.
+Another major issue encountered for this project was the lack of initial mathematical background. This topic is a rather maths 
+heavy topic, with complex algorithms that can confuse most people who do not have strong mathematical skills. This lead to this 
+project being delayed in certain phases where more time had to be spent to understand the maths involved.
 
 \subsubsection{C++ Learning Curve}
 The final major issue that was encountered in this project is the depth of knowledge required in the chosen programming language.
