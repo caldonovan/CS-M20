@@ -772,6 +772,33 @@ problem much quicker.
 %    \item Discuss the things that could potentially be improved if we did the project again.
 %    \item Discuss the pandemic.
 %\end{itemize}
+\subsection{Accuracy}
+One of the most important things to get right when creating this solver was to ensure the accuracy of the results. This is, after
+all, the whole point of the solver in the first place. This can naturally be confirmed from our testing phase after the
+implementation. By using alternative FOSS solvers we can clearly see that the implementation of Knuth's \textit{Algorithm L} works
+just as intended. And as we will get into in the next section, performance is more than adequate. Of course, to ensure that this
+implementation would be perfect across the whole range of potential problems it could face would take much longer. We would have
+to collate a huge amount of problems and perhaps even test against the data sets that would be given at the SAT competition
+itself. But for the intention of our project, and most importantly for the requirements we stated at the very beginning, this is
+more than enough for our needs.
+
+\subsection{Performance}
+The second most important metric was the performance. Like stated above, we can draw from the requirements that we crafted at the
+very start of the project. They proposed that the solver only has to be 'good enough', in the sense that it can solve most easy or
+medium problems within a reasonable amount of time. 'Reasonable' is based off of the metrics of similar solvers in terms of
+complexity. Of course, if we put this implementation against something like \textit{CryptoMiniSat} there is no chance that we
+would be able to match its performance. What we could propose instead is taking the implementation of \textit{Algorithm L}, and
+expanding on it by implementing experimental features, or taking inspiration from another solver such as \textit{CryptoMiniSat}
+and implementing their ideas. This would of course take another project, and potentially much more time as the level of complexity
+increases. 
+
+\subsection{Methodology}
+The methodology used for this project turned out to be perfectly suitable, as intially thought. Like stated at the start, the
+project goals and requirements were very rigid in theory, and in practice stayed consistent to that fact. We found no need to add
+extra features, especially considering the task at hand was challenging enough. And if any features were deemed interesting to
+add, that would be something for another project, as mentioned above. One thing to consider would be the possibility of starting
+another project with another person, in which case the methodology we used may not be as suitable and would have to be discussed
+in more detail. 
 
 \section{Future Work}
 %\begin{itemize}
@@ -828,7 +855,12 @@ planned work.
 Another major issue encountered for this project was the lack of initial mathematical background. This topic is a rather maths heavy topic, with complex algorithms that can confuse most people who do not have strong mathematical skills. This lead to this project being delayed in certain phases where more time had to be spent to understand the maths involved.
 
 \subsubsection{C++ Learning Curve}
-The final major issue that was encountered in this project is the depth of knowledge required in the chosen programming language. Both C and C++ have a heavy learning curve associated with advanced usage. Like previously stated, this lead to some project phases being delayed due to the challenges of implementing theoretical concepts into program code.
+The final major issue that was encountered in this project is the depth of knowledge required in the chosen programming language.
+Both C and C++ have a heavy learning curve associated with advanced usage. Like previously stated, this lead to some project
+phases being delayed due to the challenges of implementing theoretical concepts into program code.
+
+\section{Reflection}
+
 
 \section{Conclusion}
 \begin{itemize}
