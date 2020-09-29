@@ -777,7 +777,10 @@ that the program both compiles successfully, and produces the correct result. Un
 
 % TODO: Find an actual name for this...
 \subsubsection{Manual Result Testing}
-Another solution that we can use for our testing strategy is quite simple. Utilising a well-known solver that has been proven to be accurate, we could give it a range of problems in alternating difficulty and compare the results to that of our solver. Although this is rudimentary, it can be applied quite well in our instance and can quickly discover potential discrepancies in our program.
+Another solution that we can use for our testing strategy is quite simple. Utilising a well-known solver that has been proven to 
+be accurate, we could give it a range of problems in alternating difficulty and compare the results to that of our solver. 
+Although this is rudimentary, it can be applied quite well in our instance and can quickly discover potential discrepancies in 
+our program.
 % TODO: Add the manual testing table stuff here.
 
 \subsection{Checking For Correct Solutions}
@@ -813,16 +816,47 @@ little bugs as possible. The results for our testing are displayed below.
 % TODO: Put the results from our solver here.
 
 \subsection{Monitoring Initial Performance Metrics}
-Now that we are sure that we have an implementation that is working as intended, we can begin measuring its performance. We will be doing this against a set of SAT problems that increase in difficulty. In order to get results that are viable, we will be testing against each difficulty level (easy, medium, and hard) at least 10 times. We must also consider the fact that our solver will not always be able to solve a problem in what we would consider a 'reasonable' amount of time. Because of this, the test set script will implement a timeout that we can set depending on the difficulty. We feel the best way in which this can be utilised is by using a standard timeout of 60 seconds for each difficulty. Then depending on which problem files take longer than 60 seconds, and thus terminate automatically, will be noted down and further tested with increasing timeout periods. If the solver cannot produce a result after being given a much larger timeout period, we can deem this as a result in which the program cannot solve the problem instance that we have given it in a 'reasonable' amount of time, and thus not meeting \textit{FREQ1}.
+Now that we are sure that we have an implementation that is working as intended, we can begin measuring its performance. We will 
+be doing this against a set of SAT problems that increase in difficulty. In order to get results that are viable, we will be 
+testing against each difficulty level (easy, medium, and hard) at least 10 times. We must also consider the fact that our solver 
+will not always be able to solve a problem in what we would consider a 'reasonable' amount of time. Because of this, the test set 
+script will implement a timeout that we can set depending on the difficulty. We feel the best way in which this can be utilised 
+is by using a standard timeout of 60 seconds for each difficulty. Then depending on which problem files take longer than 60 
+seconds, and thus terminate automatically, will be noted down and further tested with increasing timeout periods. If the solver 
+cannot produce a result after being given a much larger timeout period, we can deem this as a result in which the program cannot 
+solve the problem instance that we have given it in a 'reasonable' amount of time, and thus not meeting \textit{FREQ1}.
 
 \subsubsection{UNIX Time Command}
-On top of the above \textit{timeout} functionality, we can also use the standard UNIX \textit{time} command. This command is very simple to use and allows us to measure the time each individual problem takes. The \textit{time} command returns three different results that correspond to three parameters; real, user, and sys. We previously showed in the \textit{Editor \& Environment} section that this command will be formatted to show each output below the other. We can then pipe this output to a file to permanently record the results. To automate this, the following command will be issued:
+On top of the above \textit{timeout} functionality, we can also use the standard UNIX \textit{time} command. This command is very 
+simple to use and allows us to measure the time each individual problem takes. The \textit{time} command returns three different 
+results that correspond to three parameters; real, user, and sys. We previously showed in the \textit{Editor \& Environment} 
+section that this command will be formatted to show each output below the other. We can then pipe this output to a file to 
+permanently record the results. To automate this, the following command will be issued:
 
-\begin{center}
-    \texttt{\$ for ((n=0;n<10;n++)); do time ./script/test.sh -blook -dhard -t60s \|\& tee results_hard\$\{n\}.txt; done}
-\end{center}
+\begin{figure}[h]
+    \centering
+    \texttt{\$ for ((n=0;n<10;n++)); do time ./script/test.sh -blook -dhard -t60s |\& tee results\_hard\$\{n\}.txt; done}
+    \caption{Bash script to automate test runs.}
+\end{figure}
 
-Another easy way of testing is by measuring the CPU time that the solver takes to give a solution to the problem it is given. This is the reason we will be testing using the standard UNIX 'time' command. This command outputs three metrics; real, user, and system. Real corresponds to the 'wall clock' time that the program took. This refers to the actual time it took from invocation to completion whilst the CPU handles other processes. The 'user' time corresponds to the time the CPU spent on the program in User mode. Calls made in Kernel mode will not be reflected in this time. The 'sys' time corresponds to the time the CPU spent in Kernel mode when executing the program. These three metrics give us a good idea as to what the CPU spends the most time on when executing our program.
+Using this command will invoke our script to test the solver against a set of problems. By using the bash for loop, we can tell
+it to do this as many times as we wish, and using the redirect functionality we write the results to a new file. This neatly
+inserts the data we need including information about the given set, which binary we are using, the name of each individual
+problem, the time each problem takes, and whether the solver times out on a given problem. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{file_example.jpg}
+    \caption{Example output to file after testing script.}
+\end{figure}
+
+Another easy way of testing is by measuring the CPU time that the solver takes to give a solution to the problem it is given. 
+This is the reason we will be testing using the standard UNIX 'time' command. This command outputs three metrics; real, user, and 
+system. Real corresponds to the 'wall clock' time that the program took. This refers to the actual time it took from invocation 
+to completion whilst the CPU handles other processes. The 'user' time corresponds to the time the CPU spent on the program in 
+User mode. Calls made in Kernel mode will not be reflected in this time. The 'sys' time corresponds to the time the CPU spent in 
+Kernel mode when executing the program. These three metrics give us a good idea as to what the CPU spends the most time on when 
+executing our program.
 
 \subsubsection{Memory Usage}
 Another method in which we can measure the performance of our solver is by keeping track of the
