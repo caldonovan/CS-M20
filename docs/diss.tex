@@ -491,6 +491,10 @@ and use that information to feed our branching decision. In some cases this algo
 to solve the problem and terminate successfully, something that the other algorithms may have not found after a significant amount
 of search space. 
 
+\section{Methodology}
+Before we begin talking about the implementation, is is necessary to quickly mention the methodology that we shall be using in
+development. This project is not being shared amongst a large team of engineers. This allows us to choose from a plethora of software methodologies that would typically not be considered. The usual norm is to commit to the AGILE methodology no matter the project. But for us we do not need the potentially cumbersome nature that can come from AGILE. We also need to consider the idea of rapid prototyping and development. For this reason, we have chosen to use the traditional Waterfall methodology. It gives us the general structure for the project, and fits well with our rigid requirements.
+
 \section{Implementation}
 This section concerns the general input and output that our solver will use. As well as the method in which we will attempt to
 implement it. If there are any tools already available to us, or libraries that may help us, they will also be listed here. We
@@ -771,21 +775,14 @@ There are consistent timeouts across all 10 tests that show exactly the ones tha
 \end{itemize}
 
 This is still consistent when given extra time to figure these out, and as such means that we cannot satisfy our original
-\textit{FREQ1} with this solver for this specific problem set. This is of course perfectly fine, as these examples do present
+\textit{NFREQ1} with this solver for this specific problem set. This is of course perfectly fine, as these examples do present
 something very challenging to the solver. 
 
 \section{Evaluation}
 The following will be an objective evaluation of the execution and results of this project after it had been completed. Each
 section will contain criticisms and ideas that could assist in future projects that may concern the same topic. It will also
 document things that went well, and will conclude with ideas for future work for this field that we thought may be of interest.
-%\begin{itemize}
-%    \item Discuss our findings statistically.
-%    \item Discuss how implemented code could be improved (summarise).
-%    \item Talk about the methodology we used.
-%    \item Talk about the risks encountered, and the time frame in which we carried this out.
-%    \item Discuss the things that could potentially be improved if we did the project again.
-%    \item Discuss the pandemic.
-%\end{itemize}
+
 \subsection{Accuracy}
 One of the most important things to get right when creating this solver was to ensure the accuracy of the results. This is, after
 all, the whole point of the solver in the first place. This can naturally be confirmed from our testing phase after the
