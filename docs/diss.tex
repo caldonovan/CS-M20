@@ -25,7 +25,6 @@
 
 % TODO: Configure page layout to conform to requirements.
 % === Layout ===
-%\setlength{\parskip}{0.5em}
 \graphicspath{ {./images/} }
 \lstdefinestyle{code}{basicstyle=\ttfamily\footnotesize, breakatwhitespace=false,
     breaklines=true, keywordstyle=\color{magenta}, commentstyle=\color{codegreen},
@@ -67,7 +66,6 @@
 \begin{center}
     \section*{Summary}
 \end{center}
-% TODO: Use the word "implement" a lot less!
 The Boolean Satisfiability Problem is a fundamental part of Computer Science. First proven to be an
 NP-Complete problem by both Stephen Cook in 1971\cite{scook}, and Leonid Levin in 1973\cite{levin}. Since then, many more
 NP-Complete problems have been identified, along with their respective uses in the real world
@@ -114,8 +112,6 @@ made available to outside organisations.
 
 \newpage
 \section{Introduction}
-% TODO: Refactor to sound better.
-% TODO: Add some examples to interest the reader.
 Satisfiability has presented itself a huge area of research throughout the history of computer
 science. Being the first proved to be NP-Complete in 1971\cite{scook}, it has been the go-to for complex
 computation. And using reduction techniques pioneered in the mid-twentieth century, many other types
@@ -153,7 +149,6 @@ which in turn can present themselves for solving. The use of a solver in this in
 for cost-saving or general efficiency improvements.
 
 \subsection{Aims and Objectives}
-% TODO: Refactor this section, especially the DK bit.
 To preface this project we must present the aims and objectives that we wish to aim for. As explained above, we do not wish to
 push the boundaries of SAT solvers in this particular project. But instead want to explore the basics and expand on current
 research. Aiding us in this goal will be the series by Donald Knuth, "The Art of Computer Programming". Knuth has recently taken
@@ -183,7 +178,6 @@ approach, which is desired for this project.
 The resulting software should be able to process an input CNF formula in the semi-standard DIMACS format.
 
 \subsubsection{FREQ2}
-% TODO: Clarify this, 'short amount of time' doesn't seem very scientific.
 The resulting software should be able to evaluate the satisfiability of a simple formula from FREQ1, and return the result when
 found. Simple refers to a formula which most SAT solvers would be able to process in a short amount of time. Result refers to the
 decision returned from the solver that concludes as "SATISFIABLE" or "UNSATISFIABLE".
@@ -196,21 +190,12 @@ that, if time allows, can be implemented for further data.
 The resulting software should be able to process a complex formula within a reasonable amount of time. Reasonable refers to the
 length of time it takes to return a result when compared to other SAT solvers, i.e. 300 seconds to return "SATISFIABLE".
 
-%\begin{itemize}
-%    \item To make a SAT solver using instructions from "TAOCP"
-%    \item Make sure the solver can solve generic problem sets in DIMACS.
-%    \item Make sure the solver can do this in a decent amount of time.
-%    \item Basically FREQ1 and FREQ2.
-%\end{itemize}
-
 \section{Background}
 Before we get into the implementation and software, it is always good to have a solid understanding
 of the topic at hand. SAT in particular is quite a deep topic, it is easy to spend a long time
-researching into all the intricacies[!]. For this project, we will just be concentrating on the
+researching into all the intricacies. For this project, we will just be concentrating on the
 general concepts and ideas behind the most common instances of SAT. Along with some deep diving when required to ensure we
 understand what we're trying to achieve.
-
-% TODO: Insert previous CSCM10 research here, cause we ain't doing it again!
 
 \subsection{P vs NP}
 Before we progress into the basics of SAT, we can quickly explore the reason behind it being such an
@@ -221,27 +206,16 @@ The concept of P vs NP asks whether every problem whose solution can be verified
 be solved quickly. On the surface sounding simple, but in the details an incredibly hard question
 that has plagued computer scientists since the 1950s.
 
-% TODO: Expand on NP-Complete using previous research.
-A further interest within this field of study concerns the notion of NP-Complete.
-
 The Boolean Satisfiability Problem was the first to be proven NP-Complete, by both Steven Cook and
 Leonid Levin in 1971 and 1973 respectively\cite{scook}\cite{levin}. It was later included in a
 well-known paper, \textit{Reducibility Among Combinatorial Problems} by Richard Karp\cite{karp},
 which generated a renewed interest amongst researchers. In this paper, Karp proved how a large
 set of problems could be reduced to an instance of SAT. Thus meaning each one would be solvable if
-there was a suitable algorithm. The faster algorithm that we can create for the SAT problem, the
-better we can solve other problems via reducibility.
+there was a suitable algorithm. 
 
 \subsection{Boolean Satisfiability Problem}
-%\begin{itemize}
-%    \item Define the SAT problem with reference.
-%    \item Explain how SAT formulas are constructed.
-%    \item Explain early attempts to solve SAT formulas.
-%    \item Discuss the DPLL algorithm, the first computer implementation of a solver.
-%\end{itemize}
-As stated by Donald Knuth, the Boolean Satisfiability Problem is defined as such:
+As stated by Donald Knuth\cite{donald}, the Boolean Satisfiability Problem is defined as such:
 
-% TODO: Add citation for this quote. Also make this look a bit better...
 \begin{quotation}
     "Given a Boolean Formula $F(x_1,...,x_n)$, expressed in so called "conjunctive normal form" as an AND of ORs, can we "satisfy" $F$ by assigning values to its variables in such a way that $F(x_1,...,x_n)$ = 1?"
 \end{quotation}
@@ -283,13 +257,6 @@ encounter clauses in which there are no literals, which would be called \textit{
 think, shorter clauses would be easier to satisfy as they contain less literals, but this is not
 necessarily the case. As we progress further into the design and implementation of this solver, we
 will learn the importance of covering all bases and making no assumptions of difficulty.
-
-% TODO: Figure out a better name for this heading.
-\subsection{Polynomial Time Reduction}
-There are a plethora of problems that can be formulated into the previously stated problem. It is
-for this reason that we find the field of SAT solvers so important. Karp\cite{karp} introduced the idea of converting alternative
-problems to the SAT problem via \textit{Polynomial Time Reduction}.
-% TODO: Expand on this.
 
 \subsection{Complete vs Incomplete SAT Methods}
 Before we progress onto the details of SAT algorithms, we must understand the two distinct types of
@@ -424,9 +391,9 @@ computing or alternative methods of constructing the transistor, we can be sure 
 
 \section{Design}
 The following section will include analysing and detailing the algorithms presented by Knuth. This will include both
-\textit{Algorithm D} and \textit{Algorithm L}, both of which are representative of modern DPLL solvers. We will flesh out the
-general structure to be translated into code and investigate the required data structures along with how they can be implemented
-in our chosen language.
+\textit{Algorithm D} and \textit{Algorithm L}, both of which are representative of varying complexity DPLL based solvers. We will
+flesh out the general structure to be translated into code and investigate the required data structures along with how they can be
+implemented in our chosen language.
 
 \subsection{Base Algorithm}
 The key to all the most successful SAT solvers is the algorithms. As we previously established, the DPLL algorithm is considered
@@ -456,28 +423,13 @@ pseudocode for the original DPLL algorithm can be written as such:
     \caption{Generic pseudocode for DPLL.}
 \end{figure}
 
-\subsection{Data Structures}
-Before we progress to the next algorithms, it is important that we establish the data structures we will be needing. Knuth
-outlines the data structures that are important to these specific algorithms, and explains how their usefulness depends on how
-they are implemented. For his introduction to \textit{Algorithm B}, Knuth proposes that we use \textit{watched literals}. This
-concept details that we only need to keep an eye on the relevant literal per clause at any one time[!]. Using this notion, Knuth
-proceeds to heavily simplify his original data structures from \textit{Algorithm A}, and achieving an impressively small
-procedure that is still capable of solving small to medium sized problems.
-
-For our case however, we will be utilising both the lazy data structure that Knuth proposes for \textit{Algorithm B}, and combine
-it with a method of capitalising on \textit{unit clauses}. Knuth details that we can extend the data structures from \textit{Algorithm B} by introducing indices $h_1...h_n$.
-
-% TODO: Actually talk about the damn data structures!
-
 \subsection{Algorithm D - SAT by Cyclic DPLL}
 Knuth presents multiple algorithms to us in his book, but for this project are interested in specifically two of them. Algorithm D
 is the first we shall analyse, which will lay the foundation for Algorithm L.
 
-% TODO: FIX THIS! NOT THE ALGORITHM WE ARE USING ANYMORE!
-For our project, the algorithm that we will be interested in is a general DPLL algorithm. As
-previously discussed, this is just one of a few algorithms given from Donald Knuth. Although it is
+As previously discussed, this is just one of a few algorithms given from Donald Knuth. Although it is
 relatively simple, it is a good way to explore the basic idea of software SAT solvers. Forming a
-foundation for possible further improvements, much like those explained in algorithm L. Donald Knuth
+foundation for possible further improvements, much like those explained in \textit{Algorithm L}. Donald Knuth
 describes the algorithm in a series of steps, also outlining the data structures that we need to
 implement it as he has described.
 
@@ -489,7 +441,7 @@ and processing data were quite verbose. It involved having to record all the dat
 node onto a magnetic tape before branching. When they wished to backtrack to the previous node,
 they would restore the data from the tape they had created. But now we have huge stocks of memory
 available to use whenever necessary, allowing us to write more complex and faster solvers using
-equally more complex data structures.
+equally more complex data structures, as we will explore below.
 
 \subsection{Algorithm L - Utilising Lookahead}
 Knuth further expands on the previous algorithm by implementing a procedure called \textit{look-ahead}. This procedure attempts to
@@ -578,7 +530,6 @@ a unique variable. Using this format we can create consistent problem files whic
 able to ingest and process easily. An example of a problem formatted in this format is presented
 below:
 
-% TODO: Get this to actually center
 \begin{figure}[h]
     \centering
     \begin{lstlisting}
@@ -673,7 +624,6 @@ is as such:
 This command will invoke the 'make' binary to compile our program, called dpll. The output of this command will include both the
 output of the make command, as well as the time it took formatted to our previous rules:
 
-% TODO: Improve the way this looks.
 \begin{figure}[h]
     \centering
     \begin{align*}
@@ -757,9 +707,7 @@ problem, the time each problem takes, and whether the solver times out on a give
     \caption{Example output to file after testing script.}
 \end{figure}
 
-Another easy way of testing is by measuring the CPU time that the solver takes to give a solution to the problem it is given. 
-This is the reason we will be testing using the standard UNIX 'time' command. This command outputs three metrics; real, user, and 
-system. Real corresponds to the 'wall clock' time that the program took. This refers to the actual time it took from invocation 
+Real corresponds to the 'wall clock' time that the program took. This refers to the actual time it took from invocation 
 to completion whilst the CPU handles other processes. The 'user' time corresponds to the time the CPU spent on the program in 
 User mode. Calls made in Kernel mode will not be reflected in this time. The 'sys' time corresponds to the time the CPU spent in 
 Kernel mode when executing the program. These three metrics give us a good idea as to what the CPU spends the most time on when 
@@ -777,23 +725,41 @@ instance.
 After testing each instance at least 10 times, we can analyse the results and come to a conclusion on the efficacy of our solver.
 First off, we can quickly look at the results from the \textit{easy} problem set. As you would expect, a solver of this caliber
 should be able to breeze by these simple problem instances. However, it is still worth checking that this is true as there could
-be an edge case to which the solver may struggle with.
+be an edge case to which the solver may struggle with. After collating and analysing the results for this set we find that our
+solver manages to breeze through each of the problems. Taking a negligible amount of time to process each one, which can easily be
+attributed to the timing and logging functionality having to print to the \texttt{stdout}. All of the problems in this set
+returned the same values and any deviance here was in the range of being negligible:
 
-% TODO: Add the results for the 'easy' set here.
+\begin{figure}[h]
+    \centering
+    \begin{align*}
+        \texttt{real: 0.011s} \\
+        \texttt{user: 0.00s} \\
+        \texttt{sys: 0.016s}
+    \end{align*}
+    \caption{Most common result from 'easy' difficulty.}
+\end{figure}
 
 Second, we can look into the results of the \textit{medium} problem set. Although this set may present itself to be more
 challenging to a simpler implementation of a SAT solver, it should not stress ours. But, as stated above, it is still worth
-gathering more data than necessary as it could provide valuable information. 
+gathering more data than necessary as it could provide valuable information. However, upon collation and analysis of the results,
+we can see that much like the 'easy' problem set, our solver breezed through each problem. With most being consistent across the
+board with the previous results. The upper bound for this set was found to be with the problem \textit{langford\_prime\_10}, with
+the following results:
 
-% TODO: Add the results for the 'medium' set here.
+\begin{figure}[h]
+    \centering
+    \begin{align*}
+        \texttt{real: 0.652s} \\
+        \texttt{user: 0.609s} \\
+        \texttt{sys: 0.016s}
+    \end{align*}
+    \caption{Upper bound result from 'medium' difficulty.}
+\end{figure}
 
 Finally, we move onto the \textit{hard} problem set. This set presents the most challenging formulas to our solver, and as
-expected there are some which take it to the limits. We shall analyse this in more detail below.
-
-% TODO: Add the results for the 'hard' set here.
-
-What we can see from the \textit{hard} problem set is quite interesting. There are consistent timeouts across all 10 tests that
-show exactly the ones that our solver struggles with:
+expected there are some which take it to the limits. What we can see from the \textit{hard} problem set is quite interesting.
+There are consistent timeouts across all 10 tests that show exactly the ones that our solver struggles with:
 
 \begin{itemize}
     \item Waerden-5-5-177.
@@ -804,6 +770,9 @@ show exactly the ones that our solver struggles with:
     \item SSA2670-141.
 \end{itemize}
 
+This is still consistent when given extra time to figure these out, and as such means that we cannot satisfy our original
+\textit{FREQ1} with this solver for this specific problem set. This is of course perfectly fine, as these examples do present
+something very challenging to the solver. 
 
 \section{Evaluation}
 The following will be an objective evaluation of the execution and results of this project after it had been completed. Each
@@ -925,15 +894,13 @@ material turned against us. As such, in future projects there should be the adva
 background before starting.
 
 \section{Conclusion}
-\begin{itemize}
-    \item Just make a short summary of every single thing that was typed out above!
-    \item Don't forget to basically copy and paste this to the abstract.
-\end{itemize}
 Concluding this project, there is little that we have gained in the grand scheme of SAT. Although we looked through the history
 and investigated a few interesting SAT solvers, the actual implementation ended up being trivial due to already existing material.
-There were no improvements that could have been added within the given time-frame that would have made a difference. But we have
-seen that there are promising ideas that can be further worked on. And although academia has been marred by the unforeseen global
-pandemic, there remains a constant hum of research into improving existing solutions for solving SAT.
+There were no improvements that could have been added within the given time-frame that would have made a difference. On top of
+this, the project itself was hit with a large variety of problems which lead to too many time delays and preventing any addition
+of unplanned features. But we have seen that there are promising ideas that can be further worked on. And although academia has
+been marred by the unforeseen global pandemic, there remains a constant hum of research into improving existing solutions for
+solving SAT.
 % === End Main Content ===
 
 % === References ===
