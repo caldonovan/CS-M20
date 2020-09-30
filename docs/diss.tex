@@ -169,7 +169,6 @@ analyse. In this book, Knuth outlines multiple algorithms that could be used to 
     \item Algorithm W - WalkSAT.
 \end{itemize}
 
-% Be careful of the spell checker attempting to "americani(z)e" everything.
 We shall be analysing one of these algorithms and presenting the data structures needed and methods of implementation using C++.
 Once our implementation is complete, and testing has proved the solver to be working as intended, we will record the performance
 metrics in a scientific manner to ensure accuracy. These metrics will then be compared to other FOSS solvers that are well tested
@@ -314,7 +313,6 @@ iteratively improving on them until all constraints are satisfied.
 The DPLL algorithm is one of the most important milestones in the history of SAT. Itself being a further development of work by
 Martin Davis and Hilary Putnam in their 1960 paper \textit{A Computing Procedure for Quantification Theory}\cite{putnam}, the
 DPLL algorithm attempted to take this initial work and refine it.
-% TODO: Maybe talk about Herbrands Theorem here too?
 
 The DPLL algorithm still forms the basis of most efficient SAT solvers today. Each instance of a SAT solver that utilises the
 original DPLL algorithm typically adds their own optimisations and improvements to achieve a greater efficiency, something we
@@ -337,12 +335,6 @@ the case, clauses in which this pure literal appear can be safely assigned in a 
 true. Doing this means the solver can safely delete the clauses where this is the case and further reduce the search space.
 
 \subsection{Modern SAT}
-%\begin{itemize}
-%    \item Talk about how SAT has evolved since the original DPLL.
-%    \item Modern SAT competitions.
-%    \item Parallel SAT solvers.
-%    \item General future SAT solver stuff.
-%\end{itemize}
 Since the original instances of SAT there has been an astonishing amount of development into
 faster and more efficient methods. Since the millennium alone SAT solvers have managed to keep up
 with the quickly advancing hardware, allowing for the processing of SAT problems with sometimes up
@@ -373,8 +365,8 @@ whilst this is true, the advantage is that applying the problem to all these sol
 competitive, as the range of solvers will increase the chances of finding a solution in the fastest
 time possible. As with most parallel workloads, the downside to this is that the machine running
 these solvers will have to posses a large amount of memory. An example of an effective portfolio
-style solver is \textit{HordeSat}[!], which is capable of almost linear speedup depending on the
-problem set. % TODO: Maybe add some proof of this speedup here?
+style solver is \textit{HordeSat}\cite{horde}, which is capable of almost linear speedup depending on the
+problem set.
 
 \section{Related Work}
 Moving on from the background of SAT, we can look into existing solutions that are freely available.
@@ -400,26 +392,18 @@ One such instance of this is \textit{NeuroSAT}, a SAT solver that utilises neura
 to not be anywhere near as performant as state-of-the-art SAT solvers, such as the ones mentioned above, it lays the foundation
 for the potential use of machine learning and AI in the world of SAT. As we have all come to expect in Computer Science, machine
 learning can sometimes be considered a buzzword for a lot of things that amount to nothing. However, NeuroSAT has been able to
-solve substantially larger SAT instances than it had been trained on[!]. Thus proving to be quite promising in concept and
-sparking interest in its potential. Although the concluding remarks of this paper suggest that there is no obvious way forward
+solve substantially larger SAT instances than it had been trained on\cite{neuro}. Thus proving to be quite promising in concept
+and sparking interest in its potential. Although the concluding remarks of this paper suggest that there is no obvious way forward
 from this concept, it seems that it could potentially be something that could be learned from as a method of approaching SAT from
 a different direction.
 
 \subsection{Popular SAT Solvers}
 \subsubsection{Minisat}
-A popular and early solver that has won many competitions[!] is Minisat. Written in C++ and boasting
-just a mere few hundred lines of code, Minisat has been proven to be an effective tool for medium
-sized problem sets. First written in 2003 by Niklas Een[!] and Niklas Sorensson[!], its primary goal
+A popular and early solver that has won many competitions\cite{minisat} is Minisat. Written in C++ and boasting
+just a mere few hundred lines of code in its slimmest form, Minisat has been proven to be an effective tool for medium
+sized problem sets. First written in 2003 by Niklas Een and Niklas Sorensson, its primary goal
 was to help developers and researchers get into the field of SAT solving by providing a simple
 interface and minimal codebase.
-
-%\begin{itemize}
-%    \item Talk about Minisat.
-%    \item Go into detail about offshoots from Minisat, such as CryptoMiniSat.
-%    \item Newer CDCL algorithms.
-%    \item Look into SAT 2020 to find some interesting new solvers.
-%    \item Basically talk about applications then the research currently happening.
-%\end{itemize}
 
 \subsubsection{CryptoMiniSat}
 CryptoMiniSat is an advanced, modern SAT solver created by Mate Soos, Karsten Nohl, and Claude Castelluccia\cite{cryptominisat}.
@@ -431,12 +415,6 @@ possible. Based off of their 2009 conference paper \textit{Extending SAT Solver 
 000 lines of code as opposed to Minisat's 1,500. As stated in the projects FAQ, one of its main aims from the offset was to apply
 SAT solvers to cryptographic problems. However this ended up being just one of the many types of SAT that it excelled at.
 
-% TODO: Finish this section
-\subsubsection{Chaff / zChaff}
-\lipsum[2-3]
-\subsubsection{GRASP}
-\lipsum[2-3]
-
 \subsection{Limitations}
 It can be quite challenging to come up with potential limitations for state-of-the-art solvers. But, when generally speaking,
 there is always potential for improvement based upon the advancements in computer hardware. Many SAT solvers nowadays are already
@@ -445,26 +423,18 @@ was first created. But as we go ahead into a promising future filled with techno
 computing or alternative methods of constructing the transistor, we can be sure that further innovations with SAT will follow.
 
 \section{Design}
-%\begin{itemize}
-%    \item Summary of what we would want from a design.
-%    \item Include the algorithm from Donald Knuth (algorithm D).
-%    \item Discuss the data structures that we will need to implement based off of DK's ideas.
-%\end{itemize}
 The following section will include analysing and detailing the algorithms presented by Knuth. This will include both
 \textit{Algorithm D} and \textit{Algorithm L}, both of which are representative of modern DPLL solvers. We will flesh out the
 general structure to be translated into code and investigate the required data structures along with how they can be implemented
 in our chosen language.
 
 \subsection{Base Algorithm}
-The key to all the most successful SAT solvers is the algorithms. The first SAT solver to be implemented for a computer used the
-DPLL algorithm[!]. As we previously established, the DPLL algorithm is considered one of the firsts and produced good results for
-the time. As of the last decade, there have been a plethora of improvements to the original DPLL algorithm that has allowed it to
-keep up with the increasing complexity of problems available. The general pseudocode for the original DPLL algorithm can be
-written as such:
+The key to all the most successful SAT solvers is the algorithms. As we previously established, the DPLL algorithm is considered
+one of the firsts and produced good results for the time. As of the last decade, there have been a plethora of improvements to the
+original DPLL algorithm that has allowed it to keep up with the increasing complexity of problems available. The general
+pseudocode for the original DPLL algorithm can be written as such:
 
 \begin{figure}[h]
-    % TODO: Put the DPLL algorithm pseudocode here
-    % Fix the notations not showing up!
     \centering
     \begin{lstlisting}[language=C++]
     Algorithm DPLL
@@ -482,7 +452,8 @@ written as such:
             C ← pure-literal-assign(L, C);
         L ← choose-literal(C);
         return DPLL(C AND {L}) or DPLL(C AND {not(L)});
-\end{lstlisting}
+    \end{lstlisting}
+    \caption{Generic pseudocode for DPLL.}
 \end{figure}
 
 \subsection{Data Structures}
@@ -508,17 +479,11 @@ previously discussed, this is just one of a few algorithms given from Donald Knu
 relatively simple, it is a good way to explore the basic idea of software SAT solvers. Forming a
 foundation for possible further improvements, much like those explained in algorithm L. Donald Knuth
 describes the algorithm in a series of steps, also outlining the data structures that we need to
-implement it as he has described. The following is the algorithm steps that are detailed by Knuth in his book:
-
-% TODO: Finish adding this.
-\begin{enumerate}
-    \item Set $m_0 \leftarrow d \leftarrow h \leftarrow t \leftarrow 0$, and do the following for $k = n, n - 1, ..., 1:$ Set $x_k ← -1$ (denoting an unset value); if $W_{2k} \neq 0$ or $W_{2k+1} \neq 0$, set \texttt{NEXT}($k$) $ \leftarrow h, h \leftarrow k$, and if $t = 0$ also set $t \leftarrow k$. Finally, if $t \neq 0$, complete the active ring by setting \texttt{NEXT}($t$)$ \leftarrow h$.
-    \item Terminate if $t = 0$ (all clauses are satisfied). Otherwise set $k \leftarrow t$.
-\end{enumerate}
+implement it as he has described.
 
 Knuth names this algorithm "\textit{Algorithm D - Satisfiability by Cyclic DPLL}. It is based on the
 original algorithm presented by Martin Davis, George Logemann, and Donald Loveland\cite{dpll},
-extending previous work Davis did with Hilary Putnam[!]. At the time of it's inception, this
+extending previous work Davis did with Hilary Putnam\cite{putnam}. At the time of it's inception, this
 algorithm was seen as fantastic. But due to limitations of the hardware, their methods of storing
 and processing data were quite verbose. It involved having to record all the data of the current
 node onto a magnetic tape before branching. When they wished to backtrack to the previous node,
@@ -633,14 +598,6 @@ This input will be read line by line by the solvers parser, recording the key in
 needs. The program will then fill all the relevant data structures that it needs and proceed to processing them.
 
 \subsection{Output}
-% https://web.archive.org/web/20190913185210/http://www.satcompetition.org:80/2004/format-solvers2004.html
-%\begin{itemize}
-%    \item The output will be "SATISFIABLE" or "UNSATISFIABLE".
-%    \item Could also output the best solution.
-%    \item Explain the output standard for SAT competitions.
-%    \item SAT Competition 2002 output rules (see above comment).
-%\end{itemize}
-
 The output of our program is just as important as the input. After all, we want to know how the
 solver has gotten to the solution it has ended at. Much like the input, we will be following a
 semi-standard format that is outlined at each SAT competition. Using this format will allow us to be
@@ -737,8 +694,8 @@ compare the expected outcome to the actual outcome and record whether they are i
 this is a simple technique, it is hard to apply automated testing to our program as it is so niche.
 
 As for ensuring the program returns correct results, the best way that we will be able to check is
-to use well known and reputable solvers to generate results and compare the two. This can also be
-added to the testing criteria and formatted in a table if preferred. The following will be the
+to use well known and reputable solvers to generate results and compare the two, or to verify the results using a verification
+library. This can also be added to the testing criteria and formatted in a table if preferred. The following will be the
 details of the testing strategy alongside the results.
 
 \subsection{Software Testing}
@@ -808,24 +765,7 @@ User mode. Calls made in Kernel mode will not be reflected in this time. The 'sy
 Kernel mode when executing the program. These three metrics give us a good idea as to what the CPU spends the most time on when 
 executing our program.
 
-\subsubsection{Memory Usage}
-Another method in which we can measure the performance of our solver is by keeping track of the
-memory that is used. Although this may not seem like a performance related metric, it can tell us
-about potential memory leaks which can in turn effect the general performance of the system. Aside
-from this, it is important to keep track of the memory usage as a method of judging the solver
-itself. Higher memory usage can indicate how many branches the solver is heading into before coming
-to its solution. Typically more complex solvers that contain multiple algorithms, to solve
-individual parts of the problem, can take up much less memory than a simpler one. The reason we add
-more complexity is to ensure that the solver knows when it should stop trying to branch in a
-particular direction. Less branching means we save a bit more memory and can sift through the
-problem much quicker.
-
-% TODO: Think about other ways of measuring performance.
-
 \section{Results}
-%\begin{itemize}
-%    \item Discuss what we found from our testing
-%\end{itemize}
 After we are confident that the solver created from \textit{Algorithm L} is working as intended, we can commit to measuring its
 performance against other solvers of a similar nature. For this, we modified an already included bash script to print out not just
 the output from the solver, but also the time each individual problem took. Like stated previously, this was done simply with the
@@ -916,19 +856,10 @@ project. The other binaries were used for testing purposes. As they are general 
 algorithms, they proved to be a bonus when analysing the potential of each against \textit{Algorithm L}.
 
 \section{Future Work}
-%\begin{itemize}
-%    \item Explore performance implications of algorithm.
-%    \item Talk about DK's performance predictions from TAOCP.
-%    \item Talk about how we could potentially improve the performance of our solver.
-%    \item Maybe talk about things like parallelism?
-%\end{itemize}
-
 \subsection{Pre-processing}
 One simple method that could greatly assist our solver is using a pre-processor. This will take the problem set and analyse it,
 and return a much simplified problem. This concept is applied across modern solvers already, and is considered a vital part of
 the SAT solving system.
-
-% TODO: Add some examples from existing solvers.
 
 \subsection{Parallel Solving}
 A more interesting concept is to capitalise on modern processor architectures, and the cheap availability of multi-core CPU's. It
@@ -937,10 +868,7 @@ up the problem set and apply a solver to each smaller instance running on an ind
 would not necessarily lead to a linear performance increase. It would require some research and engineering to determine the best
 way forward in order to achieve the desired results.
 
-% TODO: Talk a bit more about this.
-
 \subsection{SIMD}
-% TODO: Make sure that this is correct and not just some generic waffle.
 Another interesting technique that could be applied to SAT solving is the use of SIMD instructions for data level parallelism. It
 has been shown in other applications that utilising SIMD instructions can quickly lead to almost linear performance improvements
 corresponding to each bit width of data processed. The most common SIMD instruction set is \textit{SSE} (Streaming SIMD
@@ -948,15 +876,7 @@ Extensions). Introduced in 1999 by Intel, it is now commonplace is all modern co
 implement SIMD into SAT solvers then there could be a massive potential for speedups in a range of applications. Even if the SIMD
 instructions were implemented in auxiliary areas of the solver itself, it is worth the time to investigate the potential.
 
-% TODO: Maybe include some examples of SIMD in a solver?
-
 \section{Challenges}
-%\begin{itemize}
-%    \item Discuss the challenges we faced.
-%    \item Inlude the pandemic and associated issues.
-%    \item Discuss how the nature of C++ can lead to confusion in development.
-%    \item Discuss how a non-existent mathematical background made this \textit{very f*cking hard}.
-%\end{itemize}
 As with any project there will always be some challenges faced that skew the planned timeline. The following details the problems
 that specifically effected this project and what could potentially be done to avoid facing these in the future.
 
@@ -984,15 +904,17 @@ over-ambition ended up playing a much bigger role than anticipated, as we will d
 \subsubsection{Late Start}
 One of the first challenges that had effected this project was the late start. This was in part due to both personal obligations
 that could not be avoided. As well as in part due to the Coronavirus pandemic. Although this did not effect the overall project
-progressing, it did push the established timeframe beyond what had been originally planned. The domino effect of moving beyond the
-allowed time buffer meant that each stage of the project had to be pushed back. Thus in turn creeping the expected deadline much
-further back than anticipated.
+progressing, it did push the established time-frame beyond what had been originally planned. The domino effect of moving beyond
+the allowed time buffer meant that each stage of the project had to be pushed back. Thus in turn creeping the expected deadline
+much further back than anticipated.
 
 \subsubsection{Coronavirus}
 The second major issues encountered was something completely out of our control. The Coronavirus pandemic of 2020 provided a
 massive slew of issues for all academia. Specifically for this project it meant the general plan for the project, as well as the
-time plan, were both interrupted. The general lockdown for the United Kingdom resulted in confinement to the home. The
-availability of face-to-face meetings proved to be unfavourable, and potential disruptions in the home delayed planned work.
+time plan, were both interrupted. The general lock-down for the United Kingdom resulted in confinement to the home. The
+availability of face-to-face meetings proved to be unfavourable, and potential disruptions in the home delayed planned work. On
+top of all of this, there were instances in which the virus ended up being closer than desired. In these cases, the stress of
+every day life sometimes meant that delays were inevitable.
 
 \subsubsection{Maths Heavy Topic}
 Another major issue encountered for this project was the lack of initial general mathematical background . This topic is a rather
@@ -1002,15 +924,16 @@ this turned out to be good in the sense of challenging, the over-ambition to ass
 material turned against us. As such, in future projects there should be the advance knowledge of the required mathematical
 background before starting.
 
-\section{Reflection}
-
-
 \section{Conclusion}
 \begin{itemize}
     \item Just make a short summary of every single thing that was typed out above!
     \item Don't forget to basically copy and paste this to the abstract.
 \end{itemize}
-% TODO: Conclude on our findings and all the preceding work we have done.
+Concluding this project, there is little that we have gained in the grand scheme of SAT. Although we looked through the history
+and investigated a few interesting SAT solvers, the actual implementation ended up being trivial due to already existing material.
+There were no improvements that could have been added within the given time-frame that would have made a difference. But we have
+seen that there are promising ideas that can be further worked on. And although academia has been marred by the unforeseen global
+pandemic, there remains a constant hum of research into improving existing solutions for solving SAT.
 % === End Main Content ===
 
 % === References ===
