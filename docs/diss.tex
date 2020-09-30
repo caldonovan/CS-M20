@@ -12,15 +12,6 @@
 \usepackage{float}
 \usepackage{lipsum}
 \usepackage[english]{babel}
-\usepackage{libertinus}
-%\usepackage{libertinust1math}
-
-% === Hyperlinks ===
-%\hypersetup{
-%    colorlinks=false,
-%    linktoc=all
-%}
-% === End Hyperlinks ===
 
 % === Colours ===
 \definecolor{codegreen}{rgb}{0,0.6,0}
@@ -74,26 +65,48 @@
 % === Main Content ===
 \thispagestyle{empty}
 \begin{center}
-    \section*{Abstract}
+    \section*{Summary}
 \end{center}
 % TODO: Use the word "implement" a lot less!
-%The Boolean Satisfiability Problem is a fundamental part of Computer Science. First proven to be an
-%NP-Complete problem by both Stephen Cook in 1971\cite{scook}, and Leonid Levin in 1973\cite{levin}. Since then, many more
-%NP-Complete problems have been identified, along with their respective uses in the real world
-%outside of pure computer science. Due to this, there has been a growing need for solvers that can
-%effectively and efficiently process these problems. In the last two decades alone, huge progress has
-%been made to coincide with the advancements in technology. And more SAT solvers have appeared that
-%can be deployed in industries where they are most needed.
+The Boolean Satisfiability Problem is a fundamental part of Computer Science. First proven to be an
+NP-Complete problem by both Stephen Cook in 1971\cite{scook}, and Leonid Levin in 1973\cite{levin}. Since then, many more
+NP-Complete problems have been identified, along with their respective uses in the real world
+outside of pure computer science. Due to this, there has been a growing need for solvers that can
+effectively and efficiently process these problems. In the last two decades alone, huge progress has
+been made to coincide with the advancements in technology. And more SAT solvers have appeared that
+can be deployed in industries where they are most needed.
 
-%This paper explores the basic concept behind SAT solvers, and how they can be implemented in
-%software using modern programming languages and tools. The algorithm that will be
-%implemented is one proposed by Donald Knuth in his book "The Art of Computer Programming". Knuth proposes
-%many algorithms, ranging from the most basic backtracking based algorithm, to an advanced
-%implementation of WalkSAT[!]. We will explore the fundamentals of how to implement these algorithms,
-%implement one of them, then test its performance against a suite of SAT problems.
+This dissertation explores the basic concept behind SAT solvers, and how they can be implemented in
+software using modern programming languages and tools. The algorithm that will be
+implemented is one proposed by Donald Knuth in his book "The Art of Computer Programming". Knuth proposes
+many algorithms, ranging from the most basic backtracking based algorithm, to an advanced
+implementation of WalkSAT\cite{donald}. We will explore the fundamentals of how to implement these algorithms,
+implement one of them, then test its performance against a suite of SAT problems.
 
-%The result of this paper will be a SAT solver implemented in C++, using the data structures and
-%steps provided by Donald Knuth in his book "The Art of Computer Programming".
+This project demonstrates the ways in which SAT algorithms can be implemented, but does not add to any existing research in a
+significant way.
+
+\newpage
+\thispagestyle{empty}
+\begin{center}
+\section*{Declarations}
+\end{center}
+\vspace*{\fill}
+\subsection*{Declaration 1}
+This work has not previously been accepted in substance for any degree and is
+not being concurrently submitted in candidature for any degree.
+
+\subsection*{Statement 1}
+This dissertation is the result of my own independent work/investigation, except
+where otherwise stated. Other sources are acknowledged by giving explicit
+references. A bibliography is appended.
+
+\subsection*{Statement 2}
+I hereby give consent for my dissertation, if accepted, to be available for
+photocopying and for inter-library loan, and for the title and summary to be
+made available to outside organisations.
+
+\vspace*{\fill}
 
 \newpage
 \thispagestyle{empty}
@@ -514,39 +527,60 @@ available to use whenever necessary, allowing us to write more complex and faste
 equally more complex data structures.
 
 \subsection{Algorithm L - Utilising Lookahead}
-Knuth further expands on the previous algorithm by implementing a procedure called \textit{look-ahead}. This procedure attempts to determine the best direction in which to branch by performing \textit{look-ahead} on a set of variables, then evaluating the resulting reduction of the formula. Put simply, the \textit{look-ahead} procedure attempts to predict the future for the success of the present.
+Knuth further expands on the previous algorithm by implementing a procedure called \textit{look-ahead}. This procedure attempts to
+determine the best direction in which to branch by performing \textit{look-ahead} on a set of variables, then evaluating the
+resulting reduction of the formula. Put simply, the \textit{look-ahead} procedure attempts to predict the future for the success
+of the present. As detailed by Knuth, we must switch from the 'lazy data structures' that were utilised in \textit{Algorithm D},
+to more 'eager' ones. The reason for this being that one of the major bottlenecks of \textit{Algorithm D} is the detection of
+forced variable assignments. For \textit{Algorithm D}, these indirect references aren't particularly fast, and by improving upon
+them we can speed up the algorithm significantly. Of course, this means that we must increase the complexity equally to match.
+These 'eager' data structures allow for much faster detection of forced values. 
 
-%\begin{itemize}
-%    \item Discuss algorithms presented by DK.
-%    \item Discuss which algorithm we are planning to implement.
-%    \item Talk about the ones we aren't going to anyway?
-%\end{itemize}
-% TODO: Talk about how we've design the code based off of the algorithm and preceding content in the book.
+In order to achieve this, we must keep track of the binary clauses that occur in the relevant subproblem $F | L$. These clauses
+are kept in what Knuth calls a 'bimp-table', which is denoted by \texttt{BIMP($l$)}, for every literal $l$. We only need to store
+the relevant facts about $(u \vee v)$, and can do so directly in a convenient way. This is done by listing $u$ in
+\texttt{BIMP($\bar{v}$)} and $v$ in \texttt{BIMP($\bar{u}$)} respectively. These two tables are stored using a sequential list of
+length \texttt{BSIZE($l$)}.
+
+This leads us to the next point Knuth raises that influenced his alterations for \textit{Algorithm L}. It assumes that all the
+clauses that it will be facing will have a length of 3 or less. This is because all instances of the general SAT problem can be
+converted into 3SAT. Much like the above notation, these clauses are then represented by what Knuth calls 'timp-tables'. We can
+take the previous 'bimp-table' concept and apply it to these 'timp-tables'. Resulting in the respective notations of
+\texttt{TIMP($l$)} to represent each literal's sequential list which has the length \texttt{TSIZE($l$)}. The significance of this
+list allows us to neatly represent ternary clauses in a binary way, and link them together cyclically to represent the original
+ternary clause. As \textit{Algorithm L} does not generate any ternary clauses, the memory can be safely allocated after the
+problem has been parsed. 
+
+A major difference to the previous algorithms comes in the form of variables having \textit{degrees of truth}. This concept allows
+the algorithm to deduce the potential consequences of a literal in a particular context via a breadth-first search procedure. This
+is achievable by using a sequential stack $R_0, R_1, ...,$ to record the names of the literals that have received values.
+
+Knuth also highlights another algorithm inside of \textit{Algorithm L} which he calls \textit{Algorithm X}. This is the meat of
+the algorithm and is where the \textit{looking ahead} occurs. It is what is called before \textit{Algorithm L} decides which
+literal to branch on, and is really where we can see some major performance improvements over \textit{Algorithm D}. As Knuth
+points out, the factor of speedup which we can achieve with this \textit{Algorithm X} depends on the complexity in which we put
+into it. A simple version of this \textit{lookahead} procedure will provide us with a speedup of three times over
+\textit{Algorithm D}. But Knuth points out that by spending time to create a much more sophisticated version, speedups of up to
+ten times more can be achieved. This is of course most prevalent on the larger instances of SAT that we would test against. 
+
+\subsection{Algorithm X - Looking Ahead}
+This algorithm is based on a well known paper \textit{Implementing Additional Reasoning into an Efficient Look-Ahead SAT Solver},
+by Marijn Heule\cite{march}. His SAT solver is considered to be one of the most impressive in the field, and utilises multi-level
+look-ahead techniques to achieve high accuracy branching prediction. In order to find the best way in which to branch, we must
+consider three points that will discover the potential of a literal's assignment. The first is to find the best candidate of the
+free variables that are currently available. The second is to let these literals to share their implications. The third is to
+investigate the immediate effect that would entail our decisions. Using this approach, we can look into the hypothetical future
+and use that information to feed our branching decision. In some cases this algorithm may even find that a decision will allow us
+to solve the problem and terminate successfully, something that the other algorithms may have not found after a significant amount
+of search space. 
 
 \section{Implementation}
-%\begin{itemize}
-%    \item Discuss the general idea of the program, including inputs (DIMACS) and outputs (SAT / NON-SAT).
-%    \item Discuss the process in which we are going to be solving these problems.
-%    \item Talk about our tool-chain and related crap.
-%    \item Talk about the attempts at implementing it.
-%    \item Show the final implementation.
-%\end{itemize}
+This section concerns the general input and output that our solver will use. As well as the method in which we will attempt to
+implement it. If there are any tools already available to us, or libraries that may help us, they will also be listed here. We
+will also be glazing over the tool-chain and related items that are to be used to create the solver. This includes the language
+and the compiler that will be used. As well as the editor and reasoning behind these choices.
 
-The following will be an in-depth look at the steps we need to consider when implementing our
-project. Following the design, this section details the general input and output of the program. As
-well as the processing that forms the core of the solver. We will also outline the data structures
-that are to be implemented and how they will be integrated with the algorithm to culminate in a
-working SAT solver.
-
-We will also be glazing over the tool-chain and related items that are to be used to create the
-solver. This includes the language and the compiler that will be used. As well as the editor and
-reasoning behind these choices.
-
-% TODO: Alter this title
-\subsection{White Box}
-% These are the basic steps of a computer program.
-% Explain to the reader what is included for SAT.
-\subsubsection{Input}
+\subsection{Input}
 The input of the program will be a CNF formula presented in the DIMACS file format. This file format
 is the standard for the SAT competitions and allows for simple parsing of the problem. The format
 consists of few elements to ensure the problem is presented cleanly, the first of which being
@@ -580,7 +614,8 @@ able to ingest and process easily. An example of a problem formatted in this for
 below:
 
 % TODO: Get this to actually center
-\begin{center}
+\begin{figure}[h]
+    \centering
     \begin{lstlisting}
         c pigeonhole 2 1
         c label:unsatisfiable
@@ -590,27 +625,14 @@ below:
         2 0
         -1 -2 0
     \end{lstlisting}
-\end{center}
+    \caption{Example format of a DIMACS file.}
+\end{figure}
+
 
 This input will be read line by line by the solvers parser, recording the key information that it
-needs. After successful parsing we can move on to the processing of this problem.
+needs. The program will then fill all the relevant data structures that it needs and proceed to processing them.
 
-\subsubsection{Processing}
-%\begin{itemize}
-%    \item Discuss how the processing works.
-%    \item This is the real meat that basically explains the algorithm.
-%    \item I feel it would be best to at least discuss the DPLL algorithm.
-%    \item Use content from TAOCP and online.
-%\end{itemize}
-This section details the bulk of what our program will do. Based off of Algorithm L discussed in the design section, we will be
-implementing it as closely as possible in modern C++. Our data structures will also be integral to how this part will operate, and
-thus we must ensure we spend appropriate time to optimise them the best that we can.
-
-
-
-% TODO: Explain how the algorithm processes our input.
-
-\subsubsection{Output}
+\subsection{Output}
 % https://web.archive.org/web/20190913185210/http://www.satcompetition.org:80/2004/format-solvers2004.html
 %\begin{itemize}
 %    \item The output will be "SATISFIABLE" or "UNSATISFIABLE".
@@ -630,11 +652,11 @@ difference here being that there is no particular order in which the lines must 
 three distinct types of lines in this format:
 
 \begin{itemize}
-    \item \texttt{'c '}: Denotes a comment line in which the program can output any auxiliary
+    \item \texttt{'c'}: Denotes a comment line in which the program can output any auxiliary
           information.
-    \item \texttt{'s '}: Denotes the line where the solution is presented. This must be either
+    \item \texttt{'s'}: Denotes the line where the solution is presented. This must be either
           'satisfiable', 'unsatisfiable', or 'unknown'. Only one instance of this line is allowed.
-    \item \texttt{'v '}: Denotes the values of the solution if one is found.
+    \item \texttt{'v'}: Denotes the values of the solution if one is found.
 \end{itemize}
 
 The resulting output should combine all three of these types to create a comprehensive result to the
@@ -646,17 +668,6 @@ will allow for the checking of the answer to ensure its correctness.
     \includegraphics[width=0.8\textwidth]{output_example.jpg}
     \caption{Output format.}
 \end{figure}
-
-% This is going to be pretty important, attempt to simplify for the reader.
-\subsection{Implementing the Data Structures}
-%\begin{itemize}
-%    \item Discuss why we're going to have to implement specific data types.
-%    \item Provide examples on the types of structures to be used.
-%\end{itemize}
-
-The data structures that Knuth presents to us are not the easiest to implement in practice. As he mentions, programmers enjoy having clear and concise programs, but sometimes there needs to be complexity in order to achieve a specific goal. Because of this, the data structures for this algorithm ended up being rather complex to replicate with C++.
-
-% TODO: Detail how the data structures are pretty complex.
 
 \subsection{Tool-chain}
 The following is a quick overview of the tool-chain that will be used for this project. As these aren't the meat of what the
@@ -693,55 +704,31 @@ development environment:
 
 It is also important to mention any other environment software aside from the previously mentioned. We are going to be using the
 \textit{time} command to accurately measure the time metrics of the software from start to completion. This command is available
-through bash and is invoked at the same time as the program itself. But before we can use this we must invoke another command:
+through bash and is invoked at the same time as the program itself. An example of the way in which we would use the time command
+is as such:
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.8\textwidth]{time_command_format.png}
-    \caption{Command to achieve desired output format}
-\end{figure}
-
-This command allows us to achieve the desired format. This is only necessary as we are using the Z-Shell, but the command itself
-still works the same as traditional Bash. Using the time command we can effectively measure the time that it takes from
-invocation to completion in a consistent format. This is a simple alternative to implementing a time measuring system into the
-SAT solver, which could potentially make it less performant. An example of the usage of the time command is shown below:
-
-\begin{center}
     \texttt{\$ time make bin/dpll}
-\end{center}
+    \caption{Example usage of the UNIX 'time' command.}
+\end{figure}
 
 This command will invoke the 'make' binary to compile our program, called dpll. The output of this command will include both the
 output of the make command, as well as the time it took formatted to our previous rules:
 
 % TODO: Improve the way this looks.
-\begin{align*}
-    \texttt{real: 4.70s} \\
-    \texttt{user: 2.42s} \\
-    \texttt{sys: 0.45s}
-\end{align*}
+\begin{figure}[h]
+    \centering
+    \begin{align*}
+        \texttt{real: 4.70s} \\
+        \texttt{user: 2.42s} \\
+        \texttt{sys: 0.45s}
+    \end{align*}
+    \caption{Example output of the UNIX 'time' command.}
+\end{figure}
 
-% TODO: Make this picture look a bit better
-%\begin{center}
-%    \includegraphics[scale=0.4]{time_command_example.png}
-%\end{center}
-
-\subsection{Final Program}
-%\begin{itemize}
-%    \item Investigate general pseudocode of generic DPLL algorithm (Wiki).
-%    \item Create some pseudocode from algorithm.
-%    \item Create some actual code to show?
-%\end{itemize}
-The final program works just as any other modern SAT solver would.
-% TODO: Explain more about the final program.
 
 \section{Testing}
-%\begin{itemize}
-%    \item Summarize what we want from the testing phase.
-%    \item Discuss the problem sets that we are going to be throwing at this.
-%    \item Discuss program testing first, even though this is not really what we mean by "testing".
-%    \item Record some testing metrics, such as time to solve, memory, CPU cycles, etc.
-%    \item Describe any regions that could potentially be improved.
-%\end{itemize}
 As with all software, one of the most important parts of the development lifecycle is testing. For
 this project we must ensure that it not only works without fault, but also returns the correct
 results that we are looking for. In order to test our software we shall generate a plethora of
@@ -755,11 +742,6 @@ added to the testing criteria and formatted in a table if preferred. The followi
 details of the testing strategy alongside the results.
 
 \subsection{Software Testing}
-%\begin{itemize}
-%    \item Discuss methods of software testing (Unit, manual, etc...)
-%    \item Outline a testing table for manual testing.
-%    \item Discuss testing against the functional requirements stated previously.
-%\end{itemize}
 There are a vast array of testing tools freely available to use for most software projects. These
 have been created from the need for automated testing due to programs changing rapidly. In this
 case, we do not need to deploy any advanced testing techniques or tools. As we have quite rigid
@@ -774,35 +756,16 @@ not need to overcomplicate this by writing hundreds of edge case tests. More imp
 that the program both compiles successfully, and produces the correct result. Unit testing may not be exactly translatable to our program as there isn't so much individual components. But we can use the idea instead to test individual files.
 
 \subsection{Checking For Correct Solutions}
-%\begin{itemize}
-%    \item Add results from test folder
-%    \item Use two other solvers and give them the same problem
-%    \item Check at least 10 times to ensure consistent results
-%\end{itemize}
-% TODO: Attempt to add results from other solvers here.
 Progressing from the program testing, we must also ensure the solver is returning correct results.
 This can also lead us to any bugs that may be present within the program. Using common SAT problems
 presented in the DIMACS format we can compare the results from our program to results from another
 solver. For statistical reasons we should ensure that each problem set is ran at least 10 times on
 each solver. To further back up the testing results we could run the same problems against a third
-solver. This would allow for comparison between each solver as a fall-back.
+solver. This would allow for comparison between each solver as a fall-back. In this instance, the project that we found in the
+previous sections also included scripts to verify the results of each problem. We will be using this to ensure each result and its
+returned model are correct.
 
-The first solver we will be using to ensure correctness is \textit{Minisat}. This solver is one of
-the most tried and tested solvers freely available to use. And comes with plenty of features to
-allow each test set to be completed quickly. \textit{Minisat} comes with a well documented interface
-that we can use to easily build and run our test sets.
-
-The fall-back solver we will be using is \textit{CryptoMiniSat}. This solver is still in active
-development and incorporates some of the most advanced features for a FOSS solver. Compared to
-\textit{Minisat}, this solver is significantly more complex. It should give us safe results that we
-can use to ensure no discrepancies between our solver and \textit{Minisat}.
-
-Using the two mentioned solvers we can compare their results against our own. This is worth doing to make sure there are as
-little bugs as possible. The results for our testing are displayed below.
-
-% TODO: Put the results from our solver here.
-
-\subsection{Monitoring Initial Performance Metrics}
+\subsection{Monitoring Performance Metrics}
 Now that we are sure that we have an implementation that is working as intended, we can begin measuring its performance. We will 
 be doing this against a set of SAT problems that increase in difficulty. In order to get results that are viable, we will be 
 testing against each difficulty level (easy, medium, and hard) at least 10 times. We must also consider the fact that our solver 
