@@ -1,31 +1,9 @@
 Building
---------
+-------
 
-You'll need `git` to clone this repo, `g++` and `make` to build and `python3` to run
-instance generators in the gen/ subdirectory. `bash` is used as the shell for scripts.
-
-On a debian-based Linux distribution, you can make sure you have everything you need by
-running:
-
-    apt-get update && apt-get install bash build-essential git python3
-
-Next, clone this repo:
-
-    git clone git@github.com:aaw/sat.git
-
-cd into the top level of the clone (`cd sat`) and run `make` to buld everything.
-This should produce five binaries and put them in the bin/ subdirectory:
-
-   * `btwl` (Algorithm B)
-   * `dpll` (Algorithm D)
-   * `cdcl` (Algorithm C)
-   * `look` (Algorithm L)
-   * `walk` (Algorithm W)
-
-To create the fastest binaries, compile out any logging, counters, or timers by adding
-`OPT=1` and rebuilding from scratch:
-
-    make clean bin/cdcl OPT=1
+    make clean bin/<binary_name>
+    
+Some errors will be encountered, but they are just memory warnings from the compiler being so strict.
 
 Running
 -------
